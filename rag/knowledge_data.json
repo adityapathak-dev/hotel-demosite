@@ -1,0 +1,146 @@
+[
+  {
+    "id": "overview-heritage",
+    "title": "About XYZ Hotel & Heritage Legacy",
+    "category": "about",
+    "url": "index.html#about",
+    "content": "XYZ Hotel is a prestigious 5-star luxury hotel established in 1987 in New Delhi's Central Diplomatic Enclave. It features 350+ luxury rooms, 5 fine restaurants, and 37 years of exemplary hospitality blending timeless royal heritage with contemporary sophistication.",
+    "tags": ["history", "heritage", "about", "stars", "rooms count", "legacy", "overview"]
+  },
+  {
+    "id": "location-diplomatic-enclave",
+    "title": "Location & Proximity",
+    "category": "location",
+    "url": "contact.html#location",
+    "content": "XYZ Hotel is located at 1 Royal Avenue, Central Diplomatic Enclave, New Delhi, India 110001. The hotel is situated in the heart of the diplomatic district, just 20 minutes drive from Indira Gandhi International Airport (DEL), close to major embassies, historic landmarks, and luxury boutiques.",
+    "tags": ["location", "address", "airport distance", "where", "delhi", "directions"]
+  },
+  {
+    "id": "room-deluxe-king",
+    "title": "Deluxe King Room Specifications & Tariff",
+    "category": "accommodations",
+    "url": "rooms.html#deluxe",
+    "content": "Deluxe King Room is priced at ₹12,500 per night (plus 18% GST). It offers 48 m² (516 sq.ft) of space with panoramic city skyline views, a plush king pillow-top bed, Italian marble bathroom with deep soaking tub and rainforest shower, Nespresso coffee atelier, and complimentary high-speed Wi-Fi 6.",
+    "tags": ["deluxe room", "tariff", "price", "rate", "size", "amenities", "bathtub", "king bed"]
+  },
+  {
+    "id": "room-premier-suite",
+    "title": "Premier Skyline Suite Specifications & Tariff",
+    "category": "accommodations",
+    "url": "rooms.html#suite",
+    "content": "Premier Skyline Suite is priced at ₹28,000 per night (plus 18% GST). It spans 75 m² (807 sq.ft) and includes a distinct living salon, walk-in dressing wardrobe, dedicated 24/7 personal butler service, complimentary evening cocktails and canapé service, and exclusive Club Lounge privileges.",
+    "tags": ["premier suite", "skyline suite", "butler", "price", "tariff", "club lounge", "size", "living room"]
+  },
+  {
+    "id": "room-presidential-suite",
+    "title": "The Presidential Royal Suite Specifications & Tariff",
+    "category": "accommodations",
+    "url": "rooms.html#presidential",
+    "content": "The Presidential Royal Suite is priced at ₹65,000 per night (plus 18% GST). Located on the top 32nd penthouse floor, it offers 180 m² (1,937 sq.ft) of royal luxury, private rooftop terrace, 10-seat private dining salon, grand piano, curated fine art collection, private chef and dedicated butler, bespoke fragrance bar, and complimentary Rolls-Royce airport chauffeur transfer.",
+    "tags": ["presidential suite", "penthouse", "rolls royce", "private chef", "luxury", "price", "tariff", "size"]
+  },
+  {
+    "id": "room-garden-villa",
+    "title": "Garden Plunge Pool Villa Specifications & Tariff",
+    "category": "accommodations",
+    "url": "rooms.html#villa",
+    "content": "Garden Plunge Pool Villa is priced at ₹42,000 per night (plus 18% GST). It features 95 m² (1,022 sq.ft) of secluded haven within heritage gardens, private heated plunge pool, outdoor teak sun deck, daybed pavilion, daily champagne breakfast, and full spa bath menu.",
+    "tags": ["garden villa", "plunge pool", "private pool", "villa", "tariff", "price", "breakfast included"]
+  },
+  {
+    "id": "dining-saffron-pavilion",
+    "title": "The Saffron Pavilion — Royal Awadhi Haute Cuisine",
+    "category": "dining",
+    "url": "dining.html#saffron",
+    "content": "The Saffron Pavilion offers Royal Awadhi and Mughlai heritage cuisine prepared in artisanal copper tandoors and slow dum pukht clay vessels. Timings: Lunch 12:30 PM to 3:30 PM, Dinner 7:00 PM to 11:30 PM. Dress code is Smart Elegant or Traditional Formal. Two Imperial Salons seat 8 and 14 guests for private dining. Direct reservation phone: +91 123 456 7891.",
+    "tags": ["saffron pavilion", "indian food", "awadhi", "biryani", "lunch hours", "dinner hours", "timings", "dress code", "private dining"]
+  },
+  {
+    "id": "dining-aura-vista",
+    "title": "Aura Vista — Sky Lounge & Rooftop Bar",
+    "category": "dining",
+    "url": "dining.html#sky-lounge",
+    "content": "Aura Vista is a 30th-floor rooftop lounge and cocktail bar offering 360-degree panoramic skyline views. Features Modern Pan-Asian robatayaki, sushi, and botanical mixology cocktails. Timings: Daily 5:00 PM to 1:30 AM (Sundowners from 5:00 PM). Dress code: Sophisticated Chic. Features ambient live jazz. Direct lounge phone: +91 123 456 7892.",
+    "tags": ["aura vista", "rooftop", "sky lounge", "bar", "cocktails", "pan asian", "sushi", "timings", "hours", "nightlife"]
+  },
+  {
+    "id": "dining-orangerie",
+    "title": "L'Orangerie & Curated Wine Cellar",
+    "category": "dining",
+    "url": "dining.html#orangerie",
+    "content": "L'Orangerie is a French Mediterranean fine dining destination led by Michelin-trained Chef Laurent Moreau. Offers multi-course degustation tasting menus and cellar consultations with our Head Sommelier covering over 1,200 rare Grand Cru wines. Timings: Dinner only 6:30 PM to 11:00 PM (Closed Mondays). Dress code: Formal Jacket Preferred.",
+    "tags": ["orangerie", "french dining", "wine cellar", "sommelier", "degustation", "chef", "dinner", "hours"]
+  },
+  {
+    "id": "dining-grand-conservatory",
+    "title": "The Grand Conservatory — 24-Hour Brasserie & High Tea",
+    "category": "dining",
+    "url": "dining.html#conservatory",
+    "content": "The Grand Conservatory is an all-day dining botanical atrium operating 24 hours daily. Serves morning champagne buffet breakfasts, international gourmet fare, wood-fired artisanal pizzas, and legendary Royal English High Tea service from 3:00 PM to 6:00 PM accompanied by live classical harp.",
+    "tags": ["grand conservatory", "24 hours", "breakfast", "afternoon tea", "high tea", "buffet", "coffee shop"]
+  },
+  {
+    "id": "booking-addons",
+    "title": "Curated Add-ons & Packages",
+    "category": "booking",
+    "url": "booking.html",
+    "content": "Guests can enhance their reservation with three signature add-on experiences: 1) Royal Champagne Breakfast Buffet at The Grand Conservatory: +₹2,500 per night for 2 guests. 2) Luxury Mercedes Airport Chauffeur Transfer (Roundtrip VIP airport meet & greet): +₹4,500 total. 3) 60-Minute Couples Ayurvedic Aromatherapy Spa treatment: +₹8,500 total.",
+    "tags": ["add-ons", "packages", "breakfast cost", "airport transfer cost", "spa price", "mercedes transfer"]
+  },
+  {
+    "id": "booking-promo-code",
+    "title": "Promotional & Loyalty Discount Codes",
+    "category": "booking",
+    "url": "booking.html",
+    "content": "Online guests can enter promo code 'XYZLUXURY', 'TAJROYAL', or 'WELCOME15' at checkout to receive an instant 15% discount on their room subtotal. The discount is computed dynamically before luxury GST.",
+    "tags": ["promo code", "discount", "coupon", "offer", "xyzluxury", "save", "loyalty code"]
+  },
+  {
+    "id": "booking-offline-concierge",
+    "title": "Offline Telephone & WhatsApp Booking Desk",
+    "category": "offline-booking",
+    "url": "booking.html#offline-booking",
+    "content": "XYZ Hotel provides 24/7 direct offline booking support modeled after premier luxury chains like Taj and Radisson. Guests can call the 24/7 toll-free reservation desk at 1800 123 4567 or direct line +91 123 456 7890. WhatsApp instant booking concierge is reachable at +91 98765 43210. Offline bookings support personalized suite holds, bank wire transfers, pay-at-property options, and instant callback requests within 15 minutes.",
+    "tags": ["offline booking", "phone booking", "whatsapp", "toll free", "callback", "reservation phone", "contact number", "call"]
+  },
+  {
+    "id": "policy-checkin-checkout",
+    "title": "Check-In, Check-Out & Early Arrival Policies",
+    "category": "policies",
+    "url": "contact.html#faq",
+    "content": "Standard check-in time is 2:00 PM and standard check-out time is 12:00 PM (noon). Early check-in and late check-out can be requested in advance and are subject to availability or pre-arranged through the Golden Keys (Clefs d'Or) concierge desk.",
+    "tags": ["check in time", "check out time", "early check in", "late checkout", "timing", "hours"]
+  },
+  {
+    "id": "policy-cancellation-refund",
+    "title": "Cancellation, Modification & Refund Policy",
+    "category": "policies",
+    "url": "contact.html#faq",
+    "content": "Reservations may be cancelled or modified without penalty up to 24 hours prior to 2:00 PM on the scheduled arrival date. For cancellations made within 24 hours or in the event of a no-show, one night's room charge applies. Peak festive season or presidential penthouse bookings have tailored deposit terms confirmed during reservation.",
+    "tags": ["cancellation policy", "free cancellation", "refund", "modify booking", "penalty", "cancellation rules"]
+  },
+  {
+    "id": "amenities-wellness-spa",
+    "title": "Wellness, Spa, Vitality Pool & Fitness",
+    "category": "amenities",
+    "url": "index.html#amenities",
+    "content": "XYZ Hotel features an expansive Ayurvedic spa sanctuary, Himalayan pink salt inhalation rooms, heated indoor vitality pools, open-air morning yoga pavilions with yoga masters, and a 24-hour Technogym fitness center with personal trainers.",
+    "tags": ["spa", "gym", "fitness", "swimming pool", "vitality pool", "yoga", "wellness", "massage"]
+  },
+  {
+    "id": "amenities-butler-concierge",
+    "title": "24/7 Clefs d'Or Concierge & Butler Privileges",
+    "category": "amenities",
+    "url": "rooms.html",
+    "content": "All suites include dedicated 24-hour butler service for packing, unpacking, private dining setups, and shoe shine. Our international Clefs d'Or concierge arranges private historical monument tours, VIP gallery access, helicopter charters, and luxury chauffeur transfers.",
+    "tags": ["butler", "concierge", "clefs dor", "services", "tours", "privileges"]
+  },
+  {
+    "id": "contact-directory",
+    "title": "Direct Contact Directory & Departments",
+    "category": "contact",
+    "url": "contact.html",
+    "content": "General Inquiries & Reservations: reservations@xyzhotel.com | Chief Concierge Desk: concierge@xyzhotel.com | Weddings & Banquets: events@xyzhotel.com | Dining Desk: dining@xyzhotel.com | Main Telephone: +91 123 456 7890 | Toll-free: 1800 123 4567 | WhatsApp Concierge: +91 98765 43210 | Postal Address: 1 Royal Avenue, Central Diplomatic Enclave, New Delhi, India 110001.",
+    "tags": ["email", "phone number", "contact", "reception", "desk", "inquiry", "support"]
+  }
+]
