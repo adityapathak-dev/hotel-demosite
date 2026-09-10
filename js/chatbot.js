@@ -34,7 +34,7 @@
       launcher.setAttribute('aria-label', 'Open Royal Concierge AI Chatbot');
       launcher.innerHTML = `
         <div class="launcher-icon">
-          <span>✨</span>
+          <span>🤖</span>
           <div class="launcher-pulse"></div>
         </div>
         <div class="launcher-text">
@@ -162,7 +162,7 @@
 
       // Initial Royal Welcome
       this.addBotMessage(
-        "Namaste and warm greetings from **XYZ Hotel**! ✨\n\n" +
+        "Namaste and warm greetings from **XYZ Hotel**! 🤖\n\n" +
         "I am your **Royal Concierge AI**. I am at your service to assist with suite tariffs, " +
         "our 24/7 offline reservation desk, dining timings, and luxury amenities.\n\n" +
         "How may I assist your stay today?",
@@ -342,7 +342,7 @@
       // Greetings
       if (/^(hi|hello|hey|namaste|greetings|bonjour|good morning|good evening)\b/i.test(q)) {
         return {
-          response: "Namaste and warm greetings from **XYZ Hotel**! ✨\n\nI am your **Royal Concierge AI**. I can assist with suite tariffs, 24/7 offline telephone reservations, restaurant hours, or bespoke concierge requests.\n\nHow may I serve you today?",
+          response: "Namaste and warm greetings from **XYZ Hotel**! 🤖\n\nI am your **Royal Concierge AI**. I can assist with suite tariffs, 24/7 offline telephone reservations, restaurant hours, or bespoke concierge requests.\n\nHow may I serve you today?",
           sources: [{ title: "About XYZ Hotel", url: "index.html#about" }]
         };
       }

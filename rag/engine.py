@@ -217,7 +217,7 @@ class RAGEngine:
         if self.is_greeting(query_clean):
             return {
                 "response": (
-                    "Namaste and warm greetings from **XYZ Hotel**! ✨\n\n"
+                    "Namaste and warm greetings from **XYZ Hotel**! 🤖\n\n"
                     "I am your **Royal Concierge AI**. I can assist you with suite tariffs, 24/7 offline telephone reservations, "
                     "restaurant hours & tasting menus, airport chauffeur transfers, and exclusive promotional codes.\n\n"
                     "How may I serve you today?"
