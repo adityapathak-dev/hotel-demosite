@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Concierge — XYZ Hotel | 24/7 Global Hospitality Desk</title>
+  <meta name="description" content="Reach the 24/7 Concierge and Offline Booking Desk at XYZ Hotel. Direct phone lines, email reservations, luxury limousine transfers, and event inquiries.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/contact.css">
+</head>
+<body class="contact-page">
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header header--solid" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">XYZ <span>Hotel</span></a>
+      <nav class="header__nav">
+        <ul class="header__nav-links" id="navLinks">
+          <li><a href="index.html" class="header__nav-link">Home</a></li>
+          <li><a href="rooms.html" class="header__nav-link">Rooms & Suites</a></li>
+          <li><a href="dining.html" class="header__nav-link">Dining</a></li>
+          <li><a href="index.html#amenities" class="header__nav-link">Amenities</a></li>
+          <li><a href="booking.html" class="header__nav-link">Offers</a></li>
+          <li><a href="contact.html" class="header__nav-link active">Contact</a></li>
+        </ul>
+        <a href="booking.html" class="btn btn--outline header__cta mobile-hidden">Book a Stay</a>
+        <button class="header__menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="contact-hero">
+    <div class="container container--narrow">
+      <span class="section-label" style="justify-content: center; color: var(--gold-light);">At Your Service</span>
+      <h1 class="contact-hero__title">Contact & Concierge</h1>
+      <p class="contact-hero__subtitle">Our Clefs d'Or concierges and 24/7 reservation specialists are committed to orchestrating an effortless stay.</p>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT INFO & FORM SECTION ========== -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact__grid">
+
+        <!-- Left: Contact Details & Offline Desks -->
+        <div class="contact-info reveal reveal--left">
+          <div>
+            <span class="section-label">Connect With Us</span>
+            <h2 class="section-title">We are Always <em>Here</em> to Assist</h2>
+            <p class="section-subtitle" style="margin-bottom: var(--space-xl);">
+              Whether you wish to reserve suites offline, arrange airport luxury chauffeur services, plan a royal palace wedding, or make dining inquiries, our dedicated hospitality team is available round the clock.
+            </p>
+          </div>
+
+          <!-- Hotel Address -->
+          <div class="contact-info__item">
+            <div class="contact-info__icon">📍</div>
+            <div>
+              <h4 class="contact-info__title">The Property Address</h4>
+              <p class="contact-info__text">
+                1 Royal Avenue, Central Diplomatic Enclave<br>
+                New Delhi, India 110001<br>
+                <em>Located 20 minutes from Indira Gandhi International Airport (DEL)</em>
+              </p>
+            </div>
+          </div>
+
+          <!-- Central Reservation Desk (Offline Booking) -->
+          <div class="contact-info__item">
+            <div class="contact-info__icon">📞</div>
+            <div>
+              <h4 class="contact-info__title">24/7 Offline Booking & Telephone Desk</h4>
+              <p class="contact-info__text">
+                Toll Free (India): <a href="tel:18001234567">1800 123 4567</a><br>
+                Direct Line: <a href="tel:+911234567890">+91 123 456 7890</a><br>
+                WhatsApp Concierge: <a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Email Contacts -->
+          <div class="contact-info__item">
+            <div class="contact-info__icon">✉️</div>
+            <div>
+              <h4 class="contact-info__title">Electronic Inquiries</h4>
+              <p class="contact-info__text">
+                Room Reservations: <a href="mailto:reservations@xyzhotel.com">reservations@xyzhotel.com</a><br>
+                Chief Concierge: <a href="mailto:concierge@xyzhotel.com">concierge@xyzhotel.com</a><br>
+                Weddings & Banquets: <a href="mailto:events@xyzhotel.com">events@xyzhotel.com</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Airport Transfer Support -->
+          <div class="contact-info__item">
+            <div class="contact-info__icon">🚘</div>
+            <div>
+              <h4 class="contact-info__title">Private Airport Limousine Service</h4>
+              <p class="contact-info__text">
+                Mercedes-Benz S-Class, BMW 7 Series, and Rolls-Royce Ghost transfers available with private chauffeur and baggage handling upon advance request.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Inquiry / Offline Booking Form -->
+        <div class="contact-form reveal reveal--right">
+          <h3 class="contact-form__title">Send an Inquiry or Offline Booking Request</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: var(--space-xl);">
+            Fill out the details below and our guest relations executive will respond within 30 minutes.
+          </p>
+
+          <form id="contactForm">
+            <div class="contact-form__grid">
+              <div class="form-group">
+                <label class="form-label" for="ct-first-name">First Name *</label>
+                <input type="text" id="ct-first-name" class="form-input" placeholder="Lord Edward" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="ct-last-name">Last Name *</label>
+                <input type="text" id="ct-last-name" class="form-input" placeholder="Spencer" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="ct-email">Email Address *</label>
+                <input type="email" id="ct-email" class="form-input" placeholder="edward@spencer.co.uk" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="ct-phone">Phone / WhatsApp Number *</label>
+                <input type="tel" id="ct-phone" class="form-input" placeholder="+91 98765 43210" required>
+              </div>
+              <div class="form-group form-group--full">
+                <label class="form-label" for="ct-subject">Inquiry Nature *</label>
+                <select id="ct-subject" class="form-input" required>
+                  <option value="offline-booking">Offline Room / Suite Reservation</option>
+                  <option value="airport-transfer">Airport Chauffeur Transfer Request</option>
+                  <option value="wedding-event">Royal Wedding / Banquet Event</option>
+                  <option value="private-dining">Private Dining & Sommelier Consultation</option>
+                  <option value="corporate-meeting">Corporate Conference / MICE Desk</option>
+                  <option value="general-concierge">General Concierge Assistance</option>
+                </select>
+              </div>
+              <div class="form-group form-group--full">
+                <label class="form-label" for="ct-message">Your Message or Booking Specifications *</label>
+                <textarea id="ct-message" class="form-input" rows="4" placeholder="Please specify your desired stay dates, number of guests, specific dietary needs or custom arrangements..." required></textarea>
+              </div>
+              <div class="form-group form-group--full">
+                <button type="submit" class="btn btn--primary btn--lg" style="width: 100%;" id="contactSubmitBtn">
+                  Submit Concierge Inquiry
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div id="contactSuccessMsg" style="display: none; text-align: center; padding: var(--space-2xl) 0;">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--success); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto var(--space-md);">✓</div>
+            <h4 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: var(--space-xs);">Message Received</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: var(--space-lg);">Thank you for contacting XYZ Hotel. Our concierge team has registered your request (Ticket <strong id="ctTicketId">#XYZ-9821</strong>) and will reach out shortly.</p>
+            <button type="button" class="btn btn--outline" onclick="location.reload()">Send Another Request</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MAP SECTION ========== -->
+  <section class="map-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: var(--space-2xl);" class="reveal">
+        <span class="section-label" style="justify-content: center;">Prime Location</span>
+        <h2 class="section-title">The Heart of the <em>Capital</em></h2>
+        <p class="section-subtitle">Surrounded by embassies, historic monuments, and high-end boutiques.</p>
+      </div>
+
+      <div class="map-wrapper reveal">
+        <!-- Interactive Embed of Google Maps centered on Central Delhi Luxury Enclave -->
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14013.336125028424!2d77.19912065!3d28.58971435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2e49c716263%3A0x62916b9b3922bf05!2sDiplomatic%20Enclave%2C%20Chanakyapuri%2C%20New%20Delhi%2C%20Delhi%20110021!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="XYZ Hotel Location Map">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ACCORDION (Taj / Radisson style) ========== -->
+  <section class="section" style="background: var(--white);">
+    <div class="container container--narrow">
+      <div class="reveal" style="text-align: center; margin-bottom: var(--space-3xl);">
+        <span class="section-label" style="justify-content: center;">Frequently Asked Questions</span>
+        <h2 class="section-title">Everything You Need to <em>Know</em></h2>
+        <p class="section-subtitle">Helpful answers regarding reservations, check-in, policies, and bespoke hotel amenities.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: var(--space-md);" class="reveal">
+        <details style="background: var(--ivory); padding: var(--space-lg); border-radius: var(--radius-sm); border-left: 3px solid var(--gold);" open>
+          <summary style="font-weight: 600; cursor: pointer; color: var(--charcoal); font-size: 1.05rem;">What are the hotel check-in and check-out times?</summary>
+          <p style="margin-top: var(--space-sm); color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+            Standard check-in time is 2:00 PM and check-out is 12:00 PM. Early check-in and late check-out can be facilitated based on suite availability or arranged in advance via our concierge.
+          </p>
+        </details>
+
+        <details style="background: var(--ivory); padding: var(--space-lg); border-radius: var(--radius-sm); border-left: 3px solid var(--gold);">
+          <summary style="font-weight: 600; cursor: pointer; color: var(--charcoal); font-size: 1.05rem;">How does offline telephone / WhatsApp booking work?</summary>
+          <p style="margin-top: var(--space-sm); color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+            You can call our 24/7 dedicated reservation desk at +91 123 456 7890 or ping our WhatsApp concierge. Our managers will hold your preferred suite, offer special corporate/member tariffs, and send a secured payment link or invoice for direct bank settlement.
+          </p>
+        </details>
+
+        <details style="background: var(--ivory); padding: var(--space-lg); border-radius: var(--radius-sm); border-left: 3px solid var(--gold);">
+          <summary style="font-weight: 600; cursor: pointer; color: var(--charcoal); font-size: 1.05rem;">What is the cancellation and refund policy?</summary>
+          <p style="margin-top: var(--space-sm); color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+            Reservations may be cancelled free of penalty up to 24 hours prior to 2:00 PM on the scheduled arrival date. Peak holiday bookings or presidential suites may have special festive deposit terms outlined during reservation.
+          </p>
+        </details>
+
+        <details style="background: var(--ivory); padding: var(--space-lg); border-radius: var(--radius-sm); border-left: 3px solid var(--gold);">
+          <summary style="font-weight: 600; cursor: pointer; color: var(--charcoal); font-size: 1.05rem;">Do you arrange private airport chauffeurs?</summary>
+          <p style="margin-top: var(--space-sm); color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+            Yes, our fleet includes luxury Mercedes-Benz S-Class sedans and Rolls-Royce motorcars. We provide tarmac/exit lounge VIP meet-and-assist directly from Indira Gandhi International Airport.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">XYZ <span>Hotel</span></a>
+          <p class="footer__desc">A sanctuary of five-star luxury, timeless elegance, and legendary hospitality. Discover bespoke moments tailored to perfection.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-link" aria-label="Facebook">f</a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">in</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">tw</a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">li</a>
+          </div>
+        </div>
+        <div>
+          <h5 class="footer__heading">Quick Links</h5>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Rooms & Suites</a></li>
+            <li><a href="dining.html">Dining & Bars</a></li>
+            <li><a href="index.html#amenities">Spa & Wellness</a></li>
+            <li><a href="booking.html">Reservations</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="footer__heading">Experiences</h5>
+          <ul class="footer__links">
+            <li><a href="#">Spa & Wellness</a></li>
+            <li><a href="#">Weddings & Events</a></li>
+            <li><a href="#">Business Meetings</a></li>
+            <li><a href="#">City Tours</a></li>
+            <li><a href="#">Loyalty Program</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="footer__heading">Contact</h5>
+          <ul class="footer__links">
+            <li>1 Royal Avenue, Central District</li>
+            <li>New Delhi, India 110001</li>
+            <li style="margin-top: var(--space-md);"><a href="tel:+911234567890">+91 123 456 7890</a></li>
+            <li><a href="mailto:reservations@xyzhotel.com">reservations@xyzhotel.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2024 XYZ Hotel. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const contactSuccess = document.getElementById('contactSuccessMsg');
+    contactForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('contactSubmitBtn');
+      btn.textContent = 'Sending Message...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        contactForm.style.display = 'none';
+        contactSuccess.style.display = 'block';
+        const ticket = 'XYZ-' + Math.floor(1000 + Math.random() * 9000);
+        document.getElementById('ctTicketId').textContent = '#' + ticket;
+      }, 700);
+    });
+  </script>
+</body>
+</html>

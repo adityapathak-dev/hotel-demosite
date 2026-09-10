@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XYZ Hotel — Luxury 5-Star Hotel & Resorts</title>
+  <meta name="description" content="Experience world-class luxury at XYZ Hotel. Premium 5-star accommodations, fine dining, spa & wellness, and bespoke experiences. Book your stay today.">
+  <meta property="og:title" content="XYZ Hotel — Luxury 5-Star Hotel & Resorts">
+  <meta property="og:description" content="Experience world-class luxury at XYZ Hotel. Premium 5-star accommodations, fine dining, spa & wellness.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header header--transparent" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">XYZ <span>Hotel</span></a>
+      <nav class="header__nav">
+        <ul class="header__nav-links" id="navLinks">
+          <li><a href="index.html" class="header__nav-link active">Home</a></li>
+          <li><a href="rooms.html" class="header__nav-link">Rooms & Suites</a></li>
+          <li><a href="dining.html" class="header__nav-link">Dining</a></li>
+          <li><a href="#amenities" class="header__nav-link">Amenities</a></li>
+          <li><a href="booking.html" class="header__nav-link">Offers</a></li>
+          <li><a href="contact.html" class="header__nav-link">Contact</a></li>
+        </ul>
+        <a href="booking.html" class="btn btn--outline header__cta mobile-hidden">Book a Stay</a>
+        <button class="header__menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <img src="images/hero-bg.jpg" alt="XYZ Hotel Grand Exterior at Golden Hour" class="hero__bg">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__label">Welcome to XYZ Hotel</p>
+      <h1 class="hero__title">Where Luxury Meets <em>Timeless</em> Elegance</h1>
+      <p class="hero__subtitle">Discover unparalleled hospitality in the heart of the city. Indulge in world-class dining, rejuvenating spa experiences, and exquisitely appointed suites.</p>
+      <div class="hero__actions">
+        <a href="booking.html" class="btn btn--primary btn--lg">Reserve Your Stay</a>
+        <a href="rooms.html" class="btn btn--outline-white btn--lg">Explore Rooms</a>
+      </div>
+    </div>
+    <div class="hero__scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========== BOOKING WIDGET ========== -->
+  <div class="booking-widget reveal">
+    <div class="booking-widget__inner">
+      <form class="booking-widget__form" id="bookingWidgetForm" action="booking.html" method="get">
+        <div class="booking-widget__group">
+          <label class="booking-widget__label" for="bw-destination">Destination</label>
+          <input type="text" id="bw-destination" class="booking-widget__input" placeholder="Where would you like to stay?" name="destination">
+        </div>
+        <div class="booking-widget__group">
+          <label class="booking-widget__label" for="bw-checkin">Check In</label>
+          <input type="date" id="bw-checkin" class="booking-widget__input" name="checkin">
+        </div>
+        <div class="booking-widget__group">
+          <label class="booking-widget__label" for="bw-checkout">Check Out</label>
+          <input type="date" id="bw-checkout" class="booking-widget__input" name="checkout">
+        </div>
+        <div class="booking-widget__group">
+          <label class="booking-widget__label" for="bw-guests">Guests</label>
+          <select id="bw-guests" class="booking-widget__input" name="guests">
+            <option value="1">1 Adult</option>
+            <option value="2" selected>2 Adults</option>
+            <option value="3">3 Adults</option>
+            <option value="4">4 Adults</option>
+          </select>
+        </div>
+        <div class="booking-widget__group">
+          <label class="booking-widget__label" for="bw-rooms">Rooms</label>
+          <select id="bw-rooms" class="booking-widget__input" name="rooms">
+            <option value="1" selected>1 Room</option>
+            <option value="2">2 Rooms</option>
+            <option value="3">3 Rooms</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn--primary booking-widget__btn">Check Availability</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__image-wrapper reveal reveal--left">
+          <div class="about__image-accent"></div>
+          <img src="images/room-suite.jpg" alt="XYZ Hotel Luxurious Interior" class="about__image" loading="lazy">
+        </div>
+        <div class="reveal reveal--right">
+          <span class="section-label">Our Legacy</span>
+          <h2 class="section-title">A Heritage of <em>Extraordinary</em> Hospitality</h2>
+          <p class="section-subtitle">Since 1987, XYZ Hotel has been the epitome of luxury hospitality. Nestled in the heart of the city, our landmark property blends timeless elegance with contemporary sophistication, creating an oasis of refinement for the discerning traveller.</p>
+          <p style="color: var(--text-muted);">Every detail has been meticulously curated — from our handcrafted furnishings to our bespoke guest services — ensuring that each stay transcends the ordinary into the realm of the unforgettable.</p>
+          <div class="about__stats">
+            <div>
+              <div class="about__stat-number">350+</div>
+              <div class="about__stat-label">Luxury Rooms</div>
+            </div>
+            <div>
+              <div class="about__stat-number">5</div>
+              <div class="about__stat-label">Fine Restaurants</div>
+            </div>
+            <div>
+              <div class="about__stat-number">37</div>
+              <div class="about__stat-label">Years of Excellence</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ROOMS & SUITES ========== -->
+  <section class="rooms-section" id="rooms">
+    <div class="container">
+      <div class="rooms-section__header reveal">
+        <span class="section-label" style="justify-content:center;">Accommodations</span>
+        <h2 class="section-title">Rooms & Suites</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">Each room is a sanctuary of comfort, designed to offer an unparalleled experience of luxury and tranquillity.</p>
+      </div>
+      <div class="rooms-section__grid reveal-stagger">
+        <!-- Deluxe Room -->
+        <div class="room-card">
+          <div class="room-card__image-wrapper">
+            <img src="images/room-deluxe.jpg" alt="Deluxe Room with city view" class="room-card__image" loading="lazy">
+          </div>
+          <div class="room-card__content">
+            <p class="room-card__type">Premium</p>
+            <h3 class="room-card__name">Deluxe Room</h3>
+            <p class="room-card__desc">Spacious elegance with panoramic city views, king-size bed, and a marble-clad bathroom with rain shower.</p>
+            <div class="room-card__amenities">
+              <span class="room-card__amenity">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                55" Smart TV
+              </span>
+              <span class="room-card__amenity">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                2 Guests
+              </span>
+              <span class="room-card__amenity">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg>
+                45 m²
+              </span>
+            </div>
+            <div class="room-card__footer">
+              <div class="room-card__price">₹12,500 <span>/ night</span></div>
+              <a href="booking.html" class="btn btn--outline btn--sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Grand Suite -->
+        <div class="room-card">
+          <div class="room-card__image-wrapper">
+            <img src="images/room-suite.jpg" alt="Grand Suite with living area" class="room-card__image" loading="lazy">
+          </div>
+          <div class="room-card__content">
+            <p class="room-card__type">Signature</p>
+            <h3 class="room-card__name">Grand Suite</h3>
+            <p class="room-card__desc">A palatial suite featuring a private living room, dining area, personal bar, and breathtaking night-sky panoramas.</p>
+            <div class="room-card__amenities">
+              <span class="room-card__amenity">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                65" Smart TV
+              </span>
+              <span class="room-card__amenity">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                3 Guests
+              </span>
+              <span class="room-card__amenity">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg>
+                85 m²
+              </span>
+            </div>
+            <div class="room-card__footer">
+              <div class="room-card__price">₹28,000 <span>/ night</span></div>
+              <a href="booking.html" class="btn btn--outline btn--sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Presidential Suite -->
+        <div class="room-card">
+          <div class="room-card__image-wrapper">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Presidential Suite" class="room-card__image" loading="lazy">
+          </div>
+          <div class="room-card__content">
+            <p class="room-card__type">Ultra Luxury</p>
+            <h3 class="room-card__name">Presidential Suite</h3>
+            <p class="room-card__desc">The pinnacle of opulence — a private sanctuary with bespoke furnishings, terrace, butler service, and a private dining room.</p>
+            <div class="room-card__amenities">
+              <span class="room-card__amenity">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                75" Smart TV
+              </span>
+              <span class="room-card__amenity">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                4 Guests
+              </span>
+              <span class="room-card__amenity">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg>
+                150 m²
+              </span>
+            </div>
+            <div class="room-card__footer">
+              <div class="room-card__price">₹65,000 <span>/ night</span></div>
+              <a href="booking.html" class="btn btn--outline btn--sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-2xl);" class="reveal">
+        <a href="rooms.html" class="btn btn--dark">View All Rooms</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== AMENITIES ========== -->
+  <section class="amenities section" id="amenities">
+    <div class="container">
+      <div class="amenities__header reveal">
+        <span class="section-label" style="justify-content:center;">World-Class Facilities</span>
+        <h2 class="section-title">Amenities & Services</h2>
+        <p class="section-subtitle" style="margin:0 auto;">Everything you need for an extraordinary stay, thoughtfully curated for your comfort and delight.</p>
+      </div>
+      <div class="amenities__grid reveal-stagger">
+        <div class="amenity-item">
+          <div class="amenity-item__icon">🧖</div>
+          <h4 class="amenity-item__title">Luxury Spa</h4>
+          <p class="amenity-item__text">Rejuvenating treatments with premium products</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-item__icon">🏊</div>
+          <h4 class="amenity-item__title">Infinity Pool</h4>
+          <p class="amenity-item__text">Temperature-controlled pool with cabanas</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-item__icon">💪</div>
+          <h4 class="amenity-item__title">Fitness Centre</h4>
+          <p class="amenity-item__text">State-of-the-art equipment & personal trainers</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-item__icon">🍽️</div>
+          <h4 class="amenity-item__title">Fine Dining</h4>
+          <p class="amenity-item__text">Award-winning restaurants & rooftop bar</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-item__icon">🏢</div>
+          <h4 class="amenity-item__title">Business Centre</h4>
+          <p class="amenity-item__text">Conference rooms & executive boardrooms</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-item__icon">🛎️</div>
+          <h4 class="amenity-item__title">Concierge</h4>
+          <p class="amenity-item__text">24/7 personal concierge service</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-item__icon">🚗</div>
+          <h4 class="amenity-item__title">Valet Parking</h4>
+          <p class="amenity-item__text">Complimentary valet & luxury transfers</p>
+        </div>
+        <div class="amenity-item">
+          <div class="amenity-item__icon">📶</div>
+          <h4 class="amenity-item__title">High-Speed Wi-Fi</h4>
+          <p class="amenity-item__text">Complimentary premium internet access</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DINING ========== -->
+  <section class="dining-section" id="dining">
+    <div class="container">
+      <div class="dining-section__header reveal">
+        <span class="section-label" style="justify-content:center; color: var(--gold-light);">Culinary Excellence</span>
+        <h2 class="section-title">Signature Dining</h2>
+        <p class="section-subtitle" style="margin:0 auto;">From award-winning fine dining to vibrant rooftop cocktails, embark on an unforgettable gastronomic journey.</p>
+      </div>
+      <div class="dining-section__grid reveal-stagger">
+        <a href="dining.html" class="dining-card">
+          <img src="images/dining-fine.jpg" alt="The Grand Table - Fine Dining" class="dining-card__image" loading="lazy">
+          <div class="dining-card__overlay">
+            <p class="dining-card__cuisine">Continental · Fine Dining</p>
+            <h3 class="dining-card__name">The Grand Table</h3>
+            <p class="dining-card__desc">An exquisite culinary journey with curated tasting menus and an extensive wine cellar.</p>
+          </div>
+        </a>
+        <a href="dining.html" class="dining-card">
+          <img src="images/dining-rooftop.jpg" alt="Skyline Lounge - Rooftop Bar" class="dining-card__image" loading="lazy">
+          <div class="dining-card__overlay">
+            <p class="dining-card__cuisine">Cocktails · Rooftop Bar</p>
+            <h3 class="dining-card__name">Skyline Lounge</h3>
+            <p class="dining-card__desc">Handcrafted cocktails against a panoramic cityscape, perfect for golden hour evenings.</p>
+          </div>
+        </a>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-2xl);" class="reveal">
+        <a href="dining.html" class="btn btn--outline-white">Explore All Restaurants</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== OFFERS ========== -->
+  <section class="offers section" id="offers">
+    <div class="container">
+      <div class="offers__header reveal">
+        <div>
+          <span class="section-label">Exclusive Offers</span>
+          <h2 class="section-title">Special Promotions</h2>
+        </div>
+      </div>
+      <div class="grid grid--3 reveal-stagger">
+        <div class="offer-card">
+          <div class="offer-card__image-wrapper">
+            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80" alt="Early Bird Offer" class="offer-card__image" loading="lazy">
+            <span class="offer-card__discount">20% OFF</span>
+          </div>
+          <div class="offer-card__content">
+            <h4 class="offer-card__title">Early Bird Special</h4>
+            <p class="offer-card__text">Book 30 days in advance and enjoy up to 20% off on the best available rates with complimentary breakfast.</p>
+            <a href="booking.html" class="btn btn--outline btn--sm">Book Now</a>
+          </div>
+        </div>
+        <div class="offer-card">
+          <div class="offer-card__image-wrapper">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6c?w=600&q=80" alt="Spa & Wellness Package" class="offer-card__image" loading="lazy">
+            <span class="offer-card__discount">PACKAGE</span>
+          </div>
+          <div class="offer-card__content">
+            <h4 class="offer-card__title">Spa & Wellness Retreat</h4>
+            <p class="offer-card__text">Immerse in a 2-night stay with daily spa treatments, wellness breakfast, and yoga sessions included.</p>
+            <a href="booking.html" class="btn btn--outline btn--sm">Book Now</a>
+          </div>
+        </div>
+        <div class="offer-card">
+          <div class="offer-card__image-wrapper">
+            <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80" alt="Weekend Getaway" class="offer-card__image" loading="lazy">
+            <span class="offer-card__discount">15% OFF</span>
+          </div>
+          <div class="offer-card__content">
+            <h4 class="offer-card__title">Weekend Escape</h4>
+            <p class="offer-card__text">Unwind over the weekend with 15% off, late checkout until 2 PM, and a complimentary dinner for two.</p>
+            <a href="booking.html" class="btn btn--outline btn--sm">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="testimonials__header reveal">
+        <span class="section-label" style="justify-content:center;">Guest Reviews</span>
+        <h2 class="section-title">What Our Guests Say</h2>
+        <div class="divider divider--center"></div>
+      </div>
+      <div class="testimonials__grid reveal-stagger">
+        <div class="testimonial-card">
+          <span class="testimonial-card__quote">"</span>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">An absolutely extraordinary experience. The attention to detail, the warmth of the staff, and the sheer beauty of the property made our anniversary truly magical.</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">RS</div>
+            <div>
+              <div class="testimonial-card__name">Rajesh Sharma</div>
+              <div class="testimonial-card__origin">New Delhi, India</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="testimonial-card__quote">"</span>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">The Presidential Suite exceeded all expectations. The butler service was impeccable, and the rooftop dining experience under the stars was nothing short of breathtaking.</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">EP</div>
+            <div>
+              <div class="testimonial-card__name">Emily Patterson</div>
+              <div class="testimonial-card__origin">London, UK</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="testimonial-card__quote">"</span>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">From the moment we arrived, we felt like royalty. The spa treatments were world-class, and the Grand Table restaurant deserves every accolade it receives.</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">AK</div>
+            <div>
+              <div class="testimonial-card__name">Anika Kapoor</div>
+              <div class="testimonial-card__origin">Mumbai, India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NEWSLETTER ========== -->
+  <section class="newsletter" id="newsletter">
+    <div class="container">
+      <div class="newsletter__inner reveal">
+        <span class="section-label" style="justify-content:center; color: var(--gold-light);">Stay Connected</span>
+        <h2 class="newsletter__title">Exclusive Offers, Delivered</h2>
+        <p class="newsletter__text">Subscribe to receive special rates, curated experiences, and insider access to our upcoming events.</p>
+        <form class="newsletter__form" id="newsletterForm">
+          <input type="email" class="newsletter__input" placeholder="Enter your email address" required>
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__logo">XYZ <span>Hotel</span></div>
+          <p class="footer__desc">Experience the pinnacle of luxury hospitality. Since 1987, we've been crafting unforgettable moments for discerning travellers from around the world.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook">𝕗</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+          </div>
+        </div>
+        <div>
+          <h5 class="footer__heading">Quick Links</h5>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Rooms & Suites</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="booking.html">Reservations</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="footer__heading">Experiences</h5>
+          <ul class="footer__links">
+            <li><a href="#">Spa & Wellness</a></li>
+            <li><a href="#">Weddings & Events</a></li>
+            <li><a href="#">Business Meetings</a></li>
+            <li><a href="#">City Tours</a></li>
+            <li><a href="#">Loyalty Program</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="footer__heading">Contact</h5>
+          <ul class="footer__links">
+            <li>1 Royal Avenue, Central District</li>
+            <li>New Delhi, India 110001</li>
+            <li style="margin-top: var(--space-md);"><a href="tel:+911234567890">+91 123 456 7890</a></li>
+            <li><a href="mailto:reservations@xyzhotel.com">reservations@xyzhotel.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2024 XYZ Hotel. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/carousel.js"></script>
+  <script>
+    // Set default dates in booking widget
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const dayAfter = new Date(today);
+    dayAfter.setDate(dayAfter.getDate() + 2);
+
+    const formatDate = (d) => d.toISOString().split('T')[0];
+    const checkinInput = document.getElementById('bw-checkin');
+    const checkoutInput = document.getElementById('bw-checkout');
+    if (checkinInput) checkinInput.value = formatDate(tomorrow);
+    if (checkoutInput) checkoutInput.value = formatDate(dayAfter);
+
+    // Newsletter form
+    document.getElementById('newsletterForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Subscribed ✓';
+      btn.style.background = 'var(--success)';
+      setTimeout(() => {
+        btn.textContent = 'Subscribe';
+        btn.style.background = '';
+        e.target.reset();
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

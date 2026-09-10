@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rooms & Suites — XYZ Hotel | 5-Star Luxury Living</title>
+  <meta name="description" content="Discover our luxury rooms and suites at XYZ Hotel. Indulge in opulent design, handcrafted furnishings, panoramic views, and bespoke 24/7 butler service.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/rooms.css">
+</head>
+<body class="rooms-page">
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header header--solid" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">XYZ <span>Hotel</span></a>
+      <nav class="header__nav">
+        <ul class="header__nav-links" id="navLinks">
+          <li><a href="index.html" class="header__nav-link">Home</a></li>
+          <li><a href="rooms.html" class="header__nav-link active">Rooms & Suites</a></li>
+          <li><a href="dining.html" class="header__nav-link">Dining</a></li>
+          <li><a href="index.html#amenities" class="header__nav-link">Amenities</a></li>
+          <li><a href="booking.html" class="header__nav-link">Offers</a></li>
+          <li><a href="contact.html" class="header__nav-link">Contact</a></li>
+        </ul>
+        <a href="booking.html" class="btn btn--outline header__cta mobile-hidden">Book a Stay</a>
+        <button class="header__menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="rooms-hero">
+    <div class="rooms-hero__content">
+      <span class="section-label" style="justify-content: center; color: var(--gold-light);">Sanctuaries of Serenity</span>
+      <h1 class="rooms-hero__title">Rooms & Suites</h1>
+      <p class="rooms-hero__subtitle">Immerse yourself in timeless luxury, masterfully appointed interiors, and bespoke comfort designed for the global connoisseur.</p>
+    </div>
+  </section>
+
+  <!-- ========== INTRO SECTION ========== -->
+  <section class="section" style="padding-bottom: var(--space-2xl); text-align: center;">
+    <div class="container container--narrow">
+      <span class="section-label" style="justify-content: center;">Refined Living</span>
+      <h2 class="section-title">An Haven of <em>Sophistication</em></h2>
+      <p class="section-subtitle">From custom Egyptian cotton linens to Italian marble baths and floor-to-ceiling vistas, each accommodation at XYZ Hotel is crafted to deliver peaceful sanctuary and unrivaled refinement.</p>
+    </div>
+  </section>
+
+  <!-- ========== ROOM 1: DELUXE KING ROOM ========== -->
+  <section class="room-detail" id="deluxe">
+    <div class="container">
+      <div class="room-detail__grid">
+        <div class="room-detail__image-wrapper reveal reveal--left">
+          <img src="images/room-deluxe.jpg" alt="Deluxe Room at XYZ Hotel" class="room-detail__image" loading="lazy">
+        </div>
+        <div class="room-detail__content reveal reveal--right">
+          <p class="room-detail__type">Signature Luxury</p>
+          <h2 class="room-detail__name">Deluxe King Room</h2>
+          <p class="room-detail__desc">
+            Expansive 48-square-meter layout featuring custom hardwood furnishings, a plush king pillow-top bed, and panoramic city views. An oasis of calm equipped with an Italian marble en-suite bathroom with deep soaking tub and rainforest shower.
+          </p>
+          <div class="room-detail__features">
+            <div class="room-detail__feature">48 m² / 516 sq.ft</div>
+            <div class="room-detail__feature">Panoramic Skyline View</div>
+            <div class="room-detail__feature">King Pillow-top Bed</div>
+            <div class="room-detail__feature">Marble Deep-Soak Bath</div>
+            <div class="room-detail__feature">Nespresso Coffee Atelier</div>
+            <div class="room-detail__feature">High-Speed Wi-Fi 6</div>
+          </div>
+          <div class="room-detail__price-row">
+            <div class="room-detail__price">₹12,500 <span>/ night</span></div>
+            <a href="booking.html?room=deluxe" class="btn btn--primary">Reserve Room</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ROOM 2: PREMIER SKYLINE SUITE (REVERSE) ========== -->
+  <section class="room-detail" id="suite">
+    <div class="container">
+      <div class="room-detail__grid reverse">
+        <div class="room-detail__image-wrapper reveal reveal--right">
+          <img src="images/room-suite.jpg" alt="Premier Skyline Suite at XYZ Hotel" class="room-detail__image" loading="lazy">
+        </div>
+        <div class="room-detail__content reveal reveal--left">
+          <p class="room-detail__type">Executive Collection</p>
+          <h2 class="room-detail__name">Premier Skyline Suite</h2>
+          <p class="room-detail__desc">
+            Spanning 75 square meters of pure grandeur, this suite features a distinct living salon, private bar, and master bedroom with walk-in wardrobe. Guests enjoy 24-hour dedicated butler service, complimentary evening cocktails, and priority dining reservations.
+          </p>
+          <div class="room-detail__features">
+            <div class="room-detail__feature">75 m² / 807 sq.ft</div>
+            <div class="room-detail__feature">Separate Living Salon</div>
+            <div class="room-detail__feature">Dedicated 24/7 Butler</div>
+            <div class="room-detail__feature">Evening Canapé Service</div>
+            <div class="room-detail__feature">Walk-in Dressing Room</div>
+            <div class="room-detail__feature">Club Lounge Privilege</div>
+          </div>
+          <div class="room-detail__price-row">
+            <div class="room-detail__price">₹28,000 <span>/ night</span></div>
+            <a href="booking.html?room=suite" class="btn btn--primary">Reserve Suite</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ROOM 3: THE PRESIDENTIAL ROYAL SUITE ========== -->
+  <section class="room-detail" id="presidential">
+    <div class="container">
+      <div class="room-detail__grid">
+        <div class="room-detail__image-wrapper reveal reveal--left">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80" alt="Presidential Royal Suite at XYZ Hotel" class="room-detail__image" loading="lazy">
+        </div>
+        <div class="room-detail__content reveal reveal--right">
+          <p class="room-detail__type">Crown Jewel</p>
+          <h2 class="room-detail__name">The Presidential Royal Suite</h2>
+          <p class="room-detail__desc">
+            Occupying the entire 32nd penthouse floor, the 180-square-meter Presidential Royal Suite is the benchmark of royal luxury. Features a private boardroom, grand baby grand piano, curated fine art collection, private dining room for ten, and airport Rolls-Royce chauffeur transfer.
+          </p>
+          <div class="room-detail__features">
+            <div class="room-detail__feature">180 m² / 1,937 sq.ft</div>
+            <div class="room-detail__feature">Private Rooftop Terrace</div>
+            <div class="room-detail__feature">Chauffeur Airport Transfer</div>
+            <div class="room-detail__feature">Private Chef & Butler</div>
+            <div class="room-detail__feature">10-Seat Dining Salon</div>
+            <div class="room-detail__feature">Bespoke Fragrance Bar</div>
+          </div>
+          <div class="room-detail__price-row">
+            <div class="room-detail__price">₹65,000 <span>/ night</span></div>
+            <a href="booking.html?room=presidential" class="btn btn--primary">Reserve Suite</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ROOM 4: GARDEN PLUNGE POOL VILLA (REVERSE) ========== -->
+  <section class="room-detail" id="villa">
+    <div class="container">
+      <div class="room-detail__grid reverse">
+        <div class="room-detail__image-wrapper reveal reveal--right">
+          <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?w=1200&q=80" alt="Garden Plunge Pool Villa" class="room-detail__image" loading="lazy">
+        </div>
+        <div class="room-detail__content reveal reveal--left">
+          <p class="room-detail__type">Private Haven</p>
+          <h2 class="room-detail__name">Garden Plunge Pool Villa</h2>
+          <p class="room-detail__desc">
+            A secluded urban sanctuary set within the hotel's lush private heritage gardens. Step outside onto your teak wood sun deck with heated infinity plunge pool, open-air rainforest rain shower, and secluded lounge pavilions.
+          </p>
+          <div class="room-detail__features">
+            <div class="room-detail__feature">95 m² / 1,022 sq.ft</div>
+            <div class="room-detail__feature">Private Heated Plunge Pool</div>
+            <div class="room-detail__feature">Private Botanical Garden</div>
+            <div class="room-detail__feature">Outdoor Daybed & Deck</div>
+            <div class="room-detail__feature">Daily Champagne Breakfast</div>
+            <div class="room-detail__feature">Full Spa Bath Menu</div>
+          </div>
+          <div class="room-detail__price-row">
+            <div class="room-detail__price">₹42,000 <span>/ night</span></div>
+            <a href="booking.html?room=villa" class="btn btn--primary">Reserve Villa</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INCLUSIONS / PRIVILEGES ========== -->
+  <section class="section" style="background: var(--ivory-warm);">
+    <div class="container">
+      <div class="reveal" style="text-align: center; margin-bottom: var(--space-3xl);">
+        <span class="section-label" style="justify-content: center;">Every Stay Includes</span>
+        <h2 class="section-title">The XYZ <em>Signature</em> Privileges</h2>
+        <p class="section-subtitle">Every room reservation is accompanied by thoughtful touches of luxury.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-xl);" class="reveal-stagger">
+        <div style="background: var(--white); padding: var(--space-xl); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border-top: 3px solid var(--gold);">
+          <h3 style="font-size: 1.2rem; margin-bottom: var(--space-sm); font-family: var(--font-heading);">24-Hour Valet & Concierge</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Our Golden Keys (Clefs d’Or) concierges curate private museum tours, theater box seats, and tailored city excursions.</p>
+        </div>
+        <div style="background: var(--white); padding: var(--space-xl); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border-top: 3px solid var(--gold);">
+          <h3 style="font-size: 1.2rem; margin-bottom: var(--space-sm); font-family: var(--font-heading);">Bespoke Pillow Menu</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Select from goose down, cooling gel, natural buckwheat, or lavender aromatherapy pillows for uninterrupted slumber.</p>
+        </div>
+        <div style="background: var(--white); padding: var(--space-xl); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border-top: 3px solid var(--gold);">
+          <h3 style="font-size: 1.2rem; margin-bottom: var(--space-sm); font-family: var(--font-heading);">Wellness & Hydrotherapy</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Complimentary morning yoga pavilions, Himalayan salt room, vitality pools, and modern Technogym suites.</p>
+        </div>
+        <div style="background: var(--white); padding: var(--space-xl); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border-top: 3px solid var(--gold);">
+          <h3 style="font-size: 1.2rem; margin-bottom: var(--space-sm); font-family: var(--font-heading);">Flexible Offline & Online Booking</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Reserve seamlessly online with instant confirmation, or call our 24/7 dedicated reservation desk for tailored multi-room itineraries.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CALL TO ACTION ========== -->
+  <section class="section" style="background: var(--charcoal); color: var(--white); text-align: center;">
+    <div class="container container--narrow reveal">
+      <span class="section-label" style="justify-content: center; color: var(--gold-light);">Plan Your Escape</span>
+      <h2 class="section-title" style="color: var(--white);">Ready to Experience <em>Pure Luxury</em>?</h2>
+      <p style="color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-bottom: var(--space-2xl);">Lock in guaranteed best rates, complimentary upgrades when available, and personalized hospitality.</p>
+      <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+        <a href="booking.html" class="btn btn--primary btn--lg">Book Your Stay Now</a>
+        <a href="contact.html" class="btn btn--outline-white btn--lg">Talk to Concierge</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">XYZ <span>Hotel</span></a>
+          <p class="footer__desc">A sanctuary of five-star luxury, timeless elegance, and legendary hospitality. Discover bespoke moments tailored to perfection.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-link" aria-label="Facebook">f</a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">in</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">tw</a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">li</a>
+          </div>
+        </div>
+        <div>
+          <h5 class="footer__heading">Quick Links</h5>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Rooms & Suites</a></li>
+            <li><a href="dining.html">Dining & Bars</a></li>
+            <li><a href="index.html#amenities">Spa & Wellness</a></li>
+            <li><a href="booking.html">Reservations</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="footer__heading">Experiences</h5>
+          <ul class="footer__links">
+            <li><a href="#">Spa & Wellness</a></li>
+            <li><a href="#">Weddings & Events</a></li>
+            <li><a href="#">Business Meetings</a></li>
+            <li><a href="#">City Tours</a></li>
+            <li><a href="#">Loyalty Program</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="footer__heading">Contact</h5>
+          <ul class="footer__links">
+            <li>1 Royal Avenue, Central District</li>
+            <li>New Delhi, India 110001</li>
+            <li style="margin-top: var(--space-md);"><a href="tel:+911234567890">+91 123 456 7890</a></li>
+            <li><a href="mailto:reservations@xyzhotel.com">reservations@xyzhotel.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2024 XYZ Hotel. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+/* ============================================
+   XYZ HOTEL — Rooms Page Styles
+   ============================================ */
+
+.rooms-page {
+  padding-top: var(--header-height);
+}
+
+.rooms-hero {
+  height: 50vh;
+  min-height: 350px;
+  background: linear-gradient(var(--overlay-dark), var(--overlay-dark)),
+              url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1600&q=80') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+}
+
+.rooms-hero__content {
+  max-width: 600px;
+  padding: 0 var(--space-xl);
+}
+
+.rooms-hero__title {
+  color: var(--white);
+  margin-bottom: var(--space-md);
+}
+
+.rooms-hero__subtitle {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+}
+
+/* Room Detail Section */
+.room-detail {
+  padding: var(--space-5xl) 0;
+}
+
+.room-detail + .room-detail {
+  padding-top: 0;
+}
+
+.room-detail__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.room-detail__grid.reverse {
+  grid-template-columns: 1fr 1.2fr;
+}
+
+.room-detail__grid.reverse .room-detail__image-wrapper {
+  order: 2;
+}
+
+.room-detail__image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.room-detail__image {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  transition: transform 0.6s ease;
+}
+
+.room-detail__image-wrapper:hover .room-detail__image {
+  transform: scale(1.03);
+}
+
+.room-detail__type {
+  font-family: var(--font-accent);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: var(--space-sm);
+}
+
+.room-detail__name {
+  font-size: 2rem;
+  margin-bottom: var(--space-md);
+}
+
+.room-detail__desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: var(--space-xl);
+}
+
+.room-detail__features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm) var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.room-detail__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding: var(--space-sm) 0;
+}
+
+.room-detail__feature::before {
+  content: '✓';
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.room-detail__price-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.room-detail__price {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--charcoal);
+}
+
+.room-detail__price span {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .rooms-hero {
+    height: 40vh;
+    min-height: 280px;
+  }
+
+  .room-detail__grid,
+  .room-detail__grid.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .room-detail__grid.reverse .room-detail__image-wrapper {
+    order: 0;
+  }
+
+  .room-detail__image {
+    height: 300px;
+  }
+
+  .room-detail__features {
+    grid-template-columns: 1fr;
+  }
+
+  .room-detail__price-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+}

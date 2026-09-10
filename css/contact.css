@@ -1,0 +1,161 @@
+/* ============================================
+   XYZ HOTEL — Contact Page Styles
+   ============================================ */
+
+.contact-page {
+  padding-top: var(--header-height);
+}
+
+.contact-hero {
+  height: 40vh;
+  min-height: 300px;
+  background: linear-gradient(var(--overlay-dark), var(--overlay-dark)),
+              url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+}
+
+.contact-hero__title {
+  color: var(--white);
+  margin-bottom: var(--space-md);
+}
+
+.contact-hero__subtitle {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: var(--space-5xl) 0;
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+}
+
+/* Contact Info */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.contact-info__item {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.contact-info__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gold-subtle);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.contact-info__title {
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--charcoal);
+  margin-bottom: var(--space-xs);
+}
+
+.contact-info__text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.contact-info__text a {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.contact-info__text a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Form */
+.contact-form {
+  background: var(--white);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-form__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-xl);
+}
+
+.contact-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md) var(--space-lg);
+}
+
+.contact-form__grid .form-group--full {
+  grid-column: span 2;
+}
+
+/* Map Section */
+.map-section {
+  background: var(--ivory-warm);
+  padding: var(--space-4xl) 0;
+}
+
+.map-wrapper {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  height: 400px;
+  background: var(--charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.5);
+  font-family: var(--font-accent);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  position: relative;
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form__grid .form-group--full {
+    grid-column: span 1;
+  }
+
+  .map-wrapper {
+    height: 300px;
+  }
+}

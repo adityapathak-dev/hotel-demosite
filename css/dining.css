@@ -1,0 +1,144 @@
+/* ============================================
+   XYZ HOTEL — Dining Page Styles
+   ============================================ */
+
+.dining-page {
+  padding-top: var(--header-height);
+}
+
+.dining-hero {
+  height: 50vh;
+  min-height: 350px;
+  background: linear-gradient(var(--overlay-dark), var(--overlay-dark)),
+              url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+}
+
+.dining-hero__content {
+  max-width: 600px;
+  padding: 0 var(--space-xl);
+}
+
+.dining-hero__title {
+  color: var(--white);
+  margin-bottom: var(--space-md);
+}
+
+.dining-hero__subtitle {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+}
+
+/* Restaurant Showcase */
+.restaurant-section {
+  padding: var(--space-5xl) 0;
+}
+
+.restaurant-section:nth-child(even) {
+  background: var(--ivory-warm);
+}
+
+.restaurant__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.restaurant__grid.reverse {
+  grid-template-columns: 1fr 1.2fr;
+}
+
+.restaurant__grid.reverse .restaurant__image-wrapper {
+  order: 2;
+}
+
+.restaurant__image-wrapper {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  position: relative;
+}
+
+.restaurant__image {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.restaurant__image-wrapper:hover .restaurant__image {
+  transform: scale(1.03);
+}
+
+.restaurant__cuisine {
+  font-family: var(--font-accent);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: var(--space-sm);
+}
+
+.restaurant__name {
+  font-size: 2rem;
+  margin-bottom: var(--space-md);
+}
+
+.restaurant__desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: var(--space-xl);
+}
+
+.restaurant__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--ivory);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--gold);
+}
+
+.restaurant__info-row {
+  display: flex;
+  gap: var(--space-md);
+  font-size: 0.9rem;
+}
+
+.restaurant__info-label {
+  font-weight: 600;
+  color: var(--charcoal);
+  min-width: 100px;
+}
+
+.restaurant__info-value {
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dining-hero {
+    height: 40vh;
+    min-height: 280px;
+  }
+
+  .restaurant__grid,
+  .restaurant__grid.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .restaurant__grid.reverse .restaurant__image-wrapper {
+    order: 0;
+  }
+
+  .restaurant__image {
+    height: 300px;
+  }
+}

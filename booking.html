@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserve Your Stay — XYZ Hotel | Online & Offline Reservations</title>
+  <meta name="description" content="Book your luxury 5-star stay at XYZ Hotel. Guaranteed best rates, bespoke room selections, flexible online reservations, and 24/7 offline telephone concierge assistance.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/booking.css">
+</head>
+<body class="booking-page">
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header header--solid" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">XYZ <span>Hotel</span></a>
+      <nav class="header__nav">
+        <ul class="header__nav-links" id="navLinks">
+          <li><a href="index.html" class="header__nav-link">Home</a></li>
+          <li><a href="rooms.html" class="header__nav-link">Rooms & Suites</a></li>
+          <li><a href="dining.html" class="header__nav-link">Dining</a></li>
+          <li><a href="index.html#amenities" class="header__nav-link">Amenities</a></li>
+          <li><a href="booking.html" class="header__nav-link active">Offers</a></li>
+          <li><a href="contact.html" class="header__nav-link">Contact</a></li>
+        </ul>
+        <a href="tel:+911234567890" class="btn btn--outline header__cta mobile-hidden">Call +91 123 456 7890</a>
+        <button class="header__menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTAINER ========== -->
+  <main class="container">
+
+    <!-- Page Header & Steps -->
+    <div class="booking-page__header">
+      <span class="section-label" style="justify-content: center;">Bespoke Reservations</span>
+      <h1 class="section-title">Reserve Your <em>Luxury Stay</em></h1>
+      <p class="section-subtitle">Guaranteed best rates with complimentary high-speed Wi-Fi, flexible cancellation, and bespoke concierge privileges.</p>
+
+      <!-- Step Indicators -->
+      <div class="booking-steps">
+        <div class="booking-step active" id="stepIndicator1">
+          <span class="booking-step__number">1</span>
+          <span>Select Room</span>
+        </div>
+        <div class="booking-step__line"></div>
+        <div class="booking-step" id="stepIndicator2">
+          <span class="booking-step__number">2</span>
+          <span>Guest Details</span>
+        </div>
+        <div class="booking-step__line"></div>
+        <div class="booking-step" id="stepIndicator3">
+          <span class="booking-step__number">3</span>
+          <span>Confirmation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Date Filter Toolbar -->
+    <div style="background: var(--white); border-radius: var(--radius-md); padding: var(--space-lg); box-shadow: var(--shadow-sm); margin-bottom: var(--space-2xl); display: flex; flex-wrap: wrap; gap: var(--space-lg); align-items: center; justify-content: space-between;">
+      <div style="display: flex; gap: var(--space-lg); flex-wrap: wrap; align-items: center;">
+        <div>
+          <label style="display: block; font-size: 0.75rem; font-family: var(--font-accent); text-transform: uppercase; color: var(--text-light); margin-bottom: 4px;" for="filterCheckin">Check In</label>
+          <input type="date" id="filterCheckin" class="form-input" style="padding: 8px 12px; font-size: 0.9rem;">
+        </div>
+        <div>
+          <label style="display: block; font-size: 0.75rem; font-family: var(--font-accent); text-transform: uppercase; color: var(--text-light); margin-bottom: 4px;" for="filterCheckout">Check Out</label>
+          <input type="date" id="filterCheckout" class="form-input" style="padding: 8px 12px; font-size: 0.9rem;">
+        </div>
+        <div>
+          <label style="display: block; font-size: 0.75rem; font-family: var(--font-accent); text-transform: uppercase; color: var(--text-light); margin-bottom: 4px;" for="filterGuests">Guests</label>
+          <select id="filterGuests" class="form-input" style="padding: 8px 12px; font-size: 0.9rem;">
+            <option value="1">1 Adult</option>
+            <option value="2" selected>2 Adults</option>
+            <option value="3">3 Adults</option>
+            <option value="4">4 Adults</option>
+          </select>
+        </div>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--gold); font-weight: 500;">
+        ✨ Promo rate: Use code <strong>XYZLUXURY</strong> for 15% off
+      </div>
+    </div>
+
+    <!-- Booking Layout -->
+    <div class="booking-layout">
+
+      <!-- Left Column: Steps -->
+      <div class="booking-main">
+
+        <!-- STEP 1: ROOM SELECTION -->
+        <div id="step1Content">
+          <div class="room-select">
+
+            <!-- Option 1: Deluxe King Room -->
+            <div class="room-option" data-room-id="deluxe">
+              <img src="images/room-deluxe.jpg" alt="Deluxe King Room" class="room-option__image" loading="lazy">
+              <div class="room-option__details">
+                <div>
+                  <span class="room-option__type">Signature Luxury</span>
+                  <h3 class="room-option__name">Deluxe King Room</h3>
+                  <p class="room-option__desc">48m² of contemporary refinement with floor-to-ceiling city views, plush king bed, and Italian marble en-suite bath.</p>
+                  <div class="room-option__amenities">
+                    <span class="room-option__amenity-tag">King Bed</span>
+                    <span class="room-option__amenity-tag">48 m²</span>
+                    <span class="room-option__amenity-tag">Skyline View</span>
+                    <span class="room-option__amenity-tag">Rain Shower & Tub</span>
+                    <span class="room-option__amenity-tag">Free Wi-Fi</span>
+                  </div>
+                </div>
+                <div class="room-option__footer">
+                  <div class="room-option__price">₹12,500 <span>/ night</span></div>
+                  <button type="button" class="btn btn--sm btn--primary">Select Room</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Option 2: Premier Skyline Suite -->
+            <div class="room-option" data-room-id="suite">
+              <img src="images/room-suite.jpg" alt="Premier Skyline Suite" class="room-option__image" loading="lazy">
+              <div class="room-option__details">
+                <div>
+                  <span class="room-option__type">Executive Collection</span>
+                  <h3 class="room-option__name">Premier Skyline Suite</h3>
+                  <p class="room-option__desc">75m² suite featuring a distinct living salon, 24/7 dedicated butler, complimentary evening cocktails, and club lounge access.</p>
+                  <div class="room-option__amenities">
+                    <span class="room-option__amenity-tag">Separate Living Salon</span>
+                    <span class="room-option__amenity-tag">75 m²</span>
+                    <span class="room-option__amenity-tag">24/7 Butler</span>
+                    <span class="room-option__amenity-tag">Club Lounge</span>
+                    <span class="room-option__amenity-tag">Walk-in Wardrobe</span>
+                  </div>
+                </div>
+                <div class="room-option__footer">
+                  <div class="room-option__price">₹28,000 <span>/ night</span></div>
+                  <button type="button" class="btn btn--sm btn--primary">Select Room</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Option 3: The Presidential Royal Suite -->
+            <div class="room-option" data-room-id="presidential">
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80" alt="Presidential Royal Suite" class="room-option__image" loading="lazy">
+              <div class="room-option__details">
+                <div>
+                  <span class="room-option__type">Crown Jewel</span>
+                  <h3 class="room-option__name">The Presidential Royal Suite</h3>
+                  <p class="room-option__desc">180m² top-floor penthouse with private rooftop terrace, 10-seat dining salon, grand piano, and airport Rolls-Royce transfer.</p>
+                  <div class="room-option__amenities">
+                    <span class="room-option__amenity-tag">180 m² Penthouse</span>
+                    <span class="room-option__amenity-tag">Rolls-Royce Transfer</span>
+                    <span class="room-option__amenity-tag">Private Terrace</span>
+                    <span class="room-option__amenity-tag">Private Chef</span>
+                  </div>
+                </div>
+                <div class="room-option__footer">
+                  <div class="room-option__price">₹65,000 <span>/ night</span></div>
+                  <button type="button" class="btn btn--sm btn--primary">Select Room</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Option 4: Garden Plunge Pool Villa -->
+            <div class="room-option" data-room-id="villa">
+              <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?w=1200&q=80" alt="Garden Plunge Pool Villa" class="room-option__image" loading="lazy">
+              <div class="room-option__details">
+                <div>
+                  <span class="room-option__type">Private Haven</span>
+                  <h3 class="room-option__name">Garden Plunge Pool Villa</h3>
+                  <p class="room-option__desc">95m² secluded haven nestled within heritage gardens with heated private plunge pool, open-air sun deck, and champagne breakfast.</p>
+                  <div class="room-option__amenities">
+                    <span class="room-option__amenity-tag">Private Plunge Pool</span>
+                    <span class="room-option__amenity-tag">95 m²</span>
+                    <span class="room-option__amenity-tag">Botanical Garden</span>
+                    <span class="room-option__amenity-tag">Champagne Breakfast</span>
+                  </div>
+                </div>
+                <div class="room-option__footer">
+                  <div class="room-option__price">₹42,000 <span>/ night</span></div>
+                  <button type="button" class="btn btn--sm btn--primary">Select Room</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- STEP 2: GUEST DETAILS & ADD-ONS -->
+        <div id="step2Content" style="display: none;">
+          <div class="guest-form">
+            <h2 class="guest-form__title">Guest Information & Preferences</h2>
+            <form id="guestForm">
+              <div class="guest-form__grid">
+                <div class="form-group">
+                  <label class="form-label" for="guestTitle">Title *</label>
+                  <select id="guestTitle" class="form-input" required>
+                    <option value="Mr">Mr.</option>
+                    <option value="Ms">Ms.</option>
+                    <option value="Mrs">Mrs.</option>
+                    <option value="Dr">Dr.</option>
+                    <option value="Lord">Lord / Lady</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="guestFirstName">First Name *</label>
+                  <input type="text" id="guestFirstName" class="form-input" placeholder="e.g. John" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="guestLastName">Last Name *</label>
+                  <input type="text" id="guestLastName" class="form-input" placeholder="e.g. Harrington" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="guestEmail">Email Address *</label>
+                  <input type="email" id="guestEmail" class="form-input" placeholder="john.harrington@example.com" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="guestPhone">Phone / Mobile *</label>
+                  <input type="tel" id="guestPhone" class="form-input" placeholder="+91 98765 43210" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="guestCountry">Country / Region *</label>
+                  <input type="text" id="guestCountry" class="form-input" placeholder="India" required>
+                </div>
+                <div class="form-group form-group--full">
+                  <label class="form-label" for="guestSpecialRequests">Special Requests & In-room Preferences</label>
+                  <textarea id="guestSpecialRequests" class="form-input" rows="3" placeholder="Pillow preferences (goose down/memory foam), high floor request, dietary restrictions, arrival flight details..."></textarea>
+                </div>
+              </div>
+
+              <!-- Curated Add-ons -->
+              <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin: var(--space-2xl) 0 var(--space-lg); border-top: 1px solid var(--border-color); padding-top: var(--space-xl);">
+                Curate Your Experience (Optional Add-ons)
+              </h3>
+              <div style="display: flex; flex-direction: column; gap: var(--space-md); margin-bottom: var(--space-2xl);">
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-md); border: 1px solid var(--border-color); border-radius: var(--radius-sm); cursor: pointer;">
+                  <div style="display: flex; align-items: center; gap: var(--space-md);">
+                    <input type="checkbox" id="addonBreakfast" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                    <div>
+                      <strong style="display: block; font-size: 0.95rem;">Royal Champagne Breakfast Buffet</strong>
+                      <span style="font-size: 0.8rem; color: var(--text-muted);">Daily spread at The Grand Conservatory for 2 guests</span>
+                    </div>
+                  </div>
+                  <span style="font-weight: 600; color: var(--gold); font-size: 0.95rem;">+₹2,500 / night</span>
+                </label>
+
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-md); border: 1px solid var(--border-color); border-radius: var(--radius-sm); cursor: pointer;">
+                  <div style="display: flex; align-items: center; gap: var(--space-md);">
+                    <input type="checkbox" id="addonTransfer" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                    <div>
+                      <strong style="display: block; font-size: 0.95rem;">Luxury Mercedes Airport Chauffeur Transfer</strong>
+                      <span style="font-size: 0.8rem; color: var(--text-muted);">Roundtrip VIP airport meet & greet with bottled mineral water</span>
+                    </div>
+                  </div>
+                  <span style="font-weight: 600; color: var(--gold); font-size: 0.95rem;">+₹4,500 total</span>
+                </label>
+
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: var(--space-md); border: 1px solid var(--border-color); border-radius: var(--radius-sm); cursor: pointer;">
+                  <div style="display: flex; align-items: center; gap: var(--space-md);">
+                    <input type="checkbox" id="addonSpa" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                    <div>
+                      <strong style="display: block; font-size: 0.95rem;">60-Minute Couples Ayurvedic Aromatherapy Spa</strong>
+                      <span style="font-size: 0.8rem; color: var(--text-muted);">Signature calming ritual with hot herbal compress</span>
+                    </div>
+                  </div>
+                  <span style="font-weight: 600; color: var(--gold); font-size: 0.95rem;">+₹8,500 total</span>
+                </label>
+              </div>
+
+              <!-- Payment Method Selection -->
+              <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: var(--space-md);">Payment & Guarantee Method</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-md);">
+                No charges will be deducted now. Credit card details or pay-at-hotel option guarantees your room.
+              </p>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-2xl);">
+                <label style="border: 2px solid var(--gold); padding: var(--space-md); border-radius: var(--radius-sm); display: flex; align-items: center; gap: var(--space-sm); cursor: pointer;">
+                  <input type="radio" name="paymentOption" value="card" checked style="accent-color: var(--gold);">
+                  <div>
+                    <strong style="display: block; font-size: 0.85rem;">Credit / Debit Card</strong>
+                    <span style="font-size: 0.75rem; color: var(--text-muted);">Visa, Amex, Mastercard</span>
+                  </div>
+                </label>
+                <label style="border: 1px solid var(--border-color); padding: var(--space-md); border-radius: var(--radius-sm); display: flex; align-items: center; gap: var(--space-sm); cursor: pointer;">
+                  <input type="radio" name="paymentOption" value="hotel" style="accent-color: var(--gold);">
+                  <div>
+                    <strong style="display: block; font-size: 0.85rem;">Pay at Check-In</strong>
+                    <span style="font-size: 0.75rem; color: var(--text-muted);">Offline payment at front desk</span>
+                  </div>
+                </label>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <button type="button" class="btn btn--outline" id="backToStep1Btn">← Back to Rooms</button>
+                <button type="submit" class="btn btn--primary btn--lg">Complete Reservation →</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- STEP 3: BOOKING CONFIRMATION -->
+        <div id="step3Content" style="display: none;">
+          <div class="booking-confirmation">
+            <div class="booking-confirmation__icon">✓</div>
+            <span class="section-label" style="justify-content: center;">Booking Confirmed</span>
+            <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: var(--space-sm);">Thank You, Your Stay is Secured</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: var(--space-md);">A confirmation voucher and detailed itinerary have been sent to your email.</p>
+
+            <div class="booking-confirmation__ref">
+              BOOKING REFERENCE: <span id="confBookingRef">#XYZ-849204</span>
+            </div>
+
+            <div style="text-align: left; background: var(--ivory); padding: var(--space-xl); border-radius: var(--radius-md); margin-bottom: var(--space-2xl);">
+              <div style="display: flex; justify-content: space-between; padding: var(--space-xs) 0; border-bottom: 1px solid rgba(0,0,0,0.06);">
+                <span style="color: var(--text-muted);">Guest Name:</span>
+                <strong id="confGuestName" style="color: var(--charcoal);">Lord John Harrington</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: var(--space-xs) 0; border-bottom: 1px solid rgba(0,0,0,0.06);">
+                <span style="color: var(--text-muted);">Accommodation:</span>
+                <strong id="confRoom" style="color: var(--charcoal);">Deluxe King Room</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: var(--space-xs) 0; border-bottom: 1px solid rgba(0,0,0,0.06);">
+                <span style="color: var(--text-muted);">Dates:</span>
+                <strong id="confDates" style="color: var(--charcoal);">Tomorrow to Day After (2 Nights)</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: var(--space-xs) 0; border-bottom: 1px solid rgba(0,0,0,0.06);">
+                <span style="color: var(--text-muted);">Confirmation Email:</span>
+                <strong id="confEmail" style="color: var(--charcoal);">guest@example.com</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: var(--space-xs) 0;">
+                <span style="color: var(--text-muted);">Cancellation Policy:</span>
+                <span style="color: var(--success); font-weight: 600;">Free Cancellation until 24h before 2:00 PM check-in</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+              <button type="button" class="btn btn--primary" onclick="window.print()">🖨 Print Booking Voucher</button>
+              <a href="index.html" class="btn btn--outline">Return to Homepage</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Summary & Price Details -->
+      <aside class="booking-sidebar">
+        <div class="booking-summary">
+          <h3 class="booking-summary__title">Reservation Summary</h3>
+
+          <div class="booking-summary__row">
+            <span class="booking-summary__row-label">Room Type</span>
+            <span class="booking-summary__row-value" id="sumRoomName">Deluxe King Room</span>
+          </div>
+
+          <div class="booking-summary__row">
+            <span class="booking-summary__row-label">Check-In</span>
+            <span class="booking-summary__row-value" id="sumCheckin">-</span>
+          </div>
+
+          <div class="booking-summary__row">
+            <span class="booking-summary__row-label">Check-Out</span>
+            <span class="booking-summary__row-value" id="sumCheckout">-</span>
+          </div>
+
+          <div class="booking-summary__row">
+            <span class="booking-summary__row-label">Duration</span>
+            <span class="booking-summary__row-value" id="sumNights">2 Nights</span>
+          </div>
+
+          <div class="booking-summary__row">
+            <span class="booking-summary__row-label">Occupancy</span>
+            <span class="booking-summary__row-value" id="sumGuests">2 Adults</span>
+          </div>
+
+          <div class="booking-summary__row">
+            <span class="booking-summary__row-label">Rate / Night</span>
+            <span class="booking-summary__row-value" id="sumRatePerNight">₹12,500</span>
+          </div>
+
+          <!-- Promo Code Form -->
+          <div style="margin: var(--space-md) 0; padding: var(--space-sm) 0; border-top: 1px dashed var(--border-color); border-bottom: 1px dashed var(--border-color);">
+            <div style="display: flex; gap: var(--space-xs);">
+              <input type="text" id="promoInput" class="form-input" placeholder="Promo / Loyalty Code" style="padding: 6px 10px; font-size: 0.85rem; text-transform: uppercase;">
+              <button type="button" class="btn btn--sm btn--outline" id="applyPromoBtn">Apply</button>
+            </div>
+            <div id="promoMessage" style="font-size: 0.75rem; margin-top: 4px; font-weight: 500;"></div>
+          </div>
+
+          <!-- Add-ons Line -->
+          <div class="booking-summary__row">
+            <span class="booking-summary__row-label">Selected Add-ons</span>
+            <span class="booking-summary__row-value" id="sumAddonsTotal">₹0</span>
+          </div>
+
+          <!-- Subtotal -->
+          <div class="booking-summary__row">
+            <span class="booking-summary__row-label">Room Subtotal</span>
+            <span class="booking-summary__row-value" id="sumSubtotal">₹25,000</span>
+          </div>
+
+          <!-- Discount Row (hidden by default) -->
+          <div class="booking-summary__row" id="sumDiscountRow" style="display: none; color: var(--success);">
+            <span class="booking-summary__row-label" style="color: var(--success);">Promotional Discount</span>
+            <span class="booking-summary__row-value" id="sumDiscountVal" style="color: var(--success);">-₹3,750</span>
+          </div>
+
+          <div class="booking-summary__row">
+            <span class="booking-summary__row-label">Taxes & Luxury GST (18%)</span>
+            <span class="booking-summary__row-value" id="sumTax">₹4,500</span>
+          </div>
+
+          <div class="booking-summary__total">
+            <span class="booking-summary__total-label">Total Amount</span>
+            <span class="booking-summary__total-value" id="sumTotal">₹29,500</span>
+          </div>
+
+          <button type="button" class="btn btn--primary booking-summary__cta" id="summaryCtaBtn">
+            Continue to Guest Details →
+          </button>
+
+          <div style="margin-top: var(--space-lg); border-top: 1px solid var(--border-color); padding-top: var(--space-md); font-size: 0.8rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span>🛡</span> Best Rate Guaranteed
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span>⏱</span> Free Cancellation up to 24 hours prior
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span>💳</span> No booking fee, pay at property option
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- ============================================================
+         OFFLINE BOOKING & DIRECT CONCIERGE ASSISTANCE
+         Inspired by Taj, ITC, Radisson & Lemon Tree offline booking desks
+         ============================================================ -->
+    <section style="margin-top: var(--space-5xl); background: var(--white); border-radius: var(--radius-lg); padding: var(--space-3xl); box-shadow: var(--shadow-md); border-left: 6px solid var(--gold);">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3xl);" class="booking-offline-grid">
+        <div>
+          <span class="section-label">Personal Concierge Service</span>
+          <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: var(--space-md);">Prefer Offline Booking & Personal Assistance?</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: var(--space-xl);">
+            Like India's foremost 5-star hotel chains (Taj, ITC, Radisson, Lemon Tree), XYZ Hotel operates a round-the-clock dedicated Central Reservations & Offline Booking Concierge. Whether booking multiple suites, arranging an offline bank wire, or requesting customized presidential itineraries, our senior reservation specialists are standing by.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+            <div style="display: flex; align-items: center; gap: var(--space-md);">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--gold-subtle); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">📞</div>
+              <div>
+                <strong style="display: block; font-size: 1rem; color: var(--charcoal);">24/7 Direct Toll-Free Reservation Desk</strong>
+                <a href="tel:+911234567890" style="color: var(--gold); font-weight: 600; font-size: 1.1rem;">+91 123 456 7890</a>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: var(--space-md);">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--gold-subtle); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">💬</div>
+              <div>
+                <strong style="display: block; font-size: 1rem; color: var(--charcoal);">WhatsApp Instant Concierge</strong>
+                <a href="https://wa.me/911234567890" target="_blank" style="color: var(--gold); font-weight: 600; font-size: 1.1rem;">+91 98765 43210</a>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: var(--space-md);">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--gold-subtle); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">✉️</div>
+              <div>
+                <strong style="display: block; font-size: 1rem; color: var(--charcoal);">Offline Vouchers & Corporate Bookings</strong>
+                <a href="mailto:reservations@xyzhotel.com" style="color: var(--gold); font-weight: 600; font-size: 1rem;">reservations@xyzhotel.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Request an Instant Callback Form -->
+        <div style="background: var(--ivory); padding: var(--space-2xl); border-radius: var(--radius-md);">
+          <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: var(--space-xs);">Request an Instant Concierge Callback</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-lg);">Provide your details and an executive will call you within 15 minutes to confirm your offline booking.</p>
+
+          <form id="offlineCallbackForm">
+            <div class="form-group" style="margin-bottom: var(--space-md);">
+              <label class="form-label" for="cb-name">Your Full Name *</label>
+              <input type="text" id="cb-name" class="form-input" placeholder="e.g. Maharani Gayatri Devi" required>
+            </div>
+            <div class="form-group" style="margin-bottom: var(--space-md);">
+              <label class="form-label" for="cb-phone">Mobile Phone Number *</label>
+              <input type="tel" id="cb-phone" class="form-input" placeholder="+91 98765 43210" required>
+            </div>
+            <div class="form-group" style="margin-bottom: var(--space-md);">
+              <label class="form-label" for="cb-pref">Preferred Room & Dates</label>
+              <input type="text" id="cb-pref" class="form-input" placeholder="e.g. 2 Deluxe Rooms for 3 nights in October">
+            </div>
+            <button type="submit" class="btn btn--primary" style="width: 100%;">Request Priority Callback</button>
+          </form>
+
+          <div id="offlineSuccessAlert" style="display: none; background: var(--white); padding: var(--space-lg); border-radius: var(--radius-sm); border-left: 4px solid var(--success); text-align: center;">
+            <p style="color: var(--success); font-weight: 600; font-size: 1.05rem; margin-bottom: 4px;">Callback Requested Successfully!</p>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">A senior reservation manager will reach you at your phone shortly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" style="margin-top: var(--space-5xl);">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">XYZ <span>Hotel</span></a>
+          <p class="footer__desc">A sanctuary of five-star luxury, timeless elegance, and legendary hospitality. Discover bespoke moments tailored to perfection.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-link" aria-label="Facebook">f</a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">in</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">tw</a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">li</a>
+          </div>
+        </div>
+        <div>
+          <h5 class="footer__heading">Quick Links</h5>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Rooms & Suites</a></li>
+            <li><a href="dining.html">Dining & Bars</a></li>
+            <li><a href="index.html#amenities">Spa & Wellness</a></li>
+            <li><a href="booking.html">Reservations</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="footer__heading">Experiences</h5>
+          <ul class="footer__links">
+            <li><a href="#">Spa & Wellness</a></li>
+            <li><a href="#">Weddings & Events</a></li>
+            <li><a href="#">Business Meetings</a></li>
+            <li><a href="#">City Tours</a></li>
+            <li><a href="#">Loyalty Program</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="footer__heading">Contact</h5>
+          <ul class="footer__links">
+            <li>1 Royal Avenue, Central District</li>
+            <li>New Delhi, India 110001</li>
+            <li style="margin-top: var(--space-md);"><a href="tel:+911234567890">+91 123 456 7890</a></li>
+            <li><a href="mailto:reservations@xyzhotel.com">reservations@xyzhotel.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2024 XYZ Hotel. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dining & Culinary Experiences — XYZ Hotel | Fine Dining & Sky Lounges</title>
+  <meta name="description" content="Embark on an extraordinary gastronomic journey at XYZ Hotel. Four award-winning restaurants, rooftop sky lounges, master sommeliers, and private dining salons.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/dining.css">
+</head>
+<body class="dining-page">
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header header--solid" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">XYZ <span>Hotel</span></a>
+      <nav class="header__nav">
+        <ul class="header__nav-links" id="navLinks">
+          <li><a href="index.html" class="header__nav-link">Home</a></li>
+          <li><a href="rooms.html" class="header__nav-link">Rooms & Suites</a></li>
+          <li><a href="dining.html" class="header__nav-link active">Dining</a></li>
+          <li><a href="index.html#amenities" class="header__nav-link">Amenities</a></li>
+          <li><a href="booking.html" class="header__nav-link">Offers</a></li>
+          <li><a href="contact.html" class="header__nav-link">Contact</a></li>
+        </ul>
+        <a href="booking.html" class="btn btn--outline header__cta mobile-hidden">Book a Stay</a>
+        <button class="header__menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="dining-hero">
+    <div class="dining-hero__content">
+      <span class="section-label" style="justify-content: center; color: var(--gold-light);">Artisanal Gastronomy</span>
+      <h1 class="dining-hero__title">Exceptional Dining</h1>
+      <p class="dining-hero__subtitle">From theatrical open kitchens to panoramic skyline lounges, indulge your senses in culinary creations curated by internationally acclaimed chefs.</p>
+    </div>
+  </section>
+
+  <!-- ========== INTRO ========== -->
+  <section class="section" style="padding-bottom: var(--space-2xl); text-align: center;">
+    <div class="container container--narrow">
+      <span class="section-label" style="justify-content: center;">Epicurean Delights</span>
+      <h2 class="section-title">A Symphony of <em>Flavours</em> & Ambience</h2>
+      <p class="section-subtitle">Inspired by royal dining legacies and contemporary international techniques, each venue at XYZ Hotel presents a distinct atmosphere, rare wine vintages, and bespoke culinary storytelling.</p>
+    </div>
+  </section>
+
+  <!-- ========== RESTAURANT 1: THE SAFFRON PAVILION ========== -->
+  <section class="restaurant-section" id="saffron">
+    <div class="container">
+      <div class="restaurant__grid">
+        <div class="restaurant__image-wrapper reveal reveal--left">
+          <img src="images/dining-fine.jpg" alt="The Saffron Pavilion Fine Dining" class="restaurant__image" loading="lazy">
+        </div>
+        <div class="restaurant__content reveal reveal--right">
+          <p class="restaurant__cuisine">Royal Indian & Awadhi Haute Cuisine</p>
+          <h2 class="restaurant__name">The Saffron Pavilion</h2>
+          <p class="restaurant__desc">
+            A celebration of centuries-old culinary secrets from the royal kitchens of India. Featuring artisanal copper tandoors, slow-cooked dum pukht delicacies, fragrant Biryanis, and rare spice blends hand-ground daily by our Master Chef.
+          </p>
+          <div class="restaurant__info">
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Cuisine:</span>
+              <span class="restaurant__info-value">Royal Awadhi & Mughlai Heritage</span>
+            </div>
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Timings:</span>
+              <span class="restaurant__info-value">Lunch: 12:30 PM – 3:30 PM | Dinner: 7:00 PM – 11:30 PM</span>
+            </div>
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Dress Code:</span>
+              <span class="restaurant__info-value">Smart Elegant / Traditional Formal</span>
+            </div>
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Private Rooms:</span>
+              <span class="restaurant__info-value">Two Imperial Salons (Seating 8 & 14 guests)</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+            <a href="#table-reservation" class="btn btn--primary">Reserve a Table</a>
+            <a href="tel:+911234567891" class="btn btn--outline">Direct Concierge Call</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RESTAURANT 2: AURA VISTA SKY LOUNGE (REVERSE) ========== -->
+  <section class="restaurant-section" id="sky-lounge">
+    <div class="container">
+      <div class="restaurant__grid reverse">
+        <div class="restaurant__image-wrapper reveal reveal--right">
+          <img src="images/dining-rooftop.jpg" alt="Aura Vista Sky Lounge and Rooftop Bar" class="restaurant__image" loading="lazy">
+        </div>
+        <div class="restaurant__content reveal reveal--left">
+          <p class="restaurant__cuisine">Pan-Asian Robata & Rooftop Mixology</p>
+          <h2 class="restaurant__name">Aura Vista — Sky Lounge & Bar</h2>
+          <p class="restaurant__desc">
+            Perched on the 30th floor with breathtaking 360-degree panoramic skyline vistas. Savor sushi rolls, binchotan-charred yakitori, and progressive cocktails infused with botanicals, accompanied by ambient live acoustic jazz and sunset lounge beats.
+          </p>
+          <div class="restaurant__info">
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Cuisine:</span>
+              <span class="restaurant__info-value">Modern Pan-Asian & Robatayaki</span>
+            </div>
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Timings:</span>
+              <span class="restaurant__info-value">Daily: 5:00 PM – 1:30 AM (Sundowners from 5:00 PM)</span>
+            </div>
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Dress Code:</span>
+              <span class="restaurant__info-value">Sophisticated Chic</span>
+            </div>
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Specialty:</span>
+              <span class="restaurant__info-value">Bespoke Smoke & Herb infused cocktails</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+            <a href="#table-reservation" class="btn btn--primary">Reserve Skyline Booth</a>
+            <a href="tel:+911234567892" class="btn btn--outline">Call Lounge Desk</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RESTAURANT 3: L'ORANGERIE ========== -->
+  <section class="restaurant-section" id="orangerie">
+    <div class="container">
+      <div class="restaurant__grid">
+        <div class="restaurant__image-wrapper reveal reveal--left">
+          <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1200&q=80" alt="L'Orangerie French Mediterranean Fine Dining" class="restaurant__image" loading="lazy">
+        </div>
+        <div class="restaurant__content reveal reveal--right">
+          <p class="restaurant__cuisine">Contemporary French Mediterranean</p>
+          <h2 class="restaurant__name">L'Orangerie & Wine Cellar</h2>
+          <p class="restaurant__desc">
+            Under the direction of Michelin-trained Chef Laurent Moreau, L'Orangerie offers seasonal multi-course degustation menus pairing wild-caught seafood and artisanal produce with our curated cellar of over 1,200 rare Grand Cru and Old World labels.
+          </p>
+          <div class="restaurant__info">
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Cuisine:</span>
+              <span class="restaurant__info-value">French Mediterranean Degustation</span>
+            </div>
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Timings:</span>
+              <span class="restaurant__info-value">Dinner Only: 6:30 PM – 11:00 PM (Closed Mondays)</span>
+            </div>
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Sommelier:</span>
+              <span class="restaurant__info-value">Head Sommelier Wine Pairing Consultations</span>
+            </div>
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Dress Code:</span>
+              <span class="restaurant__info-value">Formal Jacket Preferred</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+            <a href="#table-reservation" class="btn btn--primary">Book Tasting Menu</a>
+            <a href="tel:+911234567890" class="btn btn--outline">Wine Cellar Tour</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RESTAURANT 4: THE GRAND CONSERVATORY ========== -->
+  <section class="restaurant-section" id="conservatory">
+    <div class="container">
+      <div class="restaurant__grid reverse">
+        <div class="restaurant__image-wrapper reveal reveal--right">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&q=80" alt="The Grand Conservatory Afternoon Tea and Brasserie" class="restaurant__image" loading="lazy">
+        </div>
+        <div class="restaurant__content reveal reveal--left">
+          <p class="restaurant__cuisine">All-Day Brasserie & Royal Afternoon Tea</p>
+          <h2 class="restaurant__name">The Grand Conservatory</h2>
+          <p class="restaurant__desc">
+            Surrounded by glass domes, lush indoor palms, and classical harp melodies. Delve into bountiful morning champagne breakfasts, European artisanal pastries, gourmet wood-fired pizza ovens, and our legendary daily English High Tea service.
+          </p>
+          <div class="restaurant__info">
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Cuisine:</span>
+              <span class="restaurant__info-value">International All-Day & Pastry Atelier</span>
+            </div>
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Timings:</span>
+              <span class="restaurant__info-value">24 Hours (Afternoon Tea: 3:00 PM – 6:00 PM)</span>
+            </div>
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Atmosphere:</span>
+              <span class="restaurant__info-value">Sunlit botanical garden atrium</span>
+            </div>
+            <div class="restaurant__info-row">
+              <span class="restaurant__info-label">Buffet & À la carte:</span>
+              <span class="restaurant__info-value">Available for breakfast, lunch, and dinner</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+            <a href="#table-reservation" class="btn btn--primary">Reserve Afternoon Tea</a>
+            <a href="tel:+911234567890" class="btn btn--outline">Enquire Buffet</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TABLE RESERVATION / ONLINE & OFFLINE BOOKING ========== -->
+  <section class="section" id="table-reservation" style="background: var(--ivory);">
+    <div class="container container--narrow">
+      <div class="reveal" style="text-align: center; margin-bottom: var(--space-2xl);">
+        <span class="section-label" style="justify-content: center;">Table & Private Dining Reservations</span>
+        <h2 class="section-title">Reserve Your <em>Culinary Table</em></h2>
+        <p class="section-subtitle">Choose between instant online confirmation or direct telephone concierge booking for bespoke menus and private dining salons.</p>
+      </div>
+
+      <!-- Reservation Card with Tabs -->
+      <div style="background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--space-2xl);">
+        <div style="display: flex; gap: var(--space-md); margin-bottom: var(--space-2xl); border-bottom: 2px solid var(--border-color); padding-bottom: var(--space-md);">
+          <button type="button" id="tabOnlineDining" class="btn btn--sm btn--primary">Online Instant Booking</button>
+          <button type="button" id="tabOfflineDining" class="btn btn--sm btn--outline">Offline & Concierge Desk</button>
+        </div>
+
+        <!-- Online Form -->
+        <form id="diningBookingForm">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-xl);">
+            <div class="form-group">
+              <label class="form-label" for="dining-venue">Select Restaurant *</label>
+              <select id="dining-venue" class="form-input" required>
+                <option value="saffron">The Saffron Pavilion (Awadhi)</option>
+                <option value="sky-lounge">Aura Vista — Sky Lounge & Bar</option>
+                <option value="orangerie">L'Orangerie & Wine Cellar</option>
+                <option value="conservatory">The Grand Conservatory</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="dining-date">Date *</label>
+              <input type="date" id="dining-date" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="dining-time">Time Slot *</label>
+              <select id="dining-time" class="form-input" required>
+                <option value="12:30">12:30 PM - Lunch</option>
+                <option value="13:30">01:30 PM - Lunch</option>
+                <option value="15:30">03:30 PM - Afternoon Tea</option>
+                <option value="19:00" selected>07:00 PM - Dinner</option>
+                <option value="20:30">08:30 PM - Dinner</option>
+                <option value="21:30">09:30 PM - Late Dinner / Cocktails</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="dining-guests">Party Size *</label>
+              <select id="dining-guests" class="form-input" required>
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+                <option value="6">6+ Guests (Private Dining)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); margin-bottom: var(--space-xl);">
+            <div class="form-group">
+              <label class="form-label" for="guest-name">Full Name *</label>
+              <input type="text" id="guest-name" class="form-input" placeholder="e.g. Lord Harrington" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="guest-phone">Contact Number *</label>
+              <input type="tel" id="guest-phone" class="form-input" placeholder="+91 98765 43210" required>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: var(--space-xl);">
+            <label class="form-label" for="dining-requests">Dietary Preferences or Special Occasion</label>
+            <textarea id="dining-requests" class="form-input" rows="3" placeholder="Anniversary table, window view request, vegan or gluten-free preferences, wine pairing inquiry..."></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md);">
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+              🔒 Instant confirmation via SMS & Email. Free cancellation up to 4 hours prior.
+            </div>
+            <button type="submit" class="btn btn--primary btn--lg" id="diningSubmitBtn">Confirm Table Reservation</button>
+          </div>
+        </form>
+
+        <!-- Offline Information (Hidden by default or toggled) -->
+        <div id="offlineDiningInfo" style="display: none; padding-top: var(--space-lg);">
+          <div style="background: var(--ivory-warm); padding: var(--space-xl); border-radius: var(--radius-md); border-left: 4px solid var(--gold); margin-bottom: var(--space-xl);">
+            <h4 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: var(--space-xs);">Prefer Personal Assistance?</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+              Our Chief Sommelier and Executive Culinary Concierge are available 24 hours to organize bespoke banquets, customized tasting menus, and private imperial dining suites.
+            </p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-lg);">
+            <div style="border: 1px solid var(--border-color); padding: var(--space-lg); border-radius: var(--radius-sm);">
+              <h5 style="font-size: 0.95rem; font-weight: 600; margin-bottom: var(--space-xs);">Direct Dining Desk</h5>
+              <p style="color: var(--gold); font-weight: 600; font-size: 1.1rem; margin-bottom: var(--space-xs);">+91 123 456 7891</p>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">Open 24/7 for instant telephone bookings</span>
+            </div>
+            <div style="border: 1px solid var(--border-color); padding: var(--space-lg); border-radius: var(--radius-sm);">
+              <h5 style="font-size: 0.95rem; font-weight: 600; margin-bottom: var(--space-xs);">Email Concierge</h5>
+              <p style="color: var(--gold); font-weight: 600; font-size: 1rem; margin-bottom: var(--space-xs);">dining@xyzhotel.com</p>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">Guaranteed response within 1 hour</span>
+            </div>
+            <div style="border: 1px solid var(--border-color); padding: var(--space-lg); border-radius: var(--radius-sm);">
+              <h5 style="font-size: 0.95rem; font-weight: 600; margin-bottom: var(--space-xs);">Private Dining Salons</h5>
+              <p style="color: var(--gold); font-weight: 600; font-size: 1.1rem; margin-bottom: var(--space-xs);">+91 123 456 7892</p>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">Dedicated events coordinator</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="diningSuccessMsg" style="display: none; text-align: center; padding: var(--space-2xl) 0;">
+          <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--success); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto var(--space-md);">✓</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: var(--space-xs);">Table Reserved Successfully!</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: var(--space-lg);">A confirmation voucher with booking reference <strong id="diningRefNumber">#DIN-84920</strong> has been sent via SMS.</p>
+          <button type="button" class="btn btn--outline" onclick="location.reload()">Book Another Table</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">XYZ <span>Hotel</span></a>
+          <p class="footer__desc">A sanctuary of five-star luxury, timeless elegance, and legendary hospitality. Discover bespoke moments tailored to perfection.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-link" aria-label="Facebook">f</a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">in</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">tw</a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">li</a>
+          </div>
+        </div>
+        <div>
+          <h5 class="footer__heading">Quick Links</h5>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Rooms & Suites</a></li>
+            <li><a href="dining.html">Dining & Bars</a></li>
+            <li><a href="index.html#amenities">Spa & Wellness</a></li>
+            <li><a href="booking.html">Reservations</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="footer__heading">Experiences</h5>
+          <ul class="footer__links">
+            <li><a href="#">Spa & Wellness</a></li>
+            <li><a href="#">Weddings & Events</a></li>
+            <li><a href="#">Business Meetings</a></li>
+            <li><a href="#">City Tours</a></li>
+            <li><a href="#">Loyalty Program</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="footer__heading">Contact</h5>
+          <ul class="footer__links">
+            <li>1 Royal Avenue, Central District</li>
+            <li>New Delhi, India 110001</li>
+            <li style="margin-top: var(--space-md);"><a href="tel:+911234567890">+91 123 456 7890</a></li>
+            <li><a href="mailto:reservations@xyzhotel.com">reservations@xyzhotel.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2024 XYZ Hotel. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    // Tab switching for Online vs Offline
+    const tabOnline = document.getElementById('tabOnlineDining');
+    const tabOffline = document.getElementById('tabOfflineDining');
+    const formDining = document.getElementById('diningBookingForm');
+    const offlineInfo = document.getElementById('offlineDiningInfo');
+    const diningSuccess = document.getElementById('diningSuccessMsg');
+
+    tabOnline?.addEventListener('click', () => {
+      tabOnline.className = 'btn btn--sm btn--primary';
+      tabOffline.className = 'btn btn--sm btn--outline';
+      formDining.style.display = 'block';
+      offlineInfo.style.display = 'none';
+    });
+
+    tabOffline?.addEventListener('click', () => {
+      tabOffline.className = 'btn btn--sm btn--primary';
+      tabOnline.className = 'btn btn--sm btn--outline';
+      formDining.style.display = 'none';
+      offlineInfo.style.display = 'block';
+      diningSuccess.style.display = 'none';
+    });
+
+    // Default tomorrow date
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    const dateInput = document.getElementById('dining-date');
+    if (dateInput) dateInput.value = d.toISOString().split('T')[0];
+
+    // Form submission
+    formDining?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('diningSubmitBtn');
+      btn.textContent = 'Reserving...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        formDining.style.display = 'none';
+        diningSuccess.style.display = 'block';
+        const ref = 'DIN-' + Math.floor(10000 + Math.random() * 90000);
+        document.getElementById('diningRefNumber').textContent = '#' + ref;
+      }, 800);
+    });
+  </script>
+</body>
+</html>
