@@ -413,15 +413,38 @@ model MediaAsset {
   fileName  String
   filePath  String   // Path within Supabase Storage bucket
   fileUrl   String   // Public accessible URL
-  fileType  String   // "image/jpeg", "image/png", "image/webp"
+  fileType  String   // "image/jpeg", "image/png", "image/webp", "video/mp4"
   altText   String?
   sizeBytes Int?
-  category  String?  // "rooms", "dining", "offers", "hero", "avatars"
+  category  String?  // "rooms", "dining", "offers", "hero", "avatars", "gallery", "videos"
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([bucket])
   @@index([category])
+}
+
+// ------------------------------------------------------------------------------
+// 13b. Hotel Video & Media Gallery Showcase
+// ------------------------------------------------------------------------------
+
+model HotelVideo {
+  id           String   @id @default(cuid())
+  title        String
+  description  String?  @db.Text
+  category     String   @default("Property Tour") // "Property Tour", "Suites & Rooms", "Dining & Bars", "Spa & Wellness", "Experiences"
+  videoUrl     String   // MP4 URL, YouTube URL, or uploaded video
+  thumbnailUrl String?  // Poster image
+  duration     String?  @default("2:15") // e.g. "2:30", "1:45"
+  isFeatured   Boolean  @default(false)
+  isActive     Boolean  @default(true)
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([category])
+  @@index([isActive])
+  @@index([isFeatured])
 }
 
 // ------------------------------------------------------------------------------

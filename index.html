@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/chatbot.css">
   <link rel="stylesheet" href="css/nav-auth.css">
+  <link rel="stylesheet" href="css/gallery.css">
 </head>
 <body>
 
@@ -28,6 +29,7 @@
           <li><a href="rooms.html" class="header__nav-link">Rooms & Suites</a></li>
           <li><a href="dining.html" class="header__nav-link">Dining</a></li>
           <li><a href="amenities.html" class="header__nav-link">Amenities</a></li>
+          <li><a href="#gallery" class="header__nav-link">Gallery</a></li>
           <li><a href="#offers" class="header__nav-link">Offers</a></li>
           <li><a href="contact.html" class="header__nav-link">Contact</a></li>
           <li><a href="login.html" class="header__nav-link">Sign In</a></li>
@@ -338,6 +340,45 @@
     </div>
   </section>
 
+  <!-- ========== CINEMATIC VIDEO GALLERY ========== -->
+  <section class="gallery-showcase section" id="gallery">
+    <div class="container">
+      <div class="gallery-section__header reveal">
+        <span class="section-label" style="justify-content: center; color: var(--gold-light);">Cinematic Showcase</span>
+        <h2 class="section-title">Experience XYZ Hotel</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">Immerse yourself in our architectural grandeur, royal penthouse suites, culinary mastery, and private wellness sanctuaries through bespoke cinematic tours.</p>
+      </div>
+
+      <div class="gallery-filter-bar reveal" id="guestGalleryFilters">
+        <button class="gallery-filter-btn active" data-cat="All">All Showcase</button>
+        <button class="gallery-filter-btn" data-cat="Property Tour">Property Tour</button>
+        <button class="gallery-filter-btn" data-cat="Suites & Rooms">Suites & Rooms</button>
+        <button class="gallery-filter-btn" data-cat="Dining & Bars">Dining & Bars</button>
+        <button class="gallery-filter-btn" data-cat="Spa & Wellness">Spa & Wellness</button>
+      </div>
+
+      <div class="gallery-video-grid reveal" id="guestGalleryGrid">
+        <div style="grid-column: 1 / -1; text-align: center; color: var(--color-text-muted); padding: 3rem;">
+          <p>Loading cinematic showcase...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUEST VIDEO PLAYER MODAL -->
+  <div id="guestVideoModal" class="guest-video-modal" style="display: none;">
+    <div class="guest-video-box">
+      <div class="guest-video-header">
+        <h3 id="guestVideoTitle">Cinematic Showcase</h3>
+        <button class="guest-video-close" id="guestVideoClose" aria-label="Close video player">&times;</button>
+      </div>
+      <div class="guest-video-stage" id="guestVideoStage"></div>
+      <div class="guest-video-info">
+        <p id="guestVideoDesc"></p>
+      </div>
+    </div>
+  </div>
+
   <!-- ========== OFFERS ========== -->
   <section class="offers section" id="offers">
     <div class="container">
@@ -513,6 +554,7 @@
   <!-- Scripts -->
   <script src="js/api.js"></script>
   <script src="js/live-sync.js"></script>
+  <script src="js/gallery.js"></script>
   <script src="js/nav-auth.js"></script>
   <script src="js/main.js"></script>
   <script src="js/carousel.js"></script>

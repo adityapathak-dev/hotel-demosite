@@ -21,27 +21,8 @@ const FALLBACK_ADMIN = {
   passwordHash: '$2a$10$wJ2O6Y9uV2Jm4d/UaWnly.b511qf2C8Vj0/g1m3tD0Zlh2M1e6RzO',
 };
 
-// Fallback notifications
-let inMemoryNotifications = [
-  {
-    id: 'notif-1',
-    type: 'NEW_BOOKING',
-    title: 'New Reservation: XYZ-847291',
-    message: 'Vikram Mehta booked Deluxe King Room for 3 nights (₹41,861)',
-    linkUrl: '/admin#bookings',
-    isRead: false,
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: 'notif-2',
-    type: 'NEW_INQUIRY',
-    title: 'Inquiry Ticket #XYZ-9821',
-    message: 'Lady Margaret Thornton sent an inquiry: "Private Terrace Dinner"',
-    linkUrl: '/admin#contact',
-    isRead: false,
-    createdAt: new Date(Date.now() - 3600000).toISOString(),
-  },
-];
+// Fallback notifications (starts clean with 0 notifications)
+let inMemoryNotifications = [];
 
 /**
  * Authentication Middleware: Verify JWT and Admin/Staff role
@@ -170,7 +151,9 @@ router.get('/analytics', async (req, res) => {
       ]);
 
       const totalRevenue = confirmedBookings.reduce((sum, b) => sum + (b.totalAmount || 0), 0);
-      const estimatedOccupancy = Math.min(94, Math.max(68, Math.round((confirmedBookings.length * 15) % 100)));
+      const estimatedOccupancy = totalBookings > 0 && roomsCount > 0
+        ? Math.min(100, Math.round((confirmedBookings.length / roomsCount) * 100))
+        : 0;
 
       return res.json({
         success: true,
@@ -186,34 +169,17 @@ router.get('/analytics', async (req, res) => {
       });
     }
 
-    // In-memory analytics fallback
+    // In-memory analytics fallback (clean default when 0 bookings exist)
     return res.json({
       success: true,
       data: {
-        totalBookings: 24,
-        totalRevenue: 842500,
-        occupancyRate: '88%',
-        unreadInquiries: 2,
-        unreadNotifications: inMemoryNotifications.filter((n) => !n.isRead).length,
+        totalBookings: 0,
+        totalRevenue: 0,
+        occupancyRate: '0%',
+        unreadInquiries: 0,
+        unreadNotifications: 0,
         activeRoomsCount: 4,
-        recentBookings: [
-          {
-            bookingRef: 'XYZ-847291',
-            guestName: 'Vikram Mehta',
-            roomName: 'Deluxe King Room',
-            totalAmount: 41860.5,
-            status: 'CONFIRMED',
-            dates: 'In 2 days (3 nights)',
-          },
-          {
-            bookingRef: 'XYZ-918234',
-            guestName: 'Eleanor Vance',
-            roomName: 'Premier Skyline Suite',
-            totalAmount: 107380,
-            status: 'CONFIRMED',
-            dates: 'In 7 days (3 nights)',
-          },
-        ],
+        recentBookings: [],
       },
     });
   } catch (error) {

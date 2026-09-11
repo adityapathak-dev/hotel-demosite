@@ -20,6 +20,7 @@
       this.bindTabNavigation();
       this.bindModalEvents();
       this.bindStorageEvents();
+      this.bindGalleryEvents();
       this.bindCmsEvents();
 
       // Check existing session
@@ -158,6 +159,7 @@
         cms: { title: 'CMS & Homepage Sections', sub: 'Customize hero banners, headlines, stats, and legal pages' },
         inquiries: { title: 'Concierge Inquiries', sub: 'Inbound guest communications & newsletter roster' },
         storage: { title: 'Supabase Storage Manager', sub: 'Direct bucket uploads to PostgreSQL media registry' },
+        gallery: { title: 'Hotel Cinematic Video Gallery', sub: 'Manage walkthrough videos, drone property tours, dining & spa stories' },
         settings: { title: 'Global Property Settings', sub: 'Hotel metadata, telephone lines, and concierge contacts' },
       };
 
@@ -201,6 +203,9 @@
         case 'storage':
           this.loadStorageData();
           break;
+        case 'gallery':
+          this.loadGalleryData();
+          break;
         case 'settings':
           this.loadSettingsData();
           break;
@@ -218,7 +223,7 @@
         ]);
 
         document.getElementById('statRevenue').textContent = `₹${(analytics.totalRevenue || 0).toLocaleString('en-IN')}`;
-        document.getElementById('statOccupancy').textContent = analytics.occupancyRate || '85%';
+        document.getElementById('statOccupancy').textContent = analytics.occupancyRate || '0%';
         document.getElementById('statBookings').textContent = analytics.totalBookings || 0;
         document.getElementById('statInquiries').textContent = analytics.unreadInquiries || 0;
 
@@ -1300,6 +1305,288 @@
           .join('');
       } catch (e) {
         gallery.innerHTML = `<div style="grid-column: 1 / -1; color: var(--text-muted); text-align: center;">Asset library ready for new uploads.</div>`;
+      }
+    }
+
+    // --------------------------------------------------------------------------
+    // 10b. Hotel Cinematic Video Gallery Tab
+    // --------------------------------------------------------------------------
+    bindGalleryEvents() {
+      const filterContainer = document.getElementById('adminGalleryFilters');
+      if (filterContainer) {
+        filterContainer.addEventListener('click', (e) => {
+          const btn = e.target.closest('.filter-pill');
+          if (!btn) return;
+          filterContainer.querySelectorAll('.filter-pill').forEach((p) => p.classList.remove('active'));
+          btn.classList.add('active');
+          this.loadGalleryData(btn.dataset.cat);
+        });
+      }
+
+      const addBtn = document.getElementById('addNewVideoBtn');
+      if (addBtn) {
+        addBtn.addEventListener('click', () => this.openVideoModal(null));
+      }
+
+      const closePlayerBtn = document.getElementById('closeVideoPlayerBtn');
+      const playerModal = document.getElementById('videoPlayerModal');
+      if (closePlayerBtn) {
+        closePlayerBtn.onclick = () => this.closeVideoPlayer();
+      }
+      if (playerModal) {
+        playerModal.onclick = (e) => {
+          if (e.target === playerModal) this.closeVideoPlayer();
+        };
+      }
+    }
+
+    closeVideoPlayer() {
+      const modal = document.getElementById('videoPlayerModal');
+      const target = document.getElementById('videoPlayerTarget');
+      if (modal) modal.style.display = 'none';
+      if (target) target.innerHTML = '';
+    }
+
+    async loadGalleryData(category = 'All') {
+      const grid = document.getElementById('videoGalleryGrid');
+      if (!grid) return;
+      grid.innerHTML = `<div class="loading-td">Loading hotel video collection...</div>`;
+
+      try {
+        const videos = await XYZ_API.gallery.getAll(true, category);
+        if (videos.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 3rem 1rem;">
+              <p style="margin-bottom: 1rem;">No videos registered for this category yet.</p>
+              <button class="btn-gold" onclick="window.adminApp.openVideoModal(null)">Add First Video</button>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = videos
+          .map((v) => `
+            <div class="video-admin-card">
+              <div class="video-thumb-wrap" onclick="window.adminApp.playVideo('${this.escapeHtml(v.videoUrl)}', '${this.escapeHtml(v.title)}', '${this.escapeHtml(v.description || '')}')">
+                <img src="${v.thumbnailUrl || 'images/hero-bg.jpg'}" alt="${this.escapeHtml(v.title)}" onerror="this.src='images/hero-bg.jpg'">
+                <div class="video-thumb-overlay">
+                  <div class="video-play-btn-circle">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+                <span class="video-duration-tag">${this.escapeHtml(v.duration || '2:00')}</span>
+              </div>
+              <div class="video-card-body">
+                <div class="video-card-top">
+                  <span class="video-cat-badge">${this.escapeHtml(v.category)}</span>
+                  ${v.isFeatured ? '<span class="badge badge-confirmed" style="font-size: 0.65rem;">Featured</span>' : ''}
+                </div>
+                <h3 class="video-card-title">${this.escapeHtml(v.title)}</h3>
+                <p class="video-card-desc">${this.escapeHtml(v.description || '')}</p>
+                <div class="video-card-footer">
+                  <div class="video-status-indicator">
+                    <span class="status-dot ${v.isActive ? 'active' : 'inactive'}"></span>
+                    <span style="color: ${v.isActive ? '#10b981' : '#9ca3af'};">${v.isActive ? 'Active on Site' : 'Hidden'}</span>
+                  </div>
+                  <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn-action-edit" onclick="window.adminApp.openVideoModal('${v.id}')">Edit</button>
+                    <button class="btn-action-delete" onclick="window.adminApp.deleteVideo('${v.id}')">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `)
+          .join('');
+      } catch (err) {
+        grid.innerHTML = `<div style="grid-column: 1 / -1; color: var(--status-danger);">Failed to load videos: ${err.message}</div>`;
+      }
+    }
+
+    async openVideoModal(videoId) {
+      let video = null;
+      if (videoId) {
+        video = await XYZ_API.gallery.get(videoId);
+      }
+      const isEdit = Boolean(video);
+      document.getElementById('modalTitle').textContent = isEdit ? `Edit Video: ${video.title}` : 'Add Hotel Showcase Video';
+
+      const body = document.getElementById('modalBody');
+      body.innerHTML = `
+        <form id="videoModalForm" class="cms-grid-form">
+          <div class="form-group span-2">
+            <label for="vTitle">Video Showcase Title</label>
+            <input type="text" id="vTitle" required value="${this.escapeHtml(video?.title || '')}" placeholder="e.g. Architectural Grandeur & Heritage Sanctuary">
+          </div>
+          <div class="form-group">
+            <label for="vCategory">Showcase Category</label>
+            <select id="vCategory" class="select-input">
+              <option value="Property Tour" ${video?.category === 'Property Tour' ? 'selected' : ''}>Property Tour & Grounds</option>
+              <option value="Suites & Rooms" ${video?.category === 'Suites & Rooms' ? 'selected' : ''}>Suites & Rooms Walkthrough</option>
+              <option value="Dining & Bars" ${video?.category === 'Dining & Bars' ? 'selected' : ''}>Dining & Culinary Art</option>
+              <option value="Spa & Wellness" ${video?.category === 'Spa & Wellness' ? 'selected' : ''}>Spa & Holistic Wellness</option>
+              <option value="Experiences" ${video?.category === 'Experiences' ? 'selected' : ''}>Curated Guest Experiences</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="vDuration">Video Duration Display</label>
+            <input type="text" id="vDuration" value="${this.escapeHtml(video?.duration || '2:30')}" placeholder="e.g. 2:45">
+          </div>
+          <div class="form-group span-2">
+            <label for="vVideoUrl">Video Stream URL or Direct Upload</label>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <input type="text" id="vVideoUrl" required value="${this.escapeHtml(video?.videoUrl || '')}" style="flex: 1;" placeholder="Paste MP4 URL, YouTube URL, or click Upload Video">
+              <button type="button" class="btn-gold" id="btnUploadVideoFile" style="white-space: nowrap; padding: 0.6rem 1rem; display: inline-flex; align-items: center; gap: 6px;">
+                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg> Upload Video
+              </button>
+              <input type="file" id="fileVideoInput" accept="video/mp4,video/webm,video/quicktime" style="display: none;">
+            </div>
+            <span id="videoUploadStatus" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem; display: block;">Supports MP4, WEBM up to 50MB, or direct cloud URLs</span>
+          </div>
+          <div class="form-group span-2">
+            <label for="vThumbUrl">Video Poster / Thumbnail Image</label>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <input type="text" id="vThumbUrl" value="${this.escapeHtml(video?.thumbnailUrl || 'images/hero-bg.jpg')}" style="flex: 1;" placeholder="Enter image URL or click Upload Photo">
+              <button type="button" class="btn-gold" id="btnUploadVideoThumb" style="white-space: nowrap; padding: 0.6rem 1rem; display: inline-flex; align-items: center; gap: 6px;">
+                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg> Upload Photo
+              </button>
+              <input type="file" id="fileThumbInput" accept="image/*" style="display: none;">
+            </div>
+            <div style="margin-top: 0.6rem; display: flex; align-items: center; gap: 1rem;">
+              <img id="videoThumbPreview" src="${this.escapeHtml(video?.thumbnailUrl || 'images/hero-bg.jpg')}" alt="Poster Preview" style="width: 90px; height: 52px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-gold);" onerror="this.src='images/hero-bg.jpg'">
+              <span id="videoThumbStatus" style="font-size: 0.8rem; color: var(--text-muted);">Cover thumbnail displayed before playback</span>
+            </div>
+          </div>
+          <div class="form-group span-2">
+            <label for="vDesc">Video Narrative / Description</label>
+            <textarea id="vDesc" rows="3" placeholder="Describe the atmosphere, featured suite, or culinary highlight...">${this.escapeHtml(video?.description || '')}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="vFeatured">Featured Showcase</label>
+            <select id="vFeatured" class="select-input">
+              <option value="true" ${video?.isFeatured ? 'selected' : ''}>Featured on Live Website</option>
+              <option value="false" ${!video?.isFeatured ? 'selected' : ''}>Standard Showcase</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="vActive">Visibility Status</label>
+            <select id="vActive" class="select-input">
+              <option value="true" ${video?.isActive !== false ? 'selected' : ''}>Active / Visible on Site</option>
+              <option value="false" ${video?.isActive === false ? 'selected' : ''}>Hidden / Draft</option>
+            </select>
+          </div>
+          <div class="form-group span-2" style="margin-top: 1rem;">
+            <button type="submit" class="btn-gold">${isEdit ? 'Save Video Details' : 'Publish Hotel Video'}</button>
+          </div>
+        </form>
+      `;
+
+      document.getElementById('crudModal').style.display = 'flex';
+
+      // Setup Video File Upload
+      const btnVid = document.getElementById('btnUploadVideoFile');
+      const inputVid = document.getElementById('fileVideoInput');
+      const statusVid = document.getElementById('videoUploadStatus');
+      const urlVid = document.getElementById('vVideoUrl');
+      if (btnVid && inputVid) {
+        btnVid.onclick = () => inputVid.click();
+        inputVid.onchange = async () => {
+          if (!inputVid.files || !inputVid.files.length) return;
+          const file = inputVid.files[0];
+          statusVid.textContent = `Uploading video file: ${file.name} (${(file.size / (1024 * 1024)).toFixed(1)} MB)...`;
+          statusVid.style.color = 'var(--gold-primary)';
+          btnVid.disabled = true;
+          try {
+            const res = await XYZ_API.storage.upload(file, 'videos');
+            const uploadedUrl = res.url || res.data?.url;
+            if (uploadedUrl) {
+              urlVid.value = uploadedUrl;
+              statusVid.textContent = 'Video file uploaded and registered successfully!';
+              statusVid.style.color = 'var(--status-success)';
+              this.showBanner('Video file uploaded.');
+            }
+          } catch (err) {
+            statusVid.textContent = `Upload failed: ${err.message}`;
+            statusVid.style.color = 'var(--status-danger)';
+          } finally {
+            btnVid.disabled = false;
+          }
+        };
+      }
+
+      // Setup Thumbnail Photo Upload
+      this.setupPhotoUpload({
+        buttonId: 'btnUploadVideoThumb',
+        fileInputId: 'fileThumbInput',
+        urlInputId: 'vThumbUrl',
+        previewImgId: 'videoThumbPreview',
+        statusId: 'videoThumbStatus',
+        category: 'gallery',
+      });
+
+      document.getElementById('videoModalForm').onsubmit = async (e) => {
+        e.preventDefault();
+        const payload = {
+          title: document.getElementById('vTitle').value.trim(),
+          category: document.getElementById('vCategory').value,
+          duration: document.getElementById('vDuration').value.trim(),
+          videoUrl: document.getElementById('vVideoUrl').value.trim(),
+          thumbnailUrl: document.getElementById('vThumbUrl').value.trim(),
+          description: document.getElementById('vDesc').value.trim(),
+          isFeatured: document.getElementById('vFeatured').value === 'true',
+          isActive: document.getElementById('vActive').value === 'true',
+        };
+
+        try {
+          if (isEdit) {
+            await XYZ_API.gallery.update(video.id, payload);
+          } else {
+            await XYZ_API.gallery.create(payload);
+          }
+          this.closeModal();
+          this.loadGalleryData();
+          this.showBanner('Hotel video saved successfully.');
+        } catch (err) {
+          alert('Failed to save video: ' + err.message);
+        }
+      };
+    }
+
+    playVideo(videoUrl, title, description) {
+      const modal = document.getElementById('videoPlayerModal');
+      const target = document.getElementById('videoPlayerTarget');
+      const titleEl = document.getElementById('videoPlayerTitle');
+      const metaEl = document.getElementById('videoPlayerMeta');
+
+      if (!modal || !target) return;
+
+      titleEl.textContent = title || 'Hotel Showcase Video';
+      metaEl.textContent = description || '';
+
+      // Check YouTube
+      const ytMatch = videoUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+      if (ytMatch) {
+        target.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      } else {
+        // Direct HTML5 Video
+        target.innerHTML = `
+          <video controls autoplay playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="${videoUrl}" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        `;
+      }
+
+      modal.style.display = 'flex';
+    }
+
+    async deleteVideo(id) {
+      if (!confirm('Remove this video showcase?')) return;
+      try {
+        await XYZ_API.gallery.delete(id);
+        this.loadGalleryData();
+        this.showBanner('Video removed.');
+      } catch (err) {
+        alert('Failed to delete video: ' + err.message);
       }
     }
 

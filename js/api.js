@@ -358,6 +358,44 @@
     },
 
     // --------------------------------------------------------------------------
+    // Hotel Video & Cinematic Gallery Operations
+    // --------------------------------------------------------------------------
+    gallery: {
+      async getAll(all = false, category = '', featured = false) {
+        const params = new URLSearchParams();
+        if (all) params.append('all', 'true');
+        if (category && category !== 'All') params.append('category', category);
+        if (featured) params.append('featured', 'true');
+        const qs = params.toString() ? `?${params.toString()}` : '';
+        const res = await request(`/api/gallery${qs}`);
+        return res.data || [];
+      },
+      async get(id) {
+        const res = await request(`/api/gallery/${id}`);
+        return res.data;
+      },
+      async create(payload) {
+        const res = await request('/api/gallery', {
+          method: 'POST',
+          body: JSON.stringify(payload),
+        });
+        return res.data;
+      },
+      async update(id, payload) {
+        const res = await request(`/api/gallery/${id}`, {
+          method: 'PUT',
+          body: JSON.stringify(payload),
+        });
+        return res.data;
+      },
+      async delete(id) {
+        return await request(`/api/gallery/${id}`, {
+          method: 'DELETE',
+        });
+      },
+    },
+
+    // --------------------------------------------------------------------------
     // Admin & Staff Operations
     // --------------------------------------------------------------------------
     admin: {

@@ -11,21 +11,21 @@ const fs = require('fs');
 const { uploadToSupabaseStorage, getStorageClient } = require('../supabase');
 const { prisma, isDatabaseConnected } = require('../prisma');
 
-// Multer memory storage configuration
+// Multer memory storage configuration (images & videos up to 50MB)
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: 15 * 1024 * 1024, // 15MB limit
+    fileSize: 50 * 1024 * 1024, // 50MB limit
   },
   fileFilter: (req, file, cb) => {
-    const allowed = /jpeg|jpg|png|webp|gif|svg\+xml|svg/;
+    const allowed = /jpeg|jpg|png|webp|gif|svg\+xml|svg|mp4|webm|quicktime|mov|ogg/;
     const ext = path.extname(file.originalname).toLowerCase().replace('.', '');
     const mime = file.mimetype.toLowerCase();
 
     if (allowed.test(ext) || allowed.test(mime)) {
       cb(null, true);
     } else {
-      cb(new Error('Only image formats (JPG, PNG, WEBP, GIF, SVG) are supported.'));
+      cb(new Error('Supported formats: JPG, PNG, WEBP, GIF, SVG, MP4, WEBM, MOV.'));
     }
   },
 });
