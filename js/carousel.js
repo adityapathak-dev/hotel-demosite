@@ -70,25 +70,27 @@ class Carousel {
     }
 
     // Touch/swipe support
-    let startX = 0;
-    let isDragging = false;
+    if (this.track) {
+      let startX = 0;
+      let isDragging = false;
 
-    this.track.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-    }, { passive: true });
+      this.track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+      }, { passive: true });
 
-    this.track.addEventListener('touchend', (e) => {
-      if (!isDragging) return;
-      const endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
+      this.track.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
 
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) this.next();
-        else this.prev();
-      }
-      isDragging = false;
-    }, { passive: true });
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) this.next();
+          else this.prev();
+        }
+        isDragging = false;
+      }, { passive: true });
+    }
   }
 
   goTo(index) {

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amenities & Wellness — XYZ Hotel | 5-Star Luxury Facilities & Spa</title>
+  <meta name="description" content="Immerse in holistic wellness at XYZ Hotel. Featuring an Ayurvedic spa, skyline infinity pool, 24/7 Technogym health club, Clefs d'Or concierge, and private boardrooms.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/amenities.css">
+  <link rel="stylesheet" href="css/chatbot.css">
+  <link rel="stylesheet" href="css/nav-auth.css">
+</head>
+<body class="amenities-page">
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header header--solid" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">XYZ <span>Hotel</span></a>
+      <nav class="header__nav">
+        <ul class="header__nav-links" id="navLinks">
+          <li><a href="index.html" class="header__nav-link">Home</a></li>
+          <li><a href="rooms.html" class="header__nav-link">Rooms & Suites</a></li>
+          <li><a href="dining.html" class="header__nav-link">Dining</a></li>
+          <li><a href="amenities.html" class="header__nav-link active">Amenities</a></li>
+          <li><a href="index.html#offers" class="header__nav-link">Offers</a></li>
+          <li><a href="contact.html" class="header__nav-link">Contact</a></li>
+          <li><a href="login.html" class="header__nav-link">Sign In</a></li>
+        </ul>
+        <a href="booking.html" class="btn btn--outline header__cta mobile-hidden">Book a Stay</a>
+        <button class="header__menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="amenities-hero">
+    <div class="amenities-hero__content">
+      <span class="section-label" style="justify-content: center; color: var(--gold-light);">Sanctuaries of Serenity</span>
+      <h1 class="amenities-hero__title">World-Class Amenities</h1>
+      <p class="amenities-hero__subtitle">Elevate your stay with our Ayurvedic spa retreats, skyline infinity pool, bespoke Clefs d'Or concierge, and round-the-clock wellness facilities.</p>
+    </div>
+  </section>
+
+  <!-- ========== INTRO ========== -->
+  <section class="section" style="padding-bottom: var(--space-2xl); text-align: center;">
+    <div class="container container--narrow">
+      <span class="section-label" style="justify-content: center;">Bespoke Hospitality</span>
+      <h2 class="section-title">An Oasis of <em>Refinement</em> & Vitality</h2>
+      <p class="section-subtitle">Every amenity at XYZ Hotel has been meticulously conceived to restore balance, invigorate your senses, and cater seamlessly to both leisure and executive pursuits.</p>
+    </div>
+  </section>
+
+  <!-- ========== FACILITY 1: IMPERIAL SPA ========== -->
+  <section class="amenity-feature" id="spa">
+    <div class="container">
+      <div class="amenity-feature__grid">
+        <div class="amenity-feature__image-wrapper reveal reveal--left">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80" alt="The Imperial Ayurvedic Spa Sanctuary" class="amenity-feature__image" loading="lazy">
+        </div>
+        <div class="amenity-feature__content reveal reveal--right">
+          <span class="amenity-feature__badge">Holistic Healing</span>
+          <h2 class="amenity-feature__name">The Imperial Spa Sanctuary</h2>
+          <p class="amenity-feature__desc">
+            A subterranean haven dedicated to ancient Ayurvedic rejuvenation and contemporary Swiss thermal therapies. Features private therapy suites, cedarwood herbal saunas, authentic Turkish hammams, and a curative Himalayan pink salt inhalation room.
+          </p>
+          <div class="amenity-feature__details">
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Timings:</span>
+              <span class="amenity-feature__value">Daily: 7:00 AM – 10:00 PM</span>
+            </div>
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Signature:</span>
+              <span class="amenity-feature__value">90-minute Royal Abhyanga herbal oil massage & Shirodhara</span>
+            </div>
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Facilities:</span>
+              <span class="amenity-feature__value">Himalayan Salt Sauna, Steam Caves, 6 Couples Suites</span>
+            </div>
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Consultation:</span>
+              <span class="amenity-feature__value">Complimentary diagnostic session with Resident Ayurvedic Physician</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+            <a href="#spa-inquiry" class="btn btn--primary">Reserve Spa Treatment</a>
+            <a href="tel:+911234567890" class="btn btn--outline">Call Spa Desk</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FACILITY 2: SKYLINE INFINITY POOL ========== -->
+  <section class="amenity-feature" id="pool">
+    <div class="container">
+      <div class="amenity-feature__grid reverse">
+        <div class="amenity-feature__image-wrapper reveal reveal--right">
+          <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=80" alt="Skyline Infinity Pool and Sun Cabanas" class="amenity-feature__image" loading="lazy">
+        </div>
+        <div class="amenity-feature__content reveal reveal--left">
+          <span class="amenity-feature__badge">Rooftop Oasis</span>
+          <h2 class="amenity-feature__name">Skyline Infinity Pool & Cabanas</h2>
+          <p class="amenity-feature__desc">
+            Suspended on the 30th floor overlooking the vibrant capital skyline. Heated year-round to a perfect 28°C (82°F) and surrounded by private teak sun loungers, curtained cabanas, hydrotherapy plunge jets, and dedicated poolside cocktail service.
+          </p>
+          <div class="amenity-feature__details">
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Timings:</span>
+              <span class="amenity-feature__value">6:00 AM – 9:00 PM Daily (Adults only after 7:00 PM)</span>
+            </div>
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Temperature:</span>
+              <span class="amenity-feature__value">Heated 28°C / 82°F all seasons</span>
+            </div>
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Privileges:</span>
+              <span class="amenity-feature__value">Complimentary Evian mists, chilled towels, and sun care</span>
+            </div>
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Cabanas:</span>
+              <span class="amenity-feature__value">Private VIP daybeds available for advance hold</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+            <a href="#spa-inquiry" class="btn btn--primary">Reserve a Private Cabana</a>
+            <a href="dining.html#sky-lounge" class="btn btn--outline">View Rooftop Bar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FACILITY 3: FITNESS CLUB & YOGA ========== -->
+  <section class="amenity-feature" id="fitness">
+    <div class="container">
+      <div class="amenity-feature__grid">
+        <div class="amenity-feature__image-wrapper reveal reveal--left">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80" alt="24-Hour Technogym Health Club" class="amenity-feature__image" loading="lazy">
+        </div>
+        <div class="amenity-feature__content reveal reveal--right">
+          <span class="amenity-feature__badge">Active Wellness</span>
+          <h2 class="amenity-feature__name">24/7 Technogym Health Club</h2>
+          <p class="amenity-feature__desc">
+            Equipped with state-of-the-art Technogym Artis cardio and strength machines, interactive virtual coaching, free weights studio, and an outdoor sunrise yoga pavilion overlooking manicured heritage gardens.
+          </p>
+          <div class="amenity-feature__details">
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Access:</span>
+              <span class="amenity-feature__value">24 Hours Daily (Keycard access for registered guests)</span>
+            </div>
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Yoga Sessions:</span>
+              <span class="amenity-feature__value">Daily sunrise & sunset hatha yoga with Master Yogi</span>
+            </div>
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Personal Training:</span>
+              <span class="amenity-feature__value">Certified master trainers available on demand</span>
+            </div>
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Hydration Bar:</span>
+              <span class="amenity-feature__value">Complimentary alkaline water, cold-pressed juices & protein smoothies</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+            <a href="#spa-inquiry" class="btn btn--primary">Book Yoga / Trainer</a>
+            <a href="tel:+911234567890" class="btn btn--outline">Fitness Desk</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FACILITY 4: BUSINESS CENTRE & BOARDROOMS ========== -->
+  <section class="amenity-feature" id="business">
+    <div class="container">
+      <div class="amenity-feature__grid reverse">
+        <div class="amenity-feature__image-wrapper reveal reveal--right">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80" alt="Executive Business Salon & Boardrooms" class="amenity-feature__image" loading="lazy">
+        </div>
+        <div class="amenity-feature__content reveal reveal--left">
+          <span class="amenity-feature__badge">Executive Distinction</span>
+          <h2 class="amenity-feature__name">Executive Business Centre & Boardrooms</h2>
+          <p class="amenity-feature__desc">
+            Designed for seamless global corporate governance. Offering acoustic-shielded executive boardrooms, multi-screen telepresence video conferencing, translation suites, private work pods, and full secretarial support.
+          </p>
+          <div class="amenity-feature__details">
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Timings:</span>
+              <span class="amenity-feature__value">24 Hours with on-duty concierge</span>
+            </div>
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Capacities:</span>
+              <span class="amenity-feature__value">Three boardrooms seating 8, 16, and 24 delegates</span>
+            </div>
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Technology:</span>
+              <span class="amenity-feature__value">1 Gbps fiber optic Wi-Fi 6, 85-inch 4K presentations</span>
+            </div>
+            <div class="amenity-feature__row">
+              <span class="amenity-feature__label">Catering:</span>
+              <span class="amenity-feature__value">Bespoke coffee atelier, patisserie, and executive luncheons</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
+            <a href="contact.html" class="btn btn--primary">Inquire Boardrooms</a>
+            <a href="mailto:events@xyzhotel.com" class="btn btn--outline">Email Events Desk</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INCLUSIONS & PRIVILEGES GRID ========== -->
+  <section class="section" style="background: var(--ivory);">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <span class="section-label" style="justify-content: center;">Every Detail Considered</span>
+        <h2 class="section-title">Curated Guest <em>Privileges</em></h2>
+        <p class="section-subtitle">Included seamlessly with your room or suite reservation at XYZ Hotel.</p>
+      </div>
+
+      <div class="inclusions-grid reveal-stagger">
+        <!-- Card 1 -->
+        <div class="inclusion-card">
+          <div class="inclusion-card__icon-box" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4zm0 3.5c3.78 0 7.23 1.45 9.81 3.84L12 19.26 2.19 11.34C4.77 8.95 8.22 7.5 12 7.5z"/></svg>
+          </div>
+          <h3 class="inclusion-card__title">Gigabit Wi-Fi 6</h3>
+          <p class="inclusion-card__desc">Unrestricted high-speed internet throughout all suites, private dining salons, and poolside cabanas.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="inclusion-card">
+          <div class="inclusion-card__icon-box" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4.66l.12-.34h13.77l.11.34V17z"/></svg>
+          </div>
+          <h3 class="inclusion-card__title">Valet & Limousine</h3>
+          <p class="inclusion-card__desc">Complimentary indoor underground valet parking and dedicated Mercedes-Benz airport transfers upon request.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="inclusion-card">
+          <div class="inclusion-card__icon-box" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V18h-2v-1.07A7 7 0 0 1 5.07 11H6a6 6 0 0 0 5 5.91V13h2v3.91A6 6 0 0 0 18 11h.93A7 7 0 0 1 13 16.93zM12 4a7 7 0 0 1 6.93 6H18a6 6 0 0 0-5-5.91V5h-2v-.91A6 6 0 0 0 6 10h-.93A7 7 0 0 1 12 4z"/></svg>
+          </div>
+          <h3 class="inclusion-card__title">Clefs d'Or Concierge</h3>
+          <p class="inclusion-card__desc">Globally accredited concierges available 24/7 for bespoke private itineraries, royal tickets, and reservations.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="inclusion-card">
+          <div class="inclusion-card__icon-box" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+          </div>
+          <h3 class="inclusion-card__title">Nespresso & Tea Atelier</h3>
+          <p class="inclusion-card__desc">In-suite gourmet espresso machines, loose-leaf Darjeeling flushes, and artisanal French butter pastries daily.</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="inclusion-card">
+          <div class="inclusion-card__icon-box" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+          <h3 class="inclusion-card__title">Signature Turndown</h3>
+          <p class="inclusion-card__desc">Evening aromatherapy pillow mist menu, silk eye masks, and handcrafted dark chocolate truffles.</p>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="inclusion-card">
+          <div class="inclusion-card__icon-box" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+          </div>
+          <h3 class="inclusion-card__title">Health & Medical Support</h3>
+          <p class="inclusion-card__desc">On-call resident medical doctor, emergency paramedic response, and hypoallergenic linen customizations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WELLNESS / SPA RESERVATION FORM ========== -->
+  <section class="section" id="spa-inquiry" style="background: var(--ivory-warm);">
+    <div class="container container--narrow">
+      <div class="reveal" style="text-align: center; margin-bottom: var(--space-2xl);">
+        <span class="section-label" style="justify-content: center;">Bespoke Wellness Appointments</span>
+        <h2 class="section-title">Schedule Your <em>Treatment</em></h2>
+        <p class="section-subtitle">Direct online booking for spa rituals, private pool cabanas, and private yoga consultations.</p>
+      </div>
+
+      <div style="background: var(--white); border-radius: 0; border: 1px solid var(--border-color); box-shadow: var(--shadow-md); padding: var(--space-2xl);">
+        <form id="spaBookingForm">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-md);">
+            <div class="form-group">
+              <label class="form-label" for="spa-treatment">Select Experience *</label>
+              <select id="spa-treatment" class="form-input" required>
+                <option value="abhyanga">Royal Abhyanga Massage (90 mins)</option>
+                <option value="shirodhara">Shirodhara & Herbal Therapy (75 mins)</option>
+                <option value="hammam">Traditional Turkish Hammam Ritual (60 mins)</option>
+                <option value="salt-sauna">Himalayan Salt & Deep Tissue (90 mins)</option>
+                <option value="cabana">Skyline Pool Private Cabana (Full Day)</option>
+                <option value="yoga">Private Yoga & Meditation (60 mins)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="spa-date">Date *</label>
+              <input type="date" id="spa-date" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="spa-time">Preferred Time *</label>
+              <select id="spa-time" class="form-input" required>
+                <option value="08:00">08:00 AM - Morning Session</option>
+                <option value="10:30">10:30 AM - Late Morning</option>
+                <option value="14:00" selected>02:00 PM - Afternoon Awakening</option>
+                <option value="16:30">04:30 PM - Late Afternoon</option>
+                <option value="18:30">06:30 PM - Evening Restoration</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="spa-guests">Guests *</label>
+              <select id="spa-guests" class="form-input" required>
+                <option value="1" selected>1 Guest</option>
+                <option value="2">2 Guests (Couples Suite)</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4+ Group Session</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-xl);">
+            <div class="form-group">
+              <label class="form-label" for="spa-name">Full Name *</label>
+              <input type="text" id="spa-name" class="form-input" placeholder="e.g. Lady Catherine" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="spa-phone">Contact Number *</label>
+              <input type="tel" id="spa-phone" class="form-input" placeholder="+91 98765 43210" required>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: var(--space-xl);">
+            <label class="form-label" for="spa-notes">Health Focus or Special Requests</label>
+            <textarea id="spa-notes" class="form-input" rows="3" placeholder="Focus areas, allergies, pregnancy, preferred therapist gender, special celebrations..."></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md);">
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+              Instant appointment confirmation via SMS & Email. Free cancellation up to 4 hours prior.
+            </div>
+            <button type="submit" class="btn btn--primary btn--lg" id="spaSubmitBtn">Confirm Appointment</button>
+          </div>
+        </form>
+
+        <div id="spaSuccessMsg" style="display: none; text-align: center; padding: var(--space-2xl) 0;">
+          <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--success); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto var(--space-md);">✓</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: var(--space-xs);">Appointment Scheduled Successfully!</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: var(--space-lg);">A confirmation voucher with booking reference <strong id="spaRefNumber">#SPA-51042</strong> has been issued.</p>
+          <button type="button" class="btn btn--outline" id="spaBookAnotherBtn">Schedule Another Service</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">XYZ <span>Hotel</span></a>
+          <p class="footer__desc">A sanctuary of five-star luxury, timeless elegance, and legendary hospitality. Discover bespoke moments tailored to perfection.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-link" aria-label="Facebook">FB</a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">IG</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">TW</a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">LI</a>
+          </div>
+        </div>
+        <div>
+          <h5 class="footer__heading">Quick Links</h5>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Rooms & Suites</a></li>
+            <li><a href="dining.html">Dining & Bars</a></li>
+            <li><a href="amenities.html">Amenities & Spa</a></li>
+            <li><a href="booking.html">Reservations</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="footer__heading">Experiences</h5>
+          <ul class="footer__links">
+            <li><a href="amenities.html#spa">Spa & Wellness</a></li>
+            <li><a href="contact.html#banquets">Weddings & Events</a></li>
+            <li><a href="amenities.html#business">Business Meetings</a></li>
+            <li><a href="contact.html">City Tours</a></li>
+            <li><a href="booking.html">Loyalty Program</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="footer__heading">Contact</h5>
+          <ul class="footer__links">
+            <li>1 Royal Avenue, Central District</li>
+            <li>New Delhi, India 110001</li>
+            <li style="margin-top: var(--space-md);"><a href="tel:+911234567890">+91 123 456 7890</a></li>
+            <li><a href="mailto:reservations@xyzhotel.com">reservations@xyzhotel.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; <span id="currentYear"></span> XYZ Hotel. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/live-sync.js"></script>
+  <script src="js/nav-auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/knowledge_index.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script>
+    const yearEl = document.getElementById('currentYear');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    const dateInput = document.getElementById('spa-date');
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+
+    if (dateInput) {
+      dateInput.min = today.toISOString().split('T')[0];
+      dateInput.value = tomorrow.toISOString().split('T')[0];
+    }
+
+    const spaForm = document.getElementById('spaBookingForm');
+    const spaSuccess = document.getElementById('spaSuccessMsg');
+    const spaSubmitBtn = document.getElementById('spaSubmitBtn');
+    const spaAnotherBtn = document.getElementById('spaBookAnotherBtn');
+
+    spaForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      spaSubmitBtn.textContent = 'Scheduling...';
+      spaSubmitBtn.disabled = true;
+
+      const serviceName = document.getElementById('spa-treatment')?.value || 'Royal Spa Ritual';
+      const guestName = document.getElementById('spa-name')?.value || 'Guest';
+      const guestPhone = document.getElementById('spa-phone')?.value || '';
+      const appointmentDate = dateInput?.value || tomorrow.toISOString().split('T')[0];
+      const preferredTime = document.getElementById('spa-time')?.value || '14:00';
+      const notes = document.getElementById('spa-notes')?.value || '';
+
+      let ref = 'SPA-' + Math.floor(10000 + Math.random() * 90000);
+
+      if (window.XYZ_API?.amenities) {
+        try {
+          const res = await XYZ_API.amenities.reserveSpa({
+            serviceName,
+            guestName,
+            guestPhone,
+            appointmentDate,
+            preferredTime,
+            notes,
+          });
+          if (res.data?.bookingRef) {
+            ref = res.data.bookingRef;
+          }
+        } catch (err) {
+          console.warn('Spa booking error:', err.message);
+        }
+      }
+
+      spaForm.style.display = 'none';
+      spaSuccess.style.display = 'block';
+      document.getElementById('spaRefNumber').textContent = '#' + ref;
+    });
+
+    spaAnotherBtn?.addEventListener('click', () => {
+      spaForm.reset();
+      if (dateInput) dateInput.value = tomorrow.toISOString().split('T')[0];
+      spaSubmitBtn.textContent = 'Confirm Appointment';
+      spaSubmitBtn.disabled = false;
+      spaSuccess.style.display = 'none';
+      spaForm.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

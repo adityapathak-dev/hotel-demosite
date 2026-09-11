@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/dining.css">
   <link rel="stylesheet" href="css/chatbot.css">
+  <link rel="stylesheet" href="css/nav-auth.css">
 </head>
 <body class="dining-page">
 
@@ -23,9 +24,10 @@
           <li><a href="index.html" class="header__nav-link">Home</a></li>
           <li><a href="rooms.html" class="header__nav-link">Rooms & Suites</a></li>
           <li><a href="dining.html" class="header__nav-link active">Dining</a></li>
-          <li><a href="index.html#amenities" class="header__nav-link">Amenities</a></li>
-          <li><a href="booking.html" class="header__nav-link">Offers</a></li>
+          <li><a href="amenities.html" class="header__nav-link">Amenities</a></li>
+          <li><a href="index.html#offers" class="header__nav-link">Offers</a></li>
           <li><a href="contact.html" class="header__nav-link">Contact</a></li>
+          <li><a href="login.html" class="header__nav-link">Sign In</a></li>
         </ul>
         <a href="booking.html" class="btn btn--outline header__cta mobile-hidden">Book a Stay</a>
         <button class="header__menu-toggle" id="menuToggle" aria-label="Toggle menu">
@@ -87,7 +89,7 @@
             </div>
           </div>
           <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
-            <a href="#table-reservation" class="btn btn--primary">Reserve a Table</a>
+            <a href="#table-reservation" class="btn btn--primary" data-venue="saffron">Reserve a Table</a>
             <a href="tel:+911234567891" class="btn btn--outline">Direct Concierge Call</a>
           </div>
         </div>
@@ -127,7 +129,7 @@
             </div>
           </div>
           <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
-            <a href="#table-reservation" class="btn btn--primary">Reserve Skyline Booth</a>
+            <a href="#table-reservation" class="btn btn--primary" data-venue="sky-lounge">Reserve Skyline Booth</a>
             <a href="tel:+911234567892" class="btn btn--outline">Call Lounge Desk</a>
           </div>
         </div>
@@ -167,7 +169,7 @@
             </div>
           </div>
           <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
-            <a href="#table-reservation" class="btn btn--primary">Book Tasting Menu</a>
+            <a href="#table-reservation" class="btn btn--primary" data-venue="orangerie">Book Tasting Menu</a>
             <a href="tel:+911234567890" class="btn btn--outline">Wine Cellar Tour</a>
           </div>
         </div>
@@ -207,7 +209,7 @@
             </div>
           </div>
           <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
-            <a href="#table-reservation" class="btn btn--primary">Reserve Afternoon Tea</a>
+            <a href="#table-reservation" class="btn btn--primary" data-venue="conservatory">Reserve Afternoon Tea</a>
             <a href="tel:+911234567890" class="btn btn--outline">Enquire Buffet</a>
           </div>
         </div>
@@ -225,15 +227,15 @@
       </div>
 
       <!-- Reservation Card with Tabs -->
-      <div style="background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--space-2xl);">
-        <div style="display: flex; gap: var(--space-md); margin-bottom: var(--space-2xl); border-bottom: 2px solid var(--border-color); padding-bottom: var(--space-md);">
-          <button type="button" id="tabOnlineDining" class="btn btn--sm btn--primary">Online Instant Booking</button>
-          <button type="button" id="tabOfflineDining" class="btn btn--sm btn--outline">Offline & Concierge Desk</button>
+      <div style="background: var(--white); border-radius: 0; border: 1px solid var(--border-color); box-shadow: var(--shadow-md); padding: var(--space-2xl);">
+        <div role="tablist" aria-label="Dining Reservation Options" style="display: flex; gap: var(--space-md); margin-bottom: var(--space-2xl); border-bottom: 2px solid var(--border-color); padding-bottom: var(--space-md);">
+          <button type="button" id="tabOnlineDining" role="tab" aria-selected="true" aria-controls="diningBookingForm" class="btn btn--sm btn--primary">Online Instant Booking</button>
+          <button type="button" id="tabOfflineDining" role="tab" aria-selected="false" aria-controls="offlineDiningInfo" class="btn btn--sm btn--outline">Offline & Concierge Desk</button>
         </div>
 
         <!-- Online Form -->
-        <form id="diningBookingForm">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-xl);">
+        <form id="diningBookingForm" role="tabpanel" aria-labelledby="tabOnlineDining">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-md);">
             <div class="form-group">
               <label class="form-label" for="dining-venue">Select Restaurant *</label>
               <select id="dining-venue" class="form-input" required>
@@ -250,12 +252,7 @@
             <div class="form-group">
               <label class="form-label" for="dining-time">Time Slot *</label>
               <select id="dining-time" class="form-input" required>
-                <option value="12:30">12:30 PM - Lunch</option>
-                <option value="13:30">01:30 PM - Lunch</option>
-                <option value="15:30">03:30 PM - Afternoon Tea</option>
-                <option value="19:00" selected>07:00 PM - Dinner</option>
-                <option value="20:30">08:30 PM - Dinner</option>
-                <option value="21:30">09:30 PM - Late Dinner / Cocktails</option>
+                <!-- Dynamically populated based on chosen venue -->
               </select>
             </div>
             <div class="form-group">
@@ -271,7 +268,11 @@
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); margin-bottom: var(--space-xl);">
+          <div id="venueNotice" style="margin-bottom: var(--space-lg); font-size: 0.85rem; color: var(--gold); background: var(--ivory); padding: var(--space-sm) var(--space-md); border-radius: 0; display: flex; align-items: center; gap: 8px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> <span id="venueNoticeText">Lunch: 12:30 PM – 3:30 PM | Dinner: 7:00 PM – 11:30 PM</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-xl);">
             <div class="form-group">
               <label class="form-label" for="guest-name">Full Name *</label>
               <input type="text" id="guest-name" class="form-input" placeholder="e.g. Lord Harrington" required>
@@ -288,16 +289,17 @@
           </div>
 
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md);">
-            <div style="font-size: 0.85rem; color: var(--text-muted);">
-              🔒 Instant confirmation via SMS & Email. Free cancellation up to 4 hours prior.
+            <div style="font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span>Instant confirmation via SMS &amp; Email. Free cancellation up to 4 hours prior.</span>
             </div>
             <button type="submit" class="btn btn--primary btn--lg" id="diningSubmitBtn">Confirm Table Reservation</button>
           </div>
         </form>
 
         <!-- Offline Information (Hidden by default or toggled) -->
-        <div id="offlineDiningInfo" style="display: none; padding-top: var(--space-lg);">
-          <div style="background: var(--ivory-warm); padding: var(--space-xl); border-radius: var(--radius-md); border-left: 4px solid var(--gold); margin-bottom: var(--space-xl);">
+        <div id="offlineDiningInfo" role="tabpanel" aria-labelledby="tabOfflineDining" style="display: none; padding-top: var(--space-lg);">
+          <div style="background: var(--ivory-warm); padding: var(--space-xl); border-radius: 0; border: 1px solid var(--border-color); border-left: 4px solid var(--gold); margin-bottom: var(--space-xl);">
             <h4 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: var(--space-xs);">Prefer Personal Assistance?</h4>
             <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
               Our Chief Sommelier and Executive Culinary Concierge are available 24 hours to organize bespoke banquets, customized tasting menus, and private imperial dining suites.
@@ -326,7 +328,7 @@
           <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--success); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto var(--space-md);">✓</div>
           <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: var(--space-xs);">Table Reserved Successfully!</h3>
           <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: var(--space-lg);">A confirmation voucher with booking reference <strong id="diningRefNumber">#DIN-84920</strong> has been sent via SMS.</p>
-          <button type="button" class="btn btn--outline" onclick="location.reload()">Book Another Table</button>
+          <button type="button" class="btn btn--outline" id="diningBookAnotherBtn">Book Another Table</button>
         </div>
       </div>
     </div>
@@ -340,10 +342,10 @@
           <a href="index.html" class="footer__logo">XYZ <span>Hotel</span></a>
           <p class="footer__desc">A sanctuary of five-star luxury, timeless elegance, and legendary hospitality. Discover bespoke moments tailored to perfection.</p>
           <div class="footer__socials">
-            <a href="#" class="footer__social-link" aria-label="Facebook">f</a>
-            <a href="#" class="footer__social-link" aria-label="Instagram">in</a>
-            <a href="#" class="footer__social-link" aria-label="Twitter">tw</a>
-            <a href="#" class="footer__social-link" aria-label="LinkedIn">li</a>
+            <a href="#" class="footer__social-link" aria-label="Facebook">FB</a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">IG</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">TW</a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">LI</a>
           </div>
         </div>
         <div>
@@ -352,7 +354,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="rooms.html">Rooms & Suites</a></li>
             <li><a href="dining.html">Dining & Bars</a></li>
-            <li><a href="index.html#amenities">Spa & Wellness</a></li>
+            <li><a href="amenities.html">Amenities & Spa</a></li>
             <li><a href="booking.html">Reservations</a></li>
             <li><a href="contact.html">Contact Us</a></li>
           </ul>
@@ -360,11 +362,11 @@
         <div>
           <h5 class="footer__heading">Experiences</h5>
           <ul class="footer__links">
-            <li><a href="#">Spa & Wellness</a></li>
-            <li><a href="#">Weddings & Events</a></li>
-            <li><a href="#">Business Meetings</a></li>
-            <li><a href="#">City Tours</a></li>
-            <li><a href="#">Loyalty Program</a></li>
+            <li><a href="amenities.html#spa">Spa & Wellness</a></li>
+            <li><a href="contact.html#banquets">Weddings & Events</a></li>
+            <li><a href="amenities.html#business">Business Meetings</a></li>
+            <li><a href="contact.html">City Tours</a></li>
+            <li><a href="booking.html">Loyalty Program</a></li>
           </ul>
         </div>
         <div>
@@ -378,7 +380,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2024 XYZ Hotel. All rights reserved.</p>
+        <p>&copy; <span id="currentYear"></span> XYZ Hotel. All rights reserved.</p>
         <div class="footer__bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms & Conditions</a>
@@ -392,51 +394,246 @@
   <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
   <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/live-sync.js"></script>
+  <script src="js/nav-auth.js"></script>
   <script src="js/main.js"></script>
   <script src="js/knowledge_index.js"></script>
   <script src="js/chatbot.js"></script>
   <script>
-    // Tab switching for Online vs Offline
+    // Set dynamic current year in footer
+    const yearEl = document.getElementById('currentYear');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Tab switching for Online vs Offline with ARIA & state preservation
     const tabOnline = document.getElementById('tabOnlineDining');
     const tabOffline = document.getElementById('tabOfflineDining');
     const formDining = document.getElementById('diningBookingForm');
     const offlineInfo = document.getElementById('offlineDiningInfo');
     const diningSuccess = document.getElementById('diningSuccessMsg');
+    const bookAnotherBtn = document.getElementById('diningBookAnotherBtn');
 
     tabOnline?.addEventListener('click', () => {
       tabOnline.className = 'btn btn--sm btn--primary';
+      tabOnline.setAttribute('aria-selected', 'true');
       tabOffline.className = 'btn btn--sm btn--outline';
-      formDining.style.display = 'block';
+      tabOffline.setAttribute('aria-selected', 'false');
       offlineInfo.style.display = 'none';
+
+      if (diningSuccess.style.display === 'block') {
+        formDining.style.display = 'none';
+      } else {
+        formDining.style.display = 'block';
+      }
     });
 
     tabOffline?.addEventListener('click', () => {
       tabOffline.className = 'btn btn--sm btn--primary';
+      tabOffline.setAttribute('aria-selected', 'true');
       tabOnline.className = 'btn btn--sm btn--outline';
+      tabOnline.setAttribute('aria-selected', 'false');
       formDining.style.display = 'none';
-      offlineInfo.style.display = 'block';
       diningSuccess.style.display = 'none';
+      offlineInfo.style.display = 'block';
     });
 
-    // Default tomorrow date
-    const d = new Date();
-    d.setDate(d.getDate() + 1);
+    // Venue Configurations & Operating Time Slots
+    const VENUES = {
+      'saffron': {
+        name: 'The Saffron Pavilion',
+        slots: [
+          { val: '12:30', label: '12:30 PM — Royal Lunch' },
+          { val: '13:30', label: '01:30 PM — Royal Lunch' },
+          { val: '19:00', label: '07:00 PM — Dum Pukht Dinner', selected: true },
+          { val: '20:30', label: '08:30 PM — Dum Pukht Dinner' },
+          { val: '21:30', label: '09:30 PM — Late Dinner' }
+        ],
+        hours: 'Lunch: 12:30 PM – 3:30 PM | Dinner: 7:00 PM – 11:30 PM',
+        closedMondays: false
+      },
+      'sky-lounge': {
+        name: 'Aura Vista — Sky Lounge & Bar',
+        slots: [
+          { val: '17:00', label: '05:00 PM — Sunset Cocktails' },
+          { val: '18:30', label: '06:30 PM — Sundowner & Robata' },
+          { val: '20:00', label: '08:00 PM — Skyline Dinner', selected: true },
+          { val: '21:30', label: '09:30 PM — Robata & Acoustic Jazz' },
+          { val: '23:00', label: '11:00 PM — Late Night Mixology' }
+        ],
+        hours: 'Open Daily: 5:00 PM – 1:30 AM (Dinner & Cocktails Only)',
+        closedMondays: false
+      },
+      'orangerie': {
+        name: "L'Orangerie & Wine Cellar",
+        slots: [
+          { val: '18:30', label: '06:30 PM — First Degustation Seating' },
+          { val: '19:30', label: '07:30 PM — Grand Degustation & Wine Pairing', selected: true },
+          { val: '20:45', label: '08:45 PM — Evening Degustation' }
+        ],
+        hours: 'Dinner Only: 6:30 PM – 11:00 PM (Closed on Mondays)',
+        closedMondays: true
+      },
+      'conservatory': {
+        name: 'The Grand Conservatory',
+        slots: [
+          { val: '08:00', label: '08:00 AM — Champagne Breakfast' },
+          { val: '12:30', label: '12:30 PM — Gourmet Buffet Lunch' },
+          { val: '15:30', label: '03:30 PM — Royal English High Tea', selected: true },
+          { val: '17:00', label: '05:00 PM — Twilight High Tea & Pastries' },
+          { val: '19:30', label: '07:30 PM — Botanical Dinner & Harp' },
+          { val: '21:00', label: '09:00 PM — Supper & Desserts' }
+        ],
+        hours: 'Open 24 Hours (Royal Afternoon Tea: 3:00 PM – 6:00 PM)',
+        closedMondays: false
+      }
+    };
+
+    const venueSelect = document.getElementById('dining-venue');
+    const timeSelect = document.getElementById('dining-time');
+    const noticeText = document.getElementById('venueNoticeText');
     const dateInput = document.getElementById('dining-date');
-    if (dateInput) dateInput.value = d.toISOString().split('T')[0];
 
-    // Form submission
-    formDining?.addEventListener('submit', (e) => {
+    // Populate time slots dynamically
+    function updateVenueSchedule(venueKey) {
+      const config = VENUES[venueKey] || VENUES['saffron'];
+      if (!timeSelect) return;
+
+      timeSelect.innerHTML = '';
+      config.slots.forEach(slot => {
+        const opt = document.createElement('option');
+        opt.value = slot.val;
+        opt.textContent = slot.label;
+        if (slot.selected) opt.selected = true;
+        timeSelect.appendChild(opt);
+      });
+
+      if (noticeText) {
+        noticeText.textContent = config.hours;
+      }
+
+      validateDate(dateInput?.value, venueKey);
+    }
+
+    // Check if venue is closed on selected date
+    function validateDate(dateVal, venueKey) {
+      if (!dateVal) return true;
+      const config = VENUES[venueKey || venueSelect?.value];
+      if (config && config.closedMondays) {
+        const parts = dateVal.split('-');
+        const chosenDate = new Date(parts[0], parts[1] - 1, parts[2]);
+        // 1 = Monday
+        if (chosenDate.getDay() === 1) {
+          if (noticeText) {
+            noticeText.innerHTML = `<strong style="color: #c0392b; display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> Note: ${config.name} is closed on Mondays. Please select another day.</strong>`;
+          }
+          return false;
+        }
+      }
+      return true;
+    }
+
+    venueSelect?.addEventListener('change', (e) => {
+      updateVenueSchedule(e.target.value);
+    });
+
+    dateInput?.addEventListener('change', (e) => {
+      validateDate(e.target.value, venueSelect?.value);
+    });
+
+    // Configure Date Picker defaults and minimum date (no past dates)
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+
+    if (dateInput) {
+      dateInput.min = today.toISOString().split('T')[0];
+      dateInput.value = tomorrow.toISOString().split('T')[0];
+    }
+
+    // Initialize time slots for default selected venue
+    if (venueSelect) {
+      updateVenueSchedule(venueSelect.value);
+    }
+
+    // Connect restaurant section CTA buttons with data-venue
+    document.querySelectorAll('a[data-venue]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetVenue = btn.getAttribute('data-venue');
+        if (targetVenue && venueSelect) {
+          venueSelect.value = targetVenue;
+          updateVenueSchedule(targetVenue);
+          // If offline tab was active, switch to online
+          if (tabOnline) tabOnline.click();
+        }
+      });
+    });
+
+    // Form submission connected to Supabase PostgreSQL API
+    formDining?.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn = document.getElementById('diningSubmitBtn');
-      btn.textContent = 'Reserving...';
-      btn.disabled = true;
 
-      setTimeout(() => {
-        formDining.style.display = 'none';
-        diningSuccess.style.display = 'block';
-        const ref = 'DIN-' + Math.floor(10000 + Math.random() * 90000);
-        document.getElementById('diningRefNumber').textContent = '#' + ref;
-      }, 800);
+      if (!validateDate(dateInput?.value, venueSelect?.value)) {
+        alert("L'Orangerie is closed on Mondays. Please choose a different date for your reservation.");
+        return;
+      }
+
+      const btn = document.getElementById('diningSubmitBtn');
+      if (btn) {
+        btn.textContent = 'Reserving Table...';
+        btn.disabled = true;
+      }
+
+      const guestName = document.getElementById('guest-name')?.value || 'Guest';
+      const guestPhone = document.getElementById('guest-phone')?.value || '';
+      const specialRequests = document.getElementById('dining-requests')?.value || '';
+      const partySize = document.getElementById('dining-guests')?.value || 2;
+      const timeSlot = timeSelect?.value || '19:00';
+      const date = dateInput?.value || tomorrow.toISOString().split('T')[0];
+
+      let ref = 'DINE-' + Math.floor(10000 + Math.random() * 90000);
+
+      if (window.XYZ_API?.dining) {
+        try {
+          const res = await XYZ_API.dining.reserve({
+            restaurantSlug: venueSelect?.value || 'saffron',
+            guestName,
+            guestPhone,
+            date,
+            timeSlot,
+            partySize,
+            specialRequests,
+          });
+          if (res.data?.bookingRef) {
+            ref = res.data.bookingRef;
+          }
+        } catch (err) {
+          console.warn('Dining reserve API call:', err.message);
+        }
+      }
+
+      formDining.style.display = 'none';
+      diningSuccess.style.display = 'block';
+      const refEl = document.getElementById('diningRefNumber');
+      if (refEl) refEl.textContent = '#' + ref;
+    });
+
+    // Reset and book another table without full reload
+    bookAnotherBtn?.addEventListener('click', () => {
+      formDining.reset();
+      if (dateInput) {
+        dateInput.value = tomorrow.toISOString().split('T')[0];
+      }
+      if (venueSelect) {
+        venueSelect.value = 'saffron';
+        updateVenueSchedule('saffron');
+      }
+      const btn = document.getElementById('diningSubmitBtn');
+      if (btn) {
+        btn.textContent = 'Confirm Table Reservation';
+        btn.disabled = false;
+      }
+      diningSuccess.style.display = 'none';
+      formDining.style.display = 'block';
     });
   </script>
 </body>

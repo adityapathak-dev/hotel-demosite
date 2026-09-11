@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin & CMS Executive Portal | XYZ Luxury Hotel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- LOGIN MODAL / GATE -->
+  <div id="loginGate" class="login-gate">
+    <div class="login-card">
+      <div class="login-brand">
+        <span class="brand-crest">XYZ</span>
+        <h1>Executive Portal</h1>
+        <p class="brand-sub">Supabase Database & Content Management</p>
+      </div>
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="adminEmail">Staff Email</label>
+          <input type="email" id="adminEmail" required placeholder="admin@xyzhotel.com" value="admin@xyzhotel.com" autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="adminPassword">Password</label>
+          <input type="password" id="adminPassword" required placeholder="••••••••••••" value="Admin@XYZ2026" autocomplete="current-password">
+        </div>
+        <div id="loginError" class="auth-error-msg" style="display: none;"></div>
+        <button type="submit" class="btn-gold-submit" id="loginBtn">
+          <span>Authenticate Session</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN SHELL -->
+  <div id="adminApp" class="admin-shell" style="display: none;">
+    
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">XYZ</div>
+        <div class="sidebar-info">
+          <h2>XYZ Hotel</h2>
+          <span class="db-status-badge" id="dbStatusBadge">
+            <span class="status-pulse"></span>
+            <span id="dbStatusText">Supabase Sync</span>
+          </span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="dashboard">
+          <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-tab="rooms">
+          <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+          <span>Rooms & Suites</span>
+        </button>
+        <button class="nav-item" data-tab="bookings">
+          <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+          <span>Reservations</span>
+        </button>
+        <button class="nav-item" data-tab="dining">
+          <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+          <span>Dining Venues</span>
+        </button>
+        <button class="nav-item" data-tab="amenities">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          <span>Amenities & Spa</span>
+        </button>
+        <button class="nav-item" data-tab="offers">
+          <svg viewBox="0 0 24 24"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
+          <span>Offers & Promos</span>
+        </button>
+        <button class="nav-item" data-tab="reviews">
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <span>Guest Reviews</span>
+        </button>
+        <button class="nav-item" data-tab="cms">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+          <span>CMS & Homepage</span>
+        </button>
+        <button class="nav-item" data-tab="inquiries">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span>Concierge Inquiries</span>
+        </button>
+        <button class="nav-item" data-tab="storage">
+          <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+          <span>Supabase Storage</span>
+        </button>
+        <button class="nav-item" data-tab="settings">
+          <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+          <span>Hotel Settings</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-pill">
+          <div class="user-avatar" id="userInitial">A</div>
+          <div class="user-meta">
+            <span class="user-name" id="userName">Chief Hotelier</span>
+            <span class="user-role" id="userRole">ADMIN</span>
+          </div>
+        </div>
+        <button id="logoutBtn" class="btn-logout" title="Sign Out">
+          <svg viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN VIEWPORT -->
+    <main class="admin-main">
+      
+      <!-- TOP BAR -->
+      <header class="admin-topbar">
+        <div class="topbar-title">
+          <h1 id="pageTitle">Executive Dashboard</h1>
+          <p id="pageSubtitle">Live status across rooms, bookings, culinary & CMS</p>
+        </div>
+        <div class="topbar-actions">
+          <a href="index.html" target="_blank" class="btn-view-site">
+            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+            <span>Live Guest Site</span>
+          </a>
+          <button id="refreshDataBtn" class="btn-refresh" title="Reload from Database">
+            <svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- NOTIFICATIONS BANNER (DYNAMIC) -->
+      <div id="notifBanner" class="notif-banner" style="display: none;"></div>
+
+      <!-- CONTENT SECTIONS -->
+      <div class="admin-content">
+
+        <!-- 1. DASHBOARD TAB -->
+        <section id="tab-dashboard" class="tab-pane active">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon icon-revenue">
+                <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+              </div>
+              <div class="stat-data">
+                <span class="stat-label">Confirmed Revenue</span>
+                <span class="stat-val" id="statRevenue">₹0</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon icon-occupancy">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+              </div>
+              <div class="stat-data">
+                <span class="stat-label">Estimated Occupancy</span>
+                <span class="stat-val" id="statOccupancy">88%</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon icon-bookings">
+                <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg>
+              </div>
+              <div class="stat-data">
+                <span class="stat-label">Total Reservations</span>
+                <span class="stat-val" id="statBookings">0</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon icon-inquiries">
+                <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/></svg>
+              </div>
+              <div class="stat-data">
+                <span class="stat-label">Unread Concierge Tickets</span>
+                <span class="stat-val" id="statInquiries">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-columns">
+            <div class="panel-card">
+              <div class="panel-header">
+                <h2>Recent Reservations</h2>
+                <button class="btn-text-link" onclick="window.adminApp.switchTab('bookings')">View All</button>
+              </div>
+              <div class="table-responsive">
+                <table class="luxury-table">
+                  <thead>
+                    <tr>
+                      <th>Ref</th>
+                      <th>Guest</th>
+                      <th>Suite</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashRecentBookingsBody">
+                    <tr><td colspan="5" class="loading-td">Loading recent bookings...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-header">
+                <h2>Operational Alert Stream</h2>
+                <button class="btn-text-link" id="markAllNotifsReadBtn">Mark All Read</button>
+              </div>
+              <div id="notificationsList" class="notif-feed">
+                <div class="loading-td">Loading alerts...</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. ROOMS TAB -->
+        <section id="tab-rooms" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header">
+              <div>
+                <h2>Rooms & Suites Inventory</h2>
+                <p class="panel-sub">Edit pricing, guest capacity, square footage, amenities, and photos synced live to the website.</p>
+              </div>
+              <button class="btn-gold" id="addNewRoomBtn">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <span>Add Room / Suite</span>
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="luxury-table">
+                <thead>
+                  <tr>
+                    <th>Suite / Category</th>
+                    <th>Price / Night</th>
+                    <th>Capacity</th>
+                    <th>Size (Sq.Ft)</th>
+                    <th>Inventory Units</th>
+                    <th>Live Availability</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="roomsTableBody">
+                  <tr><td colspan="7" class="loading-td">Loading suites...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. BOOKINGS TAB -->
+        <section id="tab-bookings" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header">
+              <div>
+                <h2>Guest Reservations & Folios</h2>
+                <p class="panel-sub">Prevent double-bookings, modify reservation statuses, manage guest check-ins and folios.</p>
+              </div>
+              <div class="filter-group">
+                <input type="text" id="bookingSearchInput" placeholder="Search by Ref, Guest or Email..." class="search-input">
+                <select id="bookingStatusFilter" class="select-input">
+                  <option value="">All Statuses</option>
+                  <option value="CONFIRMED">Confirmed</option>
+                  <option value="CHECKED_IN">Checked In</option>
+                  <option value="CHECKED_OUT">Checked Out</option>
+                  <option value="CANCELLED">Cancelled</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="luxury-table">
+                <thead>
+                  <tr>
+                    <th>Ref #</th>
+                    <th>Guest Details</th>
+                    <th>Suite</th>
+                    <th>Stay Dates</th>
+                    <th>Nights</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="bookingsTableBody">
+                  <tr><td colspan="8" class="loading-td">Loading reservations...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. DINING TAB -->
+        <section id="tab-dining" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header">
+              <div>
+                <h2>Dining Venues & Haute Cuisine</h2>
+                <p class="panel-sub">Manage restaurants, opening hours, culinary descriptions, and table reservations.</p>
+              </div>
+              <button class="btn-gold" id="addNewVenueBtn">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <span>Add Restaurant Venue</span>
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="luxury-table">
+                <thead>
+                  <tr>
+                    <th>Venue</th>
+                    <th>Cuisine</th>
+                    <th>Operating Hours</th>
+                    <th>Atmosphere</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="diningTableBody">
+                  <tr><td colspan="6" class="loading-td">Loading dining venues...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Table Reservations Sub-Panel -->
+          <div class="panel-card" style="margin-top: 1.5rem;">
+            <div class="panel-header">
+              <h2>Recent Table Reservations</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="luxury-table">
+                <thead>
+                  <tr>
+                    <th>Ref</th>
+                    <th>Guest</th>
+                    <th>Phone</th>
+                    <th>Date & Time</th>
+                    <th>Party</th>
+                    <th>Special Requests</th>
+                  </tr>
+                </thead>
+                <tbody id="diningReservationsBody">
+                  <tr><td colspan="6" class="loading-td">Loading reservations...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. AMENITIES TAB -->
+        <section id="tab-amenities" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header">
+              <div>
+                <h2>Amenities, Spa & Wellness Catalog</h2>
+                <p class="panel-sub">Edit luxury facilities, treatment menus, and spa appointment scheduling.</p>
+              </div>
+              <button class="btn-gold" id="addNewAmenityBtn">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <span>Add Amenity / Spa Feature</span>
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="luxury-table">
+                <thead>
+                  <tr>
+                    <th>Facility</th>
+                    <th>Category</th>
+                    <th>Operating Hours</th>
+                    <th>Features Highlight</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="amenitiesTableBody">
+                  <tr><td colspan="6" class="loading-td">Loading amenities...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. OFFERS TAB -->
+        <section id="tab-offers" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header">
+              <div>
+                <h2>Exclusive Offers & Promo Codes</h2>
+                <p class="panel-sub">Create promotional packages, coupon codes (e.g. XYZLUXURY), and banner announcements.</p>
+              </div>
+              <button class="btn-gold" id="addNewOfferBtn">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <span>Create New Promotion</span>
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="luxury-table">
+                <thead>
+                  <tr>
+                    <th>Promotion Title</th>
+                    <th>Badge</th>
+                    <th>Promo Code</th>
+                    <th>Discount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="offersTableBody">
+                  <tr><td colspan="6" class="loading-td">Loading offers...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. REVIEWS TAB -->
+        <section id="tab-reviews" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header">
+              <div>
+                <h2>Guest Testimonials & Reviews Moderation</h2>
+                <p class="panel-sub">Approve or feature verified guest feedback displayed on the homepage.</p>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="luxury-table">
+                <thead>
+                  <tr>
+                    <th>Guest</th>
+                    <th>Location / Room</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                    <th>Featured</th>
+                    <th>Published</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="reviewsTableBody">
+                  <tr><td colspan="7" class="loading-td">Loading reviews...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. CMS & HOMEPAGE TAB -->
+        <section id="tab-cms" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header">
+              <div>
+                <h2>Homepage Hero & Sections Customizer</h2>
+                <p class="panel-sub">Edit headline text, subheadings, and featured callouts on the live homepage.</p>
+              </div>
+            </div>
+            <form id="heroCmsForm" class="cms-grid-form">
+              <div class="form-group span-2">
+                <label for="heroTitle">Hero Main Headline</label>
+                <input type="text" id="heroTitle" value="A New Era of Uncompromised Grandeur">
+              </div>
+              <div class="form-group span-2">
+                <label for="heroSubtitle">Hero Subtitle</label>
+                <textarea id="heroSubtitle" rows="2">Where timeless architectural heritage meets modern bespoke luxury.</textarea>
+              </div>
+              <div class="form-group">
+                <label for="heroTagline">Tagline Badge</label>
+                <input type="text" id="heroTagline" value="LUXURY REDEFINED">
+              </div>
+              <div class="form-group">
+                <label for="heroAwardBadge">Award Callout</label>
+                <input type="text" id="heroAwardBadge" value="Forbes Five-Star Award 2026">
+              </div>
+              <div class="form-group span-2">
+                <button type="submit" class="btn-gold">Update Homepage Hero</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel-card" style="margin-top: 1.5rem;">
+            <div class="panel-header">
+              <div>
+                <h2>Institutional CMS Pages</h2>
+                <p class="panel-sub">Edit About/Legacy history, Privacy Policy, and Terms & Conditions.</p>
+              </div>
+            </div>
+            <div class="cms-pages-tabs">
+              <button class="cms-subtab active" data-page="about-legacy">About / Heritage</button>
+              <button class="cms-subtab" data-page="privacy-policy">Privacy Policy</button>
+              <button class="cms-subtab" data-page="terms-conditions">Terms & Conditions</button>
+            </div>
+            <form id="cmsPageForm" class="cms-grid-form">
+              <div class="form-group span-2">
+                <label for="cmsPageTitle">Page Title</label>
+                <input type="text" id="cmsPageTitle" required>
+              </div>
+              <div class="form-group span-2">
+                <label for="cmsPageContent">Page Body Content (Markdown or HTML)</label>
+                <textarea id="cmsPageContent" rows="8" required></textarea>
+              </div>
+              <div class="form-group span-2">
+                <button type="submit" class="btn-gold">Publish CMS Page</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- 9. INQUIRIES & NEWSLETTER TAB -->
+        <section id="tab-inquiries" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header">
+              <div>
+                <h2>Concierge Inquiries & Guest Messages</h2>
+                <p class="panel-sub">Messages submitted from the Contact page concierge form.</p>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="luxury-table">
+                <thead>
+                  <tr>
+                    <th>Ticket #</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="inquiriesTableBody">
+                  <tr><td colspan="7" class="loading-td">Loading inquiries...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel-card" style="margin-top: 1.5rem;">
+            <div class="panel-header">
+              <h2>Newsletter Subscribers</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="luxury-table">
+                <thead>
+                  <tr>
+                    <th>Email Address</th>
+                    <th>Subscribed On</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="subscribersTableBody">
+                  <tr><td colspan="3" class="loading-td">Loading subscribers...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. SUPABASE STORAGE TAB -->
+        <section id="tab-storage" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header">
+              <div>
+                <h2>Supabase Media Storage Manager</h2>
+                <p class="panel-sub">Upload high-resolution photography directly to the Supabase Storage bucket (`hotel-assets`). URLs are immediately available for room and dining banners.</p>
+              </div>
+            </div>
+            <div class="upload-dropzone" id="storageDropzone">
+              <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+              <h3>Drag & drop imagery or click to browse</h3>
+              <p>Supports JPG, PNG, WEBP, SVG up to 15MB</p>
+              <input type="file" id="mediaFileInput" accept="image/*" style="display: none;">
+              <div class="upload-controls">
+                <select id="mediaCategorySelect" class="select-input">
+                  <option value="rooms">Category: Rooms & Suites</option>
+                  <option value="dining">Category: Dining Venues</option>
+                  <option value="offers">Category: Offers & Banners</option>
+                  <option value="hero">Category: Hero & Backgrounds</option>
+                  <option value="general">Category: General</option>
+                </select>
+                <button type="button" class="btn-gold" onclick="document.getElementById('mediaFileInput').click()">Select Asset File</button>
+              </div>
+              <div id="uploadStatusMsg" class="upload-status"></div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Recent Uploaded Media Assets</h3>
+              <div id="mediaGalleryGrid" class="media-grid">
+                <div class="loading-td">Loading media assets...</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 11. HOTEL SETTINGS TAB -->
+        <section id="tab-settings" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header">
+              <div>
+                <h2>Global Hotel Identity & Contact Settings</h2>
+                <p class="panel-sub">Update property phone, email, address, and social channels reflected across website footers.</p>
+              </div>
+            </div>
+            <form id="hotelSettingsForm" class="cms-grid-form">
+              <div class="form-group span-2">
+                <label for="setHotelName">Hotel Official Name</label>
+                <input type="text" id="setHotelName" value="XYZ Luxury Hotel & Suites">
+              </div>
+              <div class="form-group">
+                <label for="setPhone">Concierge Desk Phone</label>
+                <input type="text" id="setPhone" value="+91 123 456 7890">
+              </div>
+              <div class="form-group">
+                <label for="setEmail">Official Email</label>
+                <input type="email" id="setEmail" value="concierge@xyzhotel.com">
+              </div>
+              <div class="form-group span-2">
+                <label for="setAddress">Property Address</label>
+                <input type="text" id="setAddress" value="124 Heritage Boulevard, Palace Enclave, New Delhi, India 110001">
+              </div>
+              <div class="form-group">
+                <label for="setCheckIn">Default Check-In Time</label>
+                <input type="text" id="setCheckIn" value="15:00">
+              </div>
+              <div class="form-group">
+                <label for="setCheckOut">Default Check-Out Time</label>
+                <input type="text" id="setCheckOut" value="12:00">
+              </div>
+              <div class="form-group">
+                <label for="setInstagram">Instagram Profile URL</label>
+                <input type="url" id="setInstagram" value="https://instagram.com">
+              </div>
+              <div class="form-group">
+                <label for="setFacebook">Facebook Page URL</label>
+                <input type="url" id="setFacebook" value="https://facebook.com">
+              </div>
+              <div class="form-group span-2">
+                <button type="submit" class="btn-gold">Save Hotel Settings</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- REUSABLE MODAL (FOR ROOMS, DINING, OFFERS, ETC.) -->
+  <div id="crudModal" class="crud-modal-backdrop" style="display: none;">
+    <div class="crud-modal-card">
+      <div class="crud-modal-header">
+        <h2 id="modalTitle">Edit Item</h2>
+        <button id="closeModalBtn" class="btn-close-modal">&times;</button>
+      </div>
+      <div id="modalBody" class="crud-modal-body">
+        <!-- Injected dynamically based on item type -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT API BRIDGE & ADMIN CONTROLLER -->
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,509 @@
+// ==============================================================================
+// XYZ Hotel — Complete Prisma Database Schema
+// Supabase PostgreSQL Integration with Connection Pooling & Direct Migrations
+// ==============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ------------------------------------------------------------------------------
+// Enums
+// ------------------------------------------------------------------------------
+
+enum Role {
+  ADMIN
+  STAFF
+  GUEST
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  CHECKED_IN
+  CHECKED_OUT
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  REFUNDED
+  PAY_AT_PROPERTY
+}
+
+enum SubmissionStatus {
+  UNREAD
+  READ
+  IN_PROGRESS
+  RESOLVED
+}
+
+enum NotificationType {
+  NEW_BOOKING
+  CANCELLED_BOOKING
+  NEW_INQUIRY
+  DINING_RESERVATION
+  SPA_APPOINTMENT
+  NEW_REVIEW
+  SYSTEM_ALERT
+}
+
+// ------------------------------------------------------------------------------
+// 1. Users & Roles (Authentication & Staff Access)
+// ------------------------------------------------------------------------------
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String
+  role         Role      @default(GUEST)
+  phone        String?
+  avatarUrl    String?
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  guestProfile Guest?
+  auditLogs    AuditLog[]
+
+  @@index([email])
+  @@index([role])
+}
+
+// ------------------------------------------------------------------------------
+// 2. Room Categories & Types
+// ------------------------------------------------------------------------------
+
+model RoomCategory {
+  id          String   @id @default(cuid())
+  name        String   @unique // e.g. "Signature Luxury", "Executive Collection", "Crown Jewel", "Private Haven"
+  slug        String   @unique
+  description String?
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  rooms Room[]
+}
+
+// ------------------------------------------------------------------------------
+// 3. Rooms & Suites
+// ------------------------------------------------------------------------------
+
+model Room {
+  id          String       @id @default(cuid())
+  slug        String       @unique // "deluxe", "suite", "presidential", "villa"
+  name        String       // "Deluxe King Room"
+  type        String       // "Signature Luxury"
+  price       Float        // Base nightly rate in INR, e.g. 12500
+  capacity    Int          @default(2) // Max guests
+  sizeSqm     Int          @default(48) // Room size in m²
+  sizeSqft    Int          @default(516) // Room size in sq.ft
+  bedType     String       @default("King Bed")
+  viewType    String       @default("City Skyline View")
+  description String       @db.Text
+  overview    String?      @db.Text
+  images      String[]     // URLs in Supabase Storage or CDN
+  amenities   String[]     // ["King Pillow-top Bed", "Marble Soaking Tub", "Wi-Fi 6", "Nespresso"]
+  features    String[]     // Additional bullet points
+  isAvailable Boolean      @default(true)
+  isFeatured  Boolean      @default(false)
+  totalUnits  Int          @default(5) // Total physical rooms of this type
+  sortOrder   Int          @default(0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  categoryId     String?
+  category       RoomCategory?      @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  bookings       Booking[]
+  availabilities RoomAvailability[]
+
+  @@index([slug])
+  @@index([price])
+  @@index([isAvailable])
+  @@index([isFeatured])
+}
+
+// ------------------------------------------------------------------------------
+// 4. Availability & Inventory (Date-Based Inventory & Collision Blocking)
+// ------------------------------------------------------------------------------
+
+model RoomAvailability {
+  id             String   @id @default(cuid())
+  roomId         String
+  date           DateTime @db.Date // Specific calendar date
+  availableUnits Int      @default(5)
+  isBlocked      Boolean  @default(false)
+  customPrice    Float?   // Optional seasonal surge / discount price
+  blockReason    String?  // Maintenance, Renovation, Private Event
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  room Room @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@unique([roomId, date])
+  @@index([roomId, date])
+  @@index([isBlocked])
+}
+
+// ------------------------------------------------------------------------------
+// 5. Guests & Customers
+// ------------------------------------------------------------------------------
+
+model Guest {
+  id              String   @id @default(cuid())
+  firstName       String
+  lastName        String
+  email           String   @unique
+  phone           String
+  address         String?
+  city            String?
+  country         String?  @default("India")
+  passportNumber  String?
+  vipLevel        String   @default("Standard") // Standard, Gold, Diamond, Royal
+  notes           String?  @db.Text
+  specialRequests String?  @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  userId   String?   @unique
+  user     User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  bookings Booking[]
+
+  @@index([email])
+  @@index([phone])
+}
+
+// ------------------------------------------------------------------------------
+// 6. Bookings & Reservations
+// ------------------------------------------------------------------------------
+
+model Booking {
+  id              String        @id @default(cuid())
+  bookingRef      String        @unique // e.g. "XYZ-847291"
+  roomId          String
+  guestId         String
+  checkIn         DateTime      @db.Date
+  checkOut        DateTime      @db.Date
+  nights          Int           @default(1)
+  guestsCount     Int           @default(2)
+  roomsCount      Int           @default(1)
+  nightlyRate     Float
+  subtotal        Float
+  discountAmount  Float         @default(0)
+  promoCode       String?
+  addonsTotal     Float         @default(0)
+  taxAmount       Float         @default(0)
+  totalAmount     Float
+  hasBreakfast    Boolean       @default(false)
+  hasTransfer     Boolean       @default(false)
+  hasSpa          Boolean       @default(false)
+  specialRequests String?       @db.Text
+  status          BookingStatus @default(CONFIRMED)
+  paymentStatus   PaymentStatus @default(PAY_AT_PROPERTY)
+  paymentMethod   String?       @default("Pay at Property / Card / Wire")
+  notes           String?       @db.Text
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  room  Room  @relation(fields: [roomId], references: [id], onDelete: Restrict)
+  guest Guest @relation(fields: [guestId], references: [id], onDelete: Restrict)
+
+  @@index([bookingRef])
+  @@index([roomId, checkIn, checkOut])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// ------------------------------------------------------------------------------
+// 7. Dining & Table Reservations
+// ------------------------------------------------------------------------------
+
+model Restaurant {
+  id            String   @id @default(cuid())
+  slug          String   @unique // "saffron", "sky-lounge", "orangerie", "conservatory"
+  name          String   // "The Saffron Pavilion"
+  cuisine       String   // "Royal Awadhi Haute Cuisine"
+  description   String   @db.Text
+  hours         String   // "Lunch: 12:30 PM - 3:30 PM | Dinner: 7:00 PM - 11:30 PM"
+  atmosphere    String?  // "Handcrafted jali screens & ambient classical sitar"
+  dressCode     String?  // "Smart Elegant / Traditional Formal"
+  closedMondays Boolean  @default(false)
+  phone         String?  @default("+91 123 456 7891")
+  images        String[] // Supabase storage image URLs
+  sortOrder     Int      @default(0)
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  reservations DiningReservation[]
+
+  @@index([slug])
+  @@index([isActive])
+}
+
+model DiningReservation {
+  id              String           @id @default(cuid())
+  bookingRef      String           @unique // e.g. "DINE-72019"
+  restaurantId    String
+  guestName       String
+  guestPhone      String
+  guestEmail      String?
+  reservationDate DateTime         @db.Date
+  timeSlot        String           // "19:30"
+  partySize       Int              @default(2)
+  specialRequests String?          @db.Text
+  status          SubmissionStatus @default(READ)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  @@index([restaurantId, reservationDate])
+  @@index([bookingRef])
+}
+
+// ------------------------------------------------------------------------------
+// 8. Amenities & Spa Reservations
+// ------------------------------------------------------------------------------
+
+model Amenity {
+  id          String   @id @default(cuid())
+  slug        String   @unique // "luxury-spa", "infinity-pool", "fitness-centre", etc.
+  name        String   // "Luxury Spa"
+  category    String   @default("Wellness") // Wellness, Leisure, Business, Concierge
+  description String   @db.Text
+  features    String[] // Bullet highlights
+  hours       String?  // "Daily: 7:00 AM - 10:00 PM"
+  images      String[]
+  iconSvg     String?  @db.Text
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  spaReservations SpaReservation[]
+
+  @@index([slug])
+  @@index([isActive])
+}
+
+model SpaReservation {
+  id              String           @id @default(cuid())
+  bookingRef      String           @unique // e.g. "SPA-51042"
+  amenityId       String?
+  serviceName     String           // "Royal Abhyanga Massage (90 mins)"
+  guestName       String
+  guestPhone      String
+  guestEmail      String?
+  appointmentDate DateTime         @db.Date
+  preferredTime   String           // "14:00"
+  partySize       Int              @default(1)
+  notes           String?          @db.Text
+  status          SubmissionStatus @default(READ)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  amenity Amenity? @relation(fields: [amenityId], references: [id], onDelete: SetNull)
+
+  @@index([appointmentDate])
+  @@index([bookingRef])
+}
+
+// ------------------------------------------------------------------------------
+// 9. Offers & Promotions
+// ------------------------------------------------------------------------------
+
+model Offer {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  title           String    // "Early Bird Special"
+  badgeText       String    @default("20% OFF") // "20% OFF", "PACKAGE", "15% OFF"
+  discountPercent Float     @default(0.15) // 0.15 for 15%
+  promoCode       String?   // "XYZLUXURY", "TAJROYAL", "WELCOME15"
+  description     String    @db.Text
+  terms           String?   @db.Text
+  imageUrl        String?
+  validFrom       DateTime  @default(now())
+  validUntil      DateTime?
+  isActive        Boolean   @default(true)
+  sortOrder       Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([promoCode])
+  @@index([isActive])
+}
+
+// ------------------------------------------------------------------------------
+// 10. Reviews & Ratings
+// ------------------------------------------------------------------------------
+
+model Review {
+  id          String   @id @default(cuid())
+  authorName  String   // "Alistair Finch-Hatton"
+  location    String?  // "London, UK"
+  roomStayed  String?  // "Presidential Suite"
+  rating      Int      @default(5) // 1 to 5
+  comment     String   @db.Text
+  avatarUrl   String?
+  isPublished Boolean  @default(true)
+  isFeatured  Boolean  @default(false)
+  stayDate    String?  // "October 2025"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isPublished])
+  @@index([isFeatured])
+}
+
+// ------------------------------------------------------------------------------
+// 11. CMS Pages (About/Legacy, Policies, Legal)
+// ------------------------------------------------------------------------------
+
+model CmsPage {
+  id              String   @id @default(cuid())
+  slug            String   @unique // "about-legacy", "privacy-policy", "terms-conditions"
+  title           String
+  subtitle        String?
+  content         String   @db.Text // Rich HTML or Markdown
+  metaTitle       String?
+  metaDescription String?
+  isPublished     Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([slug])
+}
+
+// ------------------------------------------------------------------------------
+// 12. Homepage Sections (Hero, Legacy Stats, Featured Highlights)
+// ------------------------------------------------------------------------------
+
+model HomepageSection {
+  id          String   @id @default(cuid())
+  sectionKey  String   @unique // "hero", "about_stats", "featured_rooms", "dining", "amenities", "offers", "testimonials"
+  title       String?
+  subtitle    String?
+  contentJson Json     // JSON configuration for flexible section content
+  isVisible   Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sectionKey])
+}
+
+// ------------------------------------------------------------------------------
+// 13. Media References (Supabase Storage Metadata)
+// ------------------------------------------------------------------------------
+
+model MediaAsset {
+  id        String   @id @default(cuid())
+  bucket    String   @default("hotel-assets")
+  fileName  String
+  filePath  String   // Path within Supabase Storage bucket
+  fileUrl   String   // Public accessible URL
+  fileType  String   // "image/jpeg", "image/png", "image/webp"
+  altText   String?
+  sizeBytes Int?
+  category  String?  // "rooms", "dining", "offers", "hero", "avatars"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([bucket])
+  @@index([category])
+}
+
+// ------------------------------------------------------------------------------
+// 14. Website Settings (Hotel Name, Address, Phone, Email, Socials)
+// ------------------------------------------------------------------------------
+
+model WebsiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique // "hotel_name", "phone", "email", "address", "facebook", etc.
+  value     String   @db.Text
+  group     String   @default("general") // "general", "contact", "social", "seo"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([key])
+  @@index([group])
+}
+
+// ------------------------------------------------------------------------------
+// 15. Newsletter Subscribers
+// ------------------------------------------------------------------------------
+
+model NewsletterSubscriber {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  isActive     Boolean  @default(true)
+  subscribedAt DateTime @default(now())
+
+  @@index([email])
+}
+
+// ------------------------------------------------------------------------------
+// 16. Contact / Inquiry Form Submissions
+// ------------------------------------------------------------------------------
+
+model ContactSubmission {
+  id        String           @id @default(cuid())
+  ticketId  String           @unique // e.g. "XYZ-9821"
+  name      String
+  email     String
+  phone     String?
+  subject   String?          @default("General Inquiry")
+  message   String           @db.Text
+  status    SubmissionStatus @default(UNREAD)
+  notes     String?          @db.Text
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@index([ticketId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// ------------------------------------------------------------------------------
+// 17. Notifications & Audit Logs (Admin Alerts & Operational Tracking)
+// ------------------------------------------------------------------------------
+
+model Notification {
+  id        String           @id @default(cuid())
+  type      NotificationType
+  title     String
+  message   String           @db.Text
+  linkUrl   String?
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  @@index([isRead])
+  @@index([createdAt])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  action    String   // "ROOM_PRICE_UPDATED", "BOOKING_CONFIRMED", "OFFER_CREATED"
+  entity    String   // "Room", "Booking", "Offer"
+  entityId  String?
+  details   Json?
+  ipAddress String?
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([entity, entityId])
+  @@index([createdAt])
+}

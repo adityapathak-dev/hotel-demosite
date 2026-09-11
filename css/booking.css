@@ -159,10 +159,12 @@
 }
 
 .room-option__amenity-tag {
-  padding: 4px 12px;
+  padding: 4px 10px;
   background: var(--ivory);
-  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 0;
   font-size: 0.75rem;
+  letter-spacing: 0.03em;
   color: var(--text-muted);
 }
 

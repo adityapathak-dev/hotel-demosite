@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/booking.css">
   <link rel="stylesheet" href="css/chatbot.css">
+  <link rel="stylesheet" href="css/nav-auth.css">
 </head>
 <body class="booking-page">
 
@@ -23,9 +24,10 @@
           <li><a href="index.html" class="header__nav-link">Home</a></li>
           <li><a href="rooms.html" class="header__nav-link">Rooms & Suites</a></li>
           <li><a href="dining.html" class="header__nav-link">Dining</a></li>
-          <li><a href="index.html#amenities" class="header__nav-link">Amenities</a></li>
-          <li><a href="booking.html" class="header__nav-link active">Offers</a></li>
+          <li><a href="amenities.html" class="header__nav-link">Amenities</a></li>
+          <li><a href="index.html#offers" class="header__nav-link">Offers</a></li>
           <li><a href="contact.html" class="header__nav-link">Contact</a></li>
+          <li><a href="login.html" class="header__nav-link">Sign In</a></li>
         </ul>
         <a href="tel:+911234567890" class="btn btn--outline header__cta mobile-hidden">Call +91 123 456 7890</a>
         <button class="header__menu-toggle" id="menuToggle" aria-label="Toggle menu">
@@ -66,7 +68,7 @@
     </div>
 
     <!-- Quick Date Filter Toolbar -->
-    <div style="background: var(--white); border-radius: var(--radius-md); padding: var(--space-lg); box-shadow: var(--shadow-sm); margin-bottom: var(--space-2xl); display: flex; flex-wrap: wrap; gap: var(--space-lg); align-items: center; justify-content: space-between;">
+    <div style="background: var(--white); border-radius: 0; border: 1px solid var(--border-color); padding: var(--space-lg); box-shadow: var(--shadow-sm); margin-bottom: var(--space-2xl); display: flex; flex-wrap: wrap; gap: var(--space-lg); align-items: center; justify-content: space-between;">
       <div style="display: flex; gap: var(--space-lg); flex-wrap: wrap; align-items: center;">
         <div>
           <label style="display: block; font-size: 0.75rem; font-family: var(--font-accent); text-transform: uppercase; color: var(--text-light); margin-bottom: 4px;" for="filterCheckin">Check In</label>
@@ -86,8 +88,9 @@
           </select>
         </div>
       </div>
-      <div style="font-size: 0.85rem; color: var(--gold); font-weight: 500;">
-        ✨ Promo rate: Use code <strong>XYZLUXURY</strong> for 15% off
+      <div style="font-size: 0.85rem; color: var(--gold); font-weight: 500; display: flex; align-items: center; gap: 8px;">
+        <span style="font-family: var(--font-accent); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.7rem; background: var(--gold-subtle); padding: 3px 8px; border: 1px solid rgba(184,134,11,0.3);">Privilege Offer</span>
+        <span>Use code <strong>XYZLUXURY</strong> for 15% off</span>
       </div>
     </div>
 
@@ -341,7 +344,10 @@
             </div>
 
             <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
-              <button type="button" class="btn btn--primary" onclick="window.print()">🖨 Print Booking Voucher</button>
+              <button type="button" class="btn btn--primary" onclick="window.print()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Print Booking Voucher
+              </button>
               <a href="index.html" class="btn btn--outline">Return to Homepage</a>
             </div>
           </div>
@@ -427,13 +433,16 @@
 
           <div style="margin-top: var(--space-lg); border-top: 1px solid var(--border-color); padding-top: var(--space-md); font-size: 0.8rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 8px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span>🛡</span> Best Rate Guaranteed
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <span>Best Rate Guaranteed</span>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span>⏱</span> Free Cancellation up to 24 hours prior
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>Free Cancellation up to 24 hours prior</span>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span>💳</span> No booking fee, pay at property option
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+              <span>No booking fee, pay at property option</span>
             </div>
           </div>
         </div>
@@ -445,7 +454,7 @@
          OFFLINE BOOKING & DIRECT CONCIERGE ASSISTANCE
          Inspired by Taj, ITC, Radisson & Lemon Tree offline booking desks
          ============================================================ -->
-    <section style="margin-top: var(--space-5xl); background: var(--white); border-radius: var(--radius-lg); padding: var(--space-3xl); box-shadow: var(--shadow-md); border-left: 6px solid var(--gold);">
+    <section style="margin-top: var(--space-5xl); background: var(--white); border-radius: 0; border: 1px solid var(--border-color); padding: var(--space-3xl); box-shadow: var(--shadow-md); border-left: 5px solid var(--gold);">
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3xl);" class="booking-offline-grid">
         <div>
           <span class="section-label">Personal Concierge Service</span>
@@ -455,21 +464,27 @@
           </p>
           <div style="display: flex; flex-direction: column; gap: var(--space-md);">
             <div style="display: flex; align-items: center; gap: var(--space-md);">
-              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--gold-subtle); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">📞</div>
+              <div style="width: 40px; height: 40px; border-radius: 0; background: var(--gold-subtle); color: var(--gold); display: flex; align-items: center; justify-content: center;" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              </div>
               <div>
                 <strong style="display: block; font-size: 1rem; color: var(--charcoal);">24/7 Direct Toll-Free Reservation Desk</strong>
                 <a href="tel:+911234567890" style="color: var(--gold); font-weight: 600; font-size: 1.1rem;">+91 123 456 7890</a>
               </div>
             </div>
             <div style="display: flex; align-items: center; gap: var(--space-md);">
-              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--gold-subtle); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">💬</div>
+              <div style="width: 40px; height: 40px; border-radius: 0; background: var(--gold-subtle); color: var(--gold); display: flex; align-items: center; justify-content: center;" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+              </div>
               <div>
                 <strong style="display: block; font-size: 1rem; color: var(--charcoal);">WhatsApp Instant Concierge</strong>
                 <a href="https://wa.me/911234567890" target="_blank" style="color: var(--gold); font-weight: 600; font-size: 1.1rem;">+91 98765 43210</a>
               </div>
             </div>
             <div style="display: flex; align-items: center; gap: var(--space-md);">
-              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--gold-subtle); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">✉️</div>
+              <div style="width: 40px; height: 40px; border-radius: 0; background: var(--gold-subtle); color: var(--gold); display: flex; align-items: center; justify-content: center;" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              </div>
               <div>
                 <strong style="display: block; font-size: 1rem; color: var(--charcoal);">Offline Vouchers & Corporate Bookings</strong>
                 <a href="mailto:reservations@xyzhotel.com" style="color: var(--gold); font-weight: 600; font-size: 1rem;">reservations@xyzhotel.com</a>
@@ -479,7 +494,7 @@
         </div>
 
         <!-- Request an Instant Callback Form -->
-        <div style="background: var(--ivory); padding: var(--space-2xl); border-radius: var(--radius-md);">
+        <div style="background: var(--ivory); padding: var(--space-2xl); border-radius: 0; border: 1px solid var(--border-color);">
           <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: var(--space-xs);">Request an Instant Concierge Callback</h3>
           <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-lg);">Provide your details and an executive will call you within 15 minutes to confirm your offline booking.</p>
 
@@ -517,10 +532,10 @@
           <a href="index.html" class="footer__logo">XYZ <span>Hotel</span></a>
           <p class="footer__desc">A sanctuary of five-star luxury, timeless elegance, and legendary hospitality. Discover bespoke moments tailored to perfection.</p>
           <div class="footer__socials">
-            <a href="#" class="footer__social-link" aria-label="Facebook">f</a>
-            <a href="#" class="footer__social-link" aria-label="Instagram">in</a>
-            <a href="#" class="footer__social-link" aria-label="Twitter">tw</a>
-            <a href="#" class="footer__social-link" aria-label="LinkedIn">li</a>
+            <a href="#" class="footer__social-link" aria-label="Facebook">FB</a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">IG</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">TW</a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">LI</a>
           </div>
         </div>
         <div>
@@ -529,7 +544,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="rooms.html">Rooms & Suites</a></li>
             <li><a href="dining.html">Dining & Bars</a></li>
-            <li><a href="index.html#amenities">Spa & Wellness</a></li>
+            <li><a href="amenities.html">Amenities & Spa</a></li>
             <li><a href="booking.html">Reservations</a></li>
             <li><a href="contact.html">Contact Us</a></li>
           </ul>
@@ -537,11 +552,11 @@
         <div>
           <h5 class="footer__heading">Experiences</h5>
           <ul class="footer__links">
-            <li><a href="#">Spa & Wellness</a></li>
-            <li><a href="#">Weddings & Events</a></li>
-            <li><a href="#">Business Meetings</a></li>
-            <li><a href="#">City Tours</a></li>
-            <li><a href="#">Loyalty Program</a></li>
+            <li><a href="amenities.html#spa">Spa & Wellness</a></li>
+            <li><a href="contact.html#banquets">Weddings & Events</a></li>
+            <li><a href="amenities.html#business">Business Meetings</a></li>
+            <li><a href="contact.html">City Tours</a></li>
+            <li><a href="booking.html">Loyalty Program</a></li>
           </ul>
         </div>
         <div>
@@ -559,6 +574,8 @@
         <div class="footer__bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms & Conditions</a>
+          <a href="login.html">Guest & Staff Portal</a>
+          <a href="admin.html">Executive CMS</a>
           <a href="#">Sitemap</a>
         </div>
       </div>
@@ -569,6 +586,9 @@
   <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
   <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/live-sync.js"></script>
+  <script src="js/nav-auth.js"></script>
   <script src="js/main.js"></script>
   <script src="js/booking.js"></script>
   <script src="js/knowledge_index.js"></script>

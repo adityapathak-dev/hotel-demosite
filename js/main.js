@@ -53,8 +53,8 @@ function initScrollReveal() {
       });
     },
     {
-      threshold: 0.15,
-      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.05,
+      rootMargin: '0px 0px -20px 0px',
     }
   );
 
@@ -134,7 +134,7 @@ function initSmoothScroll() {
         e.preventDefault();
         const headerOffset = 90;
         const elementPosition = target.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        const offsetPosition = elementPosition + (window.scrollY || window.pageYOffset) - headerOffset;
 
         window.scrollTo({
           top: offsetPosition,
@@ -147,10 +147,13 @@ function initSmoothScroll() {
 
 /* ---------- Utility: Set active nav link ---------- */
 function setActiveNavLink() {
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPath = window.location.pathname.split('/').pop().split('?')[0].split('#')[0] || 'index.html';
   document.querySelectorAll('.header__nav-link').forEach((link) => {
+    link.classList.remove('active');
     const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    if (!href) return;
+    const cleanHref = href.split('?')[0].split('#')[0];
+    if (cleanHref === currentPath || (currentPath === '' && cleanHref === 'index.html')) {
       link.classList.add('active');
     }
   });

@@ -1,0 +1,169 @@
+/**
+ * ==============================================================================
+ * XYZ Hotel — Navigation Authentication & Account Dropdown Styles
+ * ==============================================================================
+ */
+
+.nav-auth-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-gold, #c5a880);
+  border: 1px solid var(--color-gold, #c5a880);
+  background: transparent;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-body, 'Outfit', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-left: 0.5rem;
+}
+
+.nav-auth-btn:hover {
+  background: var(--color-gold, #c5a880);
+  color: #0b0f19;
+  box-shadow: 0 4px 15px rgba(197, 168, 128, 0.25);
+}
+
+.nav-auth-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* User Profile Badge in Header */
+.nav-user-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(197, 168, 128, 0.12);
+  border: 1px solid rgba(197, 168, 128, 0.3);
+  padding: 0.4rem 0.85rem;
+  font-size: 0.82rem;
+  color: var(--color-gold, #c5a880);
+  cursor: pointer;
+  margin-left: 0.5rem;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.nav-user-badge:hover {
+  background: rgba(197, 168, 128, 0.2);
+}
+
+.nav-user-avatar {
+  width: 22px;
+  height: 22px;
+  background: var(--color-gold, #c5a880);
+  color: #0b0f19;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.nav-user-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 210px;
+  background: #121824;
+  border: 1px solid rgba(197, 168, 128, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.nav-user-dropdown.show {
+  display: flex;
+}
+
+.dropdown-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.dropdown-header strong {
+  display: block;
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+.dropdown-item {
+  padding: 0.65rem 1rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s, color 0.15s;
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: rgba(197, 168, 128, 0.1);
+  color: var(--color-gold, #c5a880);
+}
+
+.dropdown-item.logout-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f87171;
+}
+
+.dropdown-item.logout-item:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+/* In-Page Quick Login Modal */
+.auth-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 1.5rem;
+}
+
+.auth-modal-box {
+  background: #121824;
+  border: 1px solid rgba(197, 168, 128, 0.3);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 35px rgba(197, 168, 128, 0.15);
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  padding: 2.5rem 2rem;
+}
+
+.auth-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.auth-modal-close:hover {
+  color: #fff;
+}

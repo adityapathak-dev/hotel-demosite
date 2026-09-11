@@ -33,9 +33,8 @@
       launcher.className = 'royal-chat-launcher';
       launcher.setAttribute('aria-label', 'Open Royal Concierge AI Chatbot');
       launcher.innerHTML = `
-        <div class="launcher-icon">
-          <span>🤖</span>
-          <div class="launcher-pulse"></div>
+        <div class="launcher-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/></svg>
         </div>
         <div class="launcher-text">
           <span class="launcher-title">Royal Concierge</span>
@@ -50,7 +49,9 @@
       windowEl.innerHTML = `
         <div class="royal-chat-header">
           <div class="royal-chat-header-info">
-            <div class="royal-chat-avatar">👑</div>
+            <div class="royal-chat-avatar" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
+            </div>
             <div class="royal-chat-header-text">
               <h3>XYZ Royal Concierge</h3>
               <div class="royal-chat-status">
@@ -67,13 +68,13 @@
 
         <div class="royal-chat-chips-wrap">
           <div class="royal-chat-chips">
-            <button class="royal-chip" data-query="What is the tariff for the Presidential Suite?">👑 Presidential Suite</button>
-            <button class="royal-chip" data-query="How can I book a room over the phone?">📞 Offline Booking</button>
-            <button class="royal-chip" data-query="What are the starting rates for all rooms?">🛏️ Room Tariffs</button>
-            <button class="royal-chip" data-query="What are the timings for Saffron Pavilion?">🍽️ Dining Hours</button>
-            <button class="royal-chip" data-query="What time is check in and check out?">🕒 Check-in Rules</button>
-            <button class="royal-chip" data-query="Do you have promotional discount codes?">🏷️ Promo Codes</button>
-            <button class="royal-chip" data-query="Do you offer airport transfer?">🚗 Airport Transfers</button>
+            <button class="royal-chip" data-query="What is the tariff for the Presidential Suite?">Presidential Suite</button>
+            <button class="royal-chip" data-query="How can I book a room over the phone?">Offline Booking</button>
+            <button class="royal-chip" data-query="What are the starting rates for all rooms?">Room Tariffs</button>
+            <button class="royal-chip" data-query="What are the timings for Saffron Pavilion?">Dining Hours</button>
+            <button class="royal-chip" data-query="What time is check in and check out?">Check-in Rules</button>
+            <button class="royal-chip" data-query="Do you have promotional discount codes?">Promo Codes</button>
+            <button class="royal-chip" data-query="Do you offer airport transfer?">Airport Transfers</button>
           </div>
         </div>
 
@@ -92,7 +93,7 @@
               maxlength="300"
             />
             <button type="submit" id="royalChatSend" class="royal-chat-send-btn" aria-label="Send message">
-              ➤
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
             </button>
           </form>
           <div class="royal-chat-disclaimer">
@@ -162,7 +163,7 @@
 
       // Initial Royal Welcome
       this.addBotMessage(
-        "Namaste and warm greetings from **XYZ Hotel**! 🤖\n\n" +
+        "Namaste and warm greetings from **XYZ Hotel**.\n\n" +
         "I am your **Royal Concierge AI**. I am at your service to assist with suite tariffs, " +
         "our 24/7 offline reservation desk, dining timings, and luxury amenities.\n\n" +
         "How may I assist your stay today?",
@@ -210,7 +211,9 @@
 
         if (msg.sender === 'bot') {
           row.innerHTML = `
-            <div class="royal-msg-avatar">👑</div>
+            <div class="royal-msg-avatar" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
+            </div>
             <div class="royal-msg-body">
               ${this.formatMarkdown(msg.text)}
               ${this.renderSources(msg.sources)}
@@ -233,7 +236,7 @@
       const tags = sources.map(s => {
         const title = this.escapeHtml(s.title || 'Official Directory');
         const url = s.url || '#';
-        return `<a href="${url}" class="citation-tag" target="_self">📍 ${title}</a>`;
+        return `<a href="${url}" class="citation-tag" target="_self">${title}</a>`;
       }).join('');
       return `<div class="royal-msg-citations">${tags}</div>`;
     }
@@ -342,7 +345,7 @@
       // Greetings
       if (/^(hi|hello|hey|namaste|greetings|bonjour|good morning|good evening)\b/i.test(q)) {
         return {
-          response: "Namaste and warm greetings from **XYZ Hotel**! 🤖\n\nI am your **Royal Concierge AI**. I can assist with suite tariffs, 24/7 offline telephone reservations, restaurant hours, or bespoke concierge requests.\n\nHow may I serve you today?",
+          response: "Namaste and warm greetings from **XYZ Hotel**.\n\nI am your **Royal Concierge AI**. I can assist with suite tariffs, 24/7 offline telephone reservations, restaurant hours, or bespoke concierge requests.\n\nHow may I serve you today?",
           sources: [{ title: "About XYZ Hotel", url: "index.html#about" }]
         };
       }
@@ -535,15 +538,16 @@
       }
 
       // Spa & Wellness
-      if (/(spa|gym|pool|vitality|fitness|wellness|yoga)/i.test(q)) {
+      if (/(spa|gym|pool|vitality|fitness|wellness|yoga|amenit)/i.test(q)) {
         return {
-          response: "**Wellness, Spa & Fitness Facilities**:\n\n" +
+          response: "**Wellness, Spa & Hotel Amenities**:\n\n" +
             "- **Ayurvedic Spa Sanctuary**: Herbal massage suites and Himalayan pink salt inhalation rooms.\n" +
-            "- **Indoor Vitality Pools**: Temperature-controlled with hydrotherapy jets.\n" +
+            "- **Skyline Infinity Pool**: Temperature-controlled with hydrotherapy jets and private cabanas.\n" +
             "- **Yoga Pavilions**: Daily morning sessions with certified yoga masters.\n" +
-            "- **Fitness Center**: 24-hour Technogym fitness atelier with personal trainers.\n\n" +
-            "Explore wellness features on our [Homepage](index.html#amenities).",
-          sources: [{ title: "Wellness, Spa, Vitality Pool & Fitness", url: "index.html#amenities" }]
+            "- **Fitness Centre**: 24-hour Technogym fitness atelier with personal trainers.\n" +
+            "- **Executive Business Centre**: Private meeting salons and boardrooms.\n\n" +
+            "Discover all our facilities on our [Dedicated Amenities Page](amenities.html).",
+          sources: [{ title: "World-Class Amenities & Wellness", url: "amenities.html" }]
         };
       }
 

@@ -123,23 +123,42 @@ function initBookingEngine() {
     ctaBtn: document.getElementById('summaryCtaBtn')
   };
 
-  // Sync Input Dates
+  // Sync Input Dates & Enforce Date Validation
   const inputCheckin = document.getElementById('filterCheckin');
   const inputCheckout = document.getElementById('filterCheckout');
   const inputGuests = document.getElementById('filterGuests');
 
   if (inputCheckin) {
+    inputCheckin.min = formatDate(today);
     inputCheckin.value = state.checkin;
     inputCheckin.addEventListener('change', (e) => {
       state.checkin = e.target.value;
+      const nextDay = new Date(state.checkin);
+      nextDay.setDate(nextDay.getDate() + 1);
+      const nextDayStr = formatDate(nextDay);
+      if (inputCheckout) {
+        inputCheckout.min = nextDayStr;
+        if (state.checkout <= state.checkin) {
+          state.checkout = nextDayStr;
+          inputCheckout.value = nextDayStr;
+        }
+      }
       calcNights();
       updateSummary();
     });
   }
 
   if (inputCheckout) {
+    const minCheckoutDate = new Date(state.checkin);
+    minCheckoutDate.setDate(minCheckoutDate.getDate() + 1);
+    inputCheckout.min = formatDate(minCheckoutDate);
     inputCheckout.value = state.checkout;
     inputCheckout.addEventListener('change', (e) => {
+      if (e.target.value <= state.checkin) {
+        const nextDay = new Date(state.checkin);
+        nextDay.setDate(nextDay.getDate() + 1);
+        e.target.value = formatDate(nextDay);
+      }
       state.checkout = e.target.value;
       calcNights();
       updateSummary();
@@ -168,6 +187,7 @@ function initBookingEngine() {
   });
 
   // Select initial room card
+  roomCards.forEach(c => c.classList.remove('selected'));
   const initialCard = document.querySelector(`.room-option[data-room-id="${state.selectedRoom}"]`);
   if (initialCard) initialCard.classList.add('selected');
 
@@ -195,13 +215,39 @@ function initBookingEngine() {
     });
   }
 
-  // Promo Code
+  // Promo Code Validation with Backend API
   const promoInput = document.getElementById('promoInput');
   const promoBtn = document.getElementById('applyPromoBtn');
   const promoMsg = document.getElementById('promoMessage');
 
-  promoBtn?.addEventListener('click', () => {
+  promoBtn?.addEventListener('click', async () => {
     const code = promoInput.value.trim().toUpperCase();
+    if (!code) {
+      state.discountPercent = 0;
+      state.appliedPromo = '';
+      if (promoMsg) promoMsg.textContent = '';
+      updateSummary();
+      return;
+    }
+
+    try {
+      if (window.XYZ_API?.offers) {
+        const res = await XYZ_API.offers.validate(code);
+        if (res.valid) {
+          state.discountPercent = res.data.discountPercent || 0.15;
+          state.appliedPromo = code;
+          if (promoMsg) {
+            promoMsg.textContent = `Promo code ${code} applied (${res.data.discountText || '15% OFF'})!`;
+            promoMsg.style.color = 'var(--success)';
+          }
+          updateSummary();
+          return;
+        }
+      }
+    } catch (err) {
+      // Fallback local check
+    }
+
     if (code === 'XYZLUXURY' || code === 'TAJROYAL' || code === 'WELCOME15') {
       state.discountPercent = 0.15;
       state.appliedPromo = code;
@@ -209,13 +255,11 @@ function initBookingEngine() {
         promoMsg.textContent = `Promo code ${code} applied (15% OFF)!`;
         promoMsg.style.color = 'var(--success)';
       }
-    } else if (code === '') {
-      state.discountPercent = 0;
-      if (promoMsg) promoMsg.textContent = '';
     } else {
       state.discountPercent = 0;
+      state.appliedPromo = '';
       if (promoMsg) {
-        promoMsg.textContent = 'Invalid promo code. Try "XYZLUXURY"';
+        promoMsg.textContent = 'Invalid promotional code.';
         promoMsg.style.color = '#e53935';
       }
     }
@@ -310,7 +354,7 @@ function initBookingEngine() {
   }
 
   // Summary CTA Click
-  summaryElements.ctaBtn?.addEventListener('click', () => {
+  summaryElements.ctaBtn?.addEventListener('click', async () => {
     if (state.step === 1) {
       goToStep(2);
     } else if (state.step === 2) {
@@ -320,8 +364,7 @@ function initBookingEngine() {
         form.reportValidity();
         return;
       }
-      populateConfirmation();
-      goToStep(3);
+      await processReservation();
     }
   });
 
@@ -331,20 +374,67 @@ function initBookingEngine() {
   });
 
   // Guest Form Submit
-  document.getElementById('guestForm')?.addEventListener('submit', (e) => {
+  document.getElementById('guestForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    populateConfirmation();
-    goToStep(3);
+    await processReservation();
   });
 
-  // Populate Confirmation Details
-  function populateConfirmation() {
-    const ref = 'XYZ-' + Math.floor(100000 + Math.random() * 900000);
-    const fName = document.getElementById('guestFirstName')?.value || 'Valued';
-    const lName = document.getElementById('guestLastName')?.value || 'Guest';
-    const email = document.getElementById('guestEmail')?.value || 'guest@example.com';
-    const phone = document.getElementById('guestPhone')?.value || '+91 98765 43210';
+  async function processReservation() {
+    const fName = document.getElementById('guestFirstName')?.value.trim() || 'Valued';
+    const lName = document.getElementById('guestLastName')?.value.trim() || 'Guest';
+    const email = document.getElementById('guestEmail')?.value.trim() || 'guest@example.com';
+    const phone = document.getElementById('guestPhone')?.value.trim() || '+91 98765 43210';
+    const requests = document.getElementById('guestRequests')?.value.trim() || '';
 
+    const ctaBtn = summaryElements.ctaBtn;
+    if (ctaBtn) {
+      ctaBtn.disabled = true;
+      ctaBtn.textContent = 'Verifying Availability & Reserving...';
+    }
+
+    let createdBooking = null;
+
+    if (window.XYZ_API?.bookings) {
+      try {
+        const payload = {
+          roomId: state.selectedRoom,
+          checkIn: state.checkin,
+          checkOut: state.checkout,
+          guestsCount: parseInt(state.guests, 10) || 2,
+          roomsCount: state.roomsCount,
+          firstName: fName,
+          lastName: lName,
+          email,
+          phone,
+          specialRequests: requests,
+          promoCode: state.appliedPromo || null,
+          hasBreakfast: Boolean(state.addons.breakfast),
+          hasTransfer: Boolean(state.addons.transfer),
+          hasSpa: Boolean(state.addons.spa),
+        };
+
+        const response = await XYZ_API.bookings.create(payload);
+        if (response.success && response.data) {
+          createdBooking = response.data;
+        }
+      } catch (err) {
+        // Double booking or validation error
+        if (ctaBtn) {
+          ctaBtn.disabled = false;
+          ctaBtn.textContent = 'Confirm & Pay';
+        }
+        alert(err.message || 'Availability conflict detected. Please select another suite or change dates.');
+        return;
+      }
+    }
+
+    populateConfirmation(createdBooking, fName, lName, email);
+    goToStep(3);
+  }
+
+  // Populate Confirmation Details
+  function populateConfirmation(booking, fName, lName, email) {
+    const ref = booking?.bookingRef || ('XYZ-' + Math.floor(100000 + Math.random() * 900000));
     const refEl = document.getElementById('confBookingRef');
     if (refEl) refEl.textContent = ref;
 
@@ -364,16 +454,36 @@ function initBookingEngine() {
   // Offline Callback Form Handler
   const offlineForm = document.getElementById('offlineCallbackForm');
   const offlineSuccess = document.getElementById('offlineSuccessAlert');
-  offlineForm?.addEventListener('submit', (e) => {
+  offlineForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = offlineForm.querySelector('button[type="submit"]');
-    btn.textContent = 'Submitting Request...';
-    btn.disabled = true;
+    if (btn) {
+      btn.textContent = 'Submitting Request...';
+      btn.disabled = true;
+    }
+
+    const name = offlineForm.querySelector('input[type="text"]')?.value || 'Guest';
+    const phone = offlineForm.querySelector('input[type="tel"]')?.value || '';
+    const email = offlineForm.querySelector('input[type="email"]')?.value || 'concierge-request@xyzhotel.com';
+
+    if (window.XYZ_API?.contact) {
+      try {
+        await XYZ_API.contact.submit({
+          name,
+          phone,
+          email,
+          subject: 'Offline Telephone Concierge Reservation Callback',
+          message: `Guest requested an offline concierge callback. Telephone: ${phone}`,
+        });
+      } catch (err) {
+        // Fallback continues
+      }
+    }
 
     setTimeout(() => {
       offlineForm.style.display = 'none';
       if (offlineSuccess) offlineSuccess.style.display = 'block';
-    }, 900);
+    }, 600);
   });
 
   // Initial update

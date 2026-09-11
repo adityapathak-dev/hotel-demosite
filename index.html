@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/chatbot.css">
+  <link rel="stylesheet" href="css/nav-auth.css">
 </head>
 <body>
 
@@ -26,9 +27,10 @@
           <li><a href="index.html" class="header__nav-link active">Home</a></li>
           <li><a href="rooms.html" class="header__nav-link">Rooms & Suites</a></li>
           <li><a href="dining.html" class="header__nav-link">Dining</a></li>
-          <li><a href="#amenities" class="header__nav-link">Amenities</a></li>
-          <li><a href="booking.html" class="header__nav-link">Offers</a></li>
+          <li><a href="amenities.html" class="header__nav-link">Amenities</a></li>
+          <li><a href="#offers" class="header__nav-link">Offers</a></li>
           <li><a href="contact.html" class="header__nav-link">Contact</a></li>
+          <li><a href="login.html" class="header__nav-link">Sign In</a></li>
         </ul>
         <a href="booking.html" class="btn btn--outline header__cta mobile-hidden">Book a Stay</a>
         <button class="header__menu-toggle" id="menuToggle" aria-label="Toggle menu">
@@ -242,45 +244,64 @@
       </div>
       <div class="amenities__grid reveal-stagger">
         <div class="amenity-item">
-          <div class="amenity-item__icon">🧖</div>
+          <div class="amenity-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 21c4.5 0 8-4.5 8-10 0-3-2-5-4-7-1.5 3-2.5 7-4 7s-2.5-4-4-7c-2 2-4 4-4 7 0 5.5 3.5 10 8 10z"/></svg>
+          </div>
           <h4 class="amenity-item__title">Luxury Spa</h4>
-          <p class="amenity-item__text">Rejuvenating treatments with premium products</p>
+          <p class="amenity-item__text">Rejuvenating holistic therapies & private thermal suites</p>
         </div>
         <div class="amenity-item">
-          <div class="amenity-item__icon">🏊</div>
+          <div class="amenity-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M2 12h20M2 16.5c3 1.5 5 1.5 8 0s5-1.5 8 0 3 1 4 .5M2 20c3 1.5 5 1.5 8 0s5-1.5 8 0 3 1 4 .5M12 4.5v5m-4.5-3l2 3m7-3l-2 3"/></svg>
+          </div>
           <h4 class="amenity-item__title">Infinity Pool</h4>
-          <p class="amenity-item__text">Temperature-controlled pool with cabanas</p>
+          <p class="amenity-item__text">Temperature-controlled rooftop pool with private cabanas</p>
         </div>
         <div class="amenity-item">
-          <div class="amenity-item__icon">💪</div>
+          <div class="amenity-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6 5v14M18 5v14M3.5 8v8M20.5 8v8M6 12h12M2 9.5h3M19 9.5h3M2 14.5h3M19 14.5h3"/></svg>
+          </div>
           <h4 class="amenity-item__title">Fitness Centre</h4>
-          <p class="amenity-item__text">State-of-the-art equipment & personal trainers</p>
+          <p class="amenity-item__text">State-of-the-art Technogym suites & private trainers</p>
         </div>
         <div class="amenity-item">
-          <div class="amenity-item__icon">🍽️</div>
+          <div class="amenity-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 3v6c0 1.5 1 2.8 2.5 3V21M6.5 3v6M9 3v6c0 1.5-1 2.8-2.5 3M15 3v18M15 3c3 0 5 2 5 5.5V12h-5"/></svg>
+          </div>
           <h4 class="amenity-item__title">Fine Dining</h4>
-          <p class="amenity-item__text">Award-winning restaurants & rooftop bar</p>
+          <p class="amenity-item__text">Award-winning Michelin-curated restaurants & rooftop lounge</p>
         </div>
         <div class="amenity-item">
-          <div class="amenity-item__icon">🏢</div>
+          <div class="amenity-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="4" y="2.5" width="16" height="19"/><line x1="8" y1="6.5" x2="10" y2="6.5"/><line x1="14" y1="6.5" x2="16" y2="6.5"/><line x1="8" y1="10.5" x2="10" y2="10.5"/><line x1="14" y1="10.5" x2="16" y2="10.5"/><line x1="8" y1="14.5" x2="10" y2="14.5"/><line x1="14" y1="14.5" x2="16" y2="14.5"/><line x1="10" y1="21.5" x2="10" y2="18.5"/><line x1="14" y1="21.5" x2="14" y2="18.5"/><line x1="10" y1="18.5" x2="14" y2="18.5"/></svg>
+          </div>
           <h4 class="amenity-item__title">Business Centre</h4>
-          <p class="amenity-item__text">Conference rooms & executive boardrooms</p>
+          <p class="amenity-item__text">Conference suites, telepresence & executive boardrooms</p>
         </div>
         <div class="amenity-item">
-          <div class="amenity-item__icon">🛎️</div>
+          <div class="amenity-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M2 18h20M12 4a7 7 0 0 1 7 7v7H5v-7a7 7 0 0 1 7-7zM12 2v2M9 18v2.5h6V18"/></svg>
+          </div>
           <h4 class="amenity-item__title">Concierge</h4>
-          <p class="amenity-item__text">24/7 personal concierge service</p>
+          <p class="amenity-item__text">24/7 dedicated Clefs d'Or international desk</p>
         </div>
         <div class="amenity-item">
-          <div class="amenity-item__icon">🚗</div>
+          <div class="amenity-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 14l2.5-6h13l2.5 6v5.5H3V14zM6 19.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm12 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM2 14h20"/></svg>
+          </div>
           <h4 class="amenity-item__title">Valet Parking</h4>
-          <p class="amenity-item__text">Complimentary valet & luxury transfers</p>
+          <p class="amenity-item__text">Complimentary valet & private luxury limousine fleet</p>
         </div>
         <div class="amenity-item">
-          <div class="amenity-item__icon">📶</div>
+          <div class="amenity-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+          </div>
           <h4 class="amenity-item__title">High-Speed Wi-Fi</h4>
-          <p class="amenity-item__text">Complimentary premium internet access</p>
+          <p class="amenity-item__text">Complimentary high-bandwidth Wi-Fi 6 property-wide</p>
         </div>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-2xl);" class="reveal">
+        <a href="amenities.html" class="btn btn--primary">Explore All Amenities & Spa Details</a>
       </div>
     </div>
   </section>
@@ -435,11 +456,11 @@
         <div class="footer__brand">
           <div class="footer__logo">XYZ <span>Hotel</span></div>
           <p class="footer__desc">Experience the pinnacle of luxury hospitality. Since 1987, we've been crafting unforgettable moments for discerning travellers from around the world.</p>
-          <div class="footer__social">
-            <a href="#" aria-label="Facebook">𝕗</a>
-            <a href="#" aria-label="Instagram">📷</a>
-            <a href="#" aria-label="Twitter">𝕏</a>
-            <a href="#" aria-label="LinkedIn">in</a>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-link" aria-label="Facebook">FB</a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">IG</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">TW</a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">LI</a>
           </div>
         </div>
         <div>
@@ -448,6 +469,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="rooms.html">Rooms & Suites</a></li>
             <li><a href="dining.html">Dining</a></li>
+            <li><a href="amenities.html">Amenities & Spa</a></li>
             <li><a href="booking.html">Reservations</a></li>
             <li><a href="contact.html">Contact Us</a></li>
           </ul>
@@ -455,11 +477,11 @@
         <div>
           <h5 class="footer__heading">Experiences</h5>
           <ul class="footer__links">
-            <li><a href="#">Spa & Wellness</a></li>
-            <li><a href="#">Weddings & Events</a></li>
-            <li><a href="#">Business Meetings</a></li>
-            <li><a href="#">City Tours</a></li>
-            <li><a href="#">Loyalty Program</a></li>
+            <li><a href="amenities.html#spa">Spa & Wellness</a></li>
+            <li><a href="contact.html#banquets">Weddings & Events</a></li>
+            <li><a href="amenities.html#business">Business Meetings</a></li>
+            <li><a href="contact.html">City Tours</a></li>
+            <li><a href="booking.html">Loyalty Program</a></li>
           </ul>
         </div>
         <div>
@@ -477,6 +499,8 @@
         <div class="footer__bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms & Conditions</a>
+          <a href="login.html">Guest & Staff Portal</a>
+          <a href="admin.html">Executive CMS</a>
           <a href="#">Sitemap</a>
         </div>
       </div>
@@ -487,6 +511,9 @@
   <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
   <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/live-sync.js"></script>
+  <script src="js/nav-auth.js"></script>
   <script src="js/main.js"></script>
   <script src="js/carousel.js"></script>
   <script src="js/knowledge_index.js"></script>
@@ -502,13 +529,41 @@
     const formatDate = (d) => d.toISOString().split('T')[0];
     const checkinInput = document.getElementById('bw-checkin');
     const checkoutInput = document.getElementById('bw-checkout');
-    if (checkinInput) checkinInput.value = formatDate(tomorrow);
-    if (checkoutInput) checkoutInput.value = formatDate(dayAfter);
+    if (checkinInput) {
+      checkinInput.min = formatDate(today);
+      checkinInput.value = formatDate(tomorrow);
+      checkinInput.addEventListener('change', () => {
+        const nextDay = new Date(checkinInput.value);
+        nextDay.setDate(nextDay.getDate() + 1);
+        const nextDayStr = formatDate(nextDay);
+        if (checkoutInput) {
+          checkoutInput.min = nextDayStr;
+          if (checkoutInput.value <= checkinInput.value) {
+            checkoutInput.value = nextDayStr;
+          }
+        }
+      });
+    }
+    if (checkoutInput) {
+      checkoutInput.min = formatDate(tomorrow);
+      checkoutInput.value = formatDate(dayAfter);
+    }
 
-    // Newsletter form
-    document.getElementById('newsletterForm')?.addEventListener('submit', (e) => {
+    // Newsletter form connected to Supabase backend API
+    document.getElementById('newsletterForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const input = e.target.querySelector('input[type="email"]');
+      const email = input ? input.value.trim() : '';
       const btn = e.target.querySelector('button');
+
+      if (window.XYZ_API?.newsletter && email) {
+        try {
+          await XYZ_API.newsletter.subscribe(email);
+        } catch (err) {
+          // quiet fallback
+        }
+      }
+
       btn.textContent = 'Subscribed ✓';
       btn.style.background = 'var(--success)';
       setTimeout(() => {

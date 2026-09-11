@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/rooms.css">
   <link rel="stylesheet" href="css/chatbot.css">
+  <link rel="stylesheet" href="css/nav-auth.css">
 </head>
 <body class="rooms-page">
 
@@ -23,9 +24,10 @@
           <li><a href="index.html" class="header__nav-link">Home</a></li>
           <li><a href="rooms.html" class="header__nav-link active">Rooms & Suites</a></li>
           <li><a href="dining.html" class="header__nav-link">Dining</a></li>
-          <li><a href="index.html#amenities" class="header__nav-link">Amenities</a></li>
-          <li><a href="booking.html" class="header__nav-link">Offers</a></li>
+          <li><a href="amenities.html" class="header__nav-link">Amenities</a></li>
+          <li><a href="index.html#offers" class="header__nav-link">Offers</a></li>
           <li><a href="contact.html" class="header__nav-link">Contact</a></li>
+          <li><a href="login.html" class="header__nav-link">Sign In</a></li>
         </ul>
         <a href="booking.html" class="btn btn--outline header__cta mobile-hidden">Book a Stay</a>
         <button class="header__menu-toggle" id="menuToggle" aria-label="Toggle menu">
@@ -184,22 +186,26 @@
         <p class="section-subtitle">Every room reservation is accompanied by thoughtful touches of luxury.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-xl);" class="reveal-stagger">
-        <div style="background: var(--white); padding: var(--space-xl); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border-top: 3px solid var(--gold);">
-          <h3 style="font-size: 1.2rem; margin-bottom: var(--space-sm); font-family: var(--font-heading);">24-Hour Valet & Concierge</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Our Golden Keys (Clefs d’Or) concierges curate private museum tours, theater box seats, and tailored city excursions.</p>
+      <div class="privileges-grid reveal-stagger">
+        <div class="privilege-box">
+          <span class="privilege-box__num">Privilege · 01</span>
+          <h3 class="privilege-box__title">24-Hour Valet & Concierge</h3>
+          <p class="privilege-box__text">Our Golden Keys (Clefs d&rsquo;Or) concierges curate private museum tours, theater box seats, and tailored city excursions.</p>
         </div>
-        <div style="background: var(--white); padding: var(--space-xl); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border-top: 3px solid var(--gold);">
-          <h3 style="font-size: 1.2rem; margin-bottom: var(--space-sm); font-family: var(--font-heading);">Bespoke Pillow Menu</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Select from goose down, cooling gel, natural buckwheat, or lavender aromatherapy pillows for uninterrupted slumber.</p>
+        <div class="privilege-box">
+          <span class="privilege-box__num">Privilege · 02</span>
+          <h3 class="privilege-box__title">Bespoke Pillow Menu</h3>
+          <p class="privilege-box__text">Select from goose down, cooling gel, natural buckwheat, or lavender aromatherapy pillows for uninterrupted slumber.</p>
         </div>
-        <div style="background: var(--white); padding: var(--space-xl); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border-top: 3px solid var(--gold);">
-          <h3 style="font-size: 1.2rem; margin-bottom: var(--space-sm); font-family: var(--font-heading);">Wellness & Hydrotherapy</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Complimentary morning yoga pavilions, Himalayan salt room, vitality pools, and modern Technogym suites.</p>
+        <div class="privilege-box">
+          <span class="privilege-box__num">Privilege · 03</span>
+          <h3 class="privilege-box__title">Wellness & Hydrotherapy</h3>
+          <p class="privilege-box__text">Complimentary morning yoga pavilions, Himalayan salt room, vitality pools, and modern Technogym suites.</p>
         </div>
-        <div style="background: var(--white); padding: var(--space-xl); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border-top: 3px solid var(--gold);">
-          <h3 style="font-size: 1.2rem; margin-bottom: var(--space-sm); font-family: var(--font-heading);">Flexible Offline & Online Booking</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Reserve seamlessly online with instant confirmation, or call our 24/7 dedicated reservation desk for tailored multi-room itineraries.</p>
+        <div class="privilege-box">
+          <span class="privilege-box__num">Privilege · 04</span>
+          <h3 class="privilege-box__title">Flexible Offline & Online Booking</h3>
+          <p class="privilege-box__text">Reserve seamlessly online with instant confirmation, or call our 24/7 dedicated reservation desk for tailored multi-room itineraries.</p>
         </div>
       </div>
     </div>
@@ -226,10 +232,10 @@
           <a href="index.html" class="footer__logo">XYZ <span>Hotel</span></a>
           <p class="footer__desc">A sanctuary of five-star luxury, timeless elegance, and legendary hospitality. Discover bespoke moments tailored to perfection.</p>
           <div class="footer__socials">
-            <a href="#" class="footer__social-link" aria-label="Facebook">f</a>
-            <a href="#" class="footer__social-link" aria-label="Instagram">in</a>
-            <a href="#" class="footer__social-link" aria-label="Twitter">tw</a>
-            <a href="#" class="footer__social-link" aria-label="LinkedIn">li</a>
+            <a href="#" class="footer__social-link" aria-label="Facebook">FB</a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">IG</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">TW</a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">LI</a>
           </div>
         </div>
         <div>
@@ -238,7 +244,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="rooms.html">Rooms & Suites</a></li>
             <li><a href="dining.html">Dining & Bars</a></li>
-            <li><a href="index.html#amenities">Spa & Wellness</a></li>
+            <li><a href="amenities.html">Amenities & Spa</a></li>
             <li><a href="booking.html">Reservations</a></li>
             <li><a href="contact.html">Contact Us</a></li>
           </ul>
@@ -246,11 +252,11 @@
         <div>
           <h5 class="footer__heading">Experiences</h5>
           <ul class="footer__links">
-            <li><a href="#">Spa & Wellness</a></li>
-            <li><a href="#">Weddings & Events</a></li>
-            <li><a href="#">Business Meetings</a></li>
-            <li><a href="#">City Tours</a></li>
-            <li><a href="#">Loyalty Program</a></li>
+            <li><a href="amenities.html#spa">Spa & Wellness</a></li>
+            <li><a href="contact.html#banquets">Weddings & Events</a></li>
+            <li><a href="amenities.html#business">Business Meetings</a></li>
+            <li><a href="contact.html">City Tours</a></li>
+            <li><a href="booking.html">Loyalty Program</a></li>
           </ul>
         </div>
         <div>
@@ -278,6 +284,9 @@
   <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
   <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/live-sync.js"></script>
+  <script src="js/nav-auth.js"></script>
   <script src="js/main.js"></script>
   <script src="js/knowledge_index.js"></script>
   <script src="js/chatbot.js"></script>

@@ -48,11 +48,11 @@
   --max-width-narrow: 960px;
   --header-height: 80px;
 
-  /* Borders & Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 20px;
+  /* Borders & Radius - Architectural Luxury Standards (Crisp, rectilinear, no bubbly curves) */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
 
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -467,12 +467,13 @@ textarea.form-input {
   font-size: 1.2rem;
 }
 
-/* ---------- Scroll Animations ---------- */
+/* ---------- Scroll Animations - Whisper-Smooth Luxury Motion ---------- */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(8px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .reveal.revealed {
@@ -481,43 +482,59 @@ textarea.form-input {
 }
 
 .reveal--left {
-  transform: translateX(-40px);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .reveal--left.revealed {
+  opacity: 1;
   transform: translateX(0);
 }
 
 .reveal--right {
-  transform: translateX(40px);
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .reveal--right.revealed {
+  opacity: 1;
   transform: translateX(0);
 }
 
 .reveal--scale {
-  transform: scale(0.95);
+  opacity: 0;
+  transform: scale(0.99);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .reveal--scale.revealed {
+  opacity: 1;
   transform: scale(1);
 }
 
-/* Staggered children */
+/* Staggered children - Fluid, gentle cascade */
 .reveal-stagger > * {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(6px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
-.reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0s; }
-.reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.15s; }
-.reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.3s; }
-.reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.45s; }
-.reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.6s; }
-.reveal-stagger.revealed > *:nth-child(6) { transition-delay: 0.75s; }
+.reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0.02s; }
+.reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.08s; }
+.reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.14s; }
+.reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.20s; }
+.reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.26s; }
+.reveal-stagger.revealed > *:nth-child(6) { transition-delay: 0.32s; }
 
 .reveal-stagger.revealed > * {
   opacity: 1;
