@@ -93,6 +93,97 @@ router.get('/', async (req, res) => {
 });
 
 /**
+ * POST /api/amenities/spa/reserve
+ * Book spa ritual
+ */
+router.post('/spa/reserve', async (req, res) => {
+  try {
+    const { serviceName, guestName, guestPhone, guestEmail, appointmentDate, preferredTime, partySize = 1, notes } = req.body;
+
+    if (!serviceName || !guestName || !guestPhone || !appointmentDate || !preferredTime) {
+      return res.status(400).json({ success: false, message: 'Service, name, phone, date, and preferred time are required' });
+    }
+
+    const bookingRef = `SPA-${Math.floor(10000 + Math.random() * 90000)}`;
+
+    if (isDatabaseConnected()) {
+      const appointment = await prisma.spaReservation.create({
+        data: {
+          bookingRef,
+          serviceName,
+          guestName,
+          guestPhone,
+          guestEmail,
+          appointmentDate: new Date(appointmentDate),
+          preferredTime,
+          partySize: Number(partySize),
+          notes,
+          status: 'UNREAD',
+        },
+      });
+
+      await prisma.notification.create({
+        data: {
+          type: 'SPA_APPOINTMENT',
+          title: `Spa Appointment: ${bookingRef}`,
+          message: `${guestName} booked ${serviceName} on ${appointmentDate} at ${preferredTime}`,
+          linkUrl: '/admin#amenities',
+        },
+      });
+
+      return res.status(201).json({
+        success: true,
+        message: 'Spa appointment scheduled. Our spa concierge will confirm your treatment slot.',
+        data: appointment,
+      });
+    }
+
+    const appointment = {
+      id: `spa-${Date.now()}`,
+      bookingRef,
+      serviceName,
+      guestName,
+      guestPhone,
+      guestEmail,
+      appointmentDate,
+      preferredTime,
+      partySize: Number(partySize),
+      notes,
+      status: 'UNREAD',
+      createdAt: new Date().toISOString(),
+    };
+    inMemorySpaReservations.unshift(appointment);
+
+    return res.status(201).json({
+      success: true,
+      message: 'Spa appointment scheduled. Our spa concierge will confirm your treatment slot.',
+      data: appointment,
+    });
+  } catch (error) {
+    console.error('Error in POST /api/amenities/spa/reserve:', error);
+    res.status(500).json({ success: false, message: 'Failed to schedule spa appointment', error: error.message });
+  }
+});
+
+/**
+ * GET /api/amenities/spa/reservations
+ * List spa appointments (Admin)
+ */
+router.get('/spa/reservations', async (req, res) => {
+  try {
+    if (isDatabaseConnected()) {
+      const reservations = await prisma.spaReservation.findMany({
+        orderBy: { appointmentDate: 'desc' },
+      });
+      return res.json({ success: true, data: reservations });
+    }
+    return res.json({ success: true, data: inMemorySpaReservations });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Failed to list spa appointments', error: error.message });
+  }
+});
+
+/**
  * GET /api/amenities/:slug
  * Fetch single amenity by slug
  */
@@ -208,97 +299,6 @@ router.delete('/:id', async (req, res) => {
     return res.json({ success: true, message: 'Amenity deleted' });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Failed to delete amenity', error: error.message });
-  }
-});
-
-/**
- * POST /api/amenities/spa/reserve
- * Book spa ritual
- */
-router.post('/spa/reserve', async (req, res) => {
-  try {
-    const { serviceName, guestName, guestPhone, guestEmail, appointmentDate, preferredTime, partySize = 1, notes } = req.body;
-
-    if (!serviceName || !guestName || !guestPhone || !appointmentDate || !preferredTime) {
-      return res.status(400).json({ success: false, message: 'Service, name, phone, date, and preferred time are required' });
-    }
-
-    const bookingRef = `SPA-${Math.floor(10000 + Math.random() * 90000)}`;
-
-    if (isDatabaseConnected()) {
-      const appointment = await prisma.spaReservation.create({
-        data: {
-          bookingRef,
-          serviceName,
-          guestName,
-          guestPhone,
-          guestEmail,
-          appointmentDate: new Date(appointmentDate),
-          preferredTime,
-          partySize: Number(partySize),
-          notes,
-          status: 'UNREAD',
-        },
-      });
-
-      await prisma.notification.create({
-        data: {
-          type: 'SPA_APPOINTMENT',
-          title: `Spa Appointment: ${bookingRef}`,
-          message: `${guestName} booked ${serviceName} on ${appointmentDate} at ${preferredTime}`,
-          linkUrl: '/admin#amenities',
-        },
-      });
-
-      return res.status(201).json({
-        success: true,
-        message: 'Spa appointment scheduled. Our spa concierge will confirm your treatment slot.',
-        data: appointment,
-      });
-    }
-
-    const appointment = {
-      id: `spa-${Date.now()}`,
-      bookingRef,
-      serviceName,
-      guestName,
-      guestPhone,
-      guestEmail,
-      appointmentDate,
-      preferredTime,
-      partySize: Number(partySize),
-      notes,
-      status: 'UNREAD',
-      createdAt: new Date().toISOString(),
-    };
-    inMemorySpaReservations.unshift(appointment);
-
-    return res.status(201).json({
-      success: true,
-      message: 'Spa appointment scheduled. Our spa concierge will confirm your treatment slot.',
-      data: appointment,
-    });
-  } catch (error) {
-    console.error('Error in POST /api/amenities/spa/reserve:', error);
-    res.status(500).json({ success: false, message: 'Failed to schedule spa appointment', error: error.message });
-  }
-});
-
-/**
- * GET /api/amenities/spa/reservations
- * List spa appointments (Admin)
- */
-router.get('/spa/reservations', async (req, res) => {
-  try {
-    if (isDatabaseConnected()) {
-      const reservations = await prisma.spaReservation.findMany({
-        orderBy: { appointmentDate: 'desc' },
-      });
-      return res.json({ success: true, data: reservations });
-    }
-    return res.json({ success: true, data: inMemorySpaReservations });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to list spa appointments', error: error.message });
   }
 });
 

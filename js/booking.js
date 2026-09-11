@@ -220,8 +220,8 @@ function initBookingEngine() {
   const promoBtn = document.getElementById('applyPromoBtn');
   const promoMsg = document.getElementById('promoMessage');
 
-  promoBtn?.addEventListener('click', async () => {
-    const code = promoInput.value.trim().toUpperCase();
+  async function handleApplyPromo(rawCode) {
+    const code = (rawCode || '').trim().toUpperCase();
     if (!code) {
       state.discountPercent = 0;
       state.appliedPromo = '';
@@ -233,7 +233,7 @@ function initBookingEngine() {
     try {
       if (window.XYZ_API?.offers) {
         const res = await XYZ_API.offers.validate(code);
-        if (res.valid) {
+        if (res && res.valid) {
           state.discountPercent = res.data.discountPercent || 0.15;
           state.appliedPromo = code;
           if (promoMsg) {
@@ -264,6 +264,10 @@ function initBookingEngine() {
       }
     }
     updateSummary();
+  }
+
+  promoBtn?.addEventListener('click', () => {
+    handleApplyPromo(promoInput?.value);
   });
 
   // Update Summary calculation
@@ -486,6 +490,46 @@ function initBookingEngine() {
     }, 600);
   });
 
-  // Initial update
+  // Live sync room prices & details from database
+  async function syncRoomPrices() {
+    if (!window.XYZ_API?.rooms) return;
+    try {
+      const rooms = await XYZ_API.rooms.getAll();
+      if (Array.isArray(rooms) && rooms.length > 0) {
+        rooms.forEach((r) => {
+          const key = r.slug || r.id;
+          if (ROOM_DATA[key]) {
+            if (r.price) ROOM_DATA[key].price = r.price;
+            if (r.name) ROOM_DATA[key].name = r.name;
+            if (r.type) ROOM_DATA[key].type = r.type;
+            if (r.description) ROOM_DATA[key].description = r.description;
+            if (r.images && r.images[0]) ROOM_DATA[key].image = r.images[0];
+
+            // Update UI card if present
+            const card = document.querySelector(`.room-option[data-room-id="${key}"]`);
+            if (card) {
+              const priceEl = card.querySelector('.room-option__price');
+              if (priceEl) priceEl.innerHTML = `₹${r.price.toLocaleString('en-IN')} <span class="room-option__period">/ night</span>`;
+              const nameEl = card.querySelector('.room-option__name');
+              if (nameEl) nameEl.textContent = r.name;
+            }
+          }
+        });
+        updateSummary();
+      }
+    } catch (e) {
+      // Keep hardcoded fallback
+    }
+  }
+
+  // Pre-apply promo code if provided in URL parameters
+  const initialPromo = params.get('promo') || params.get('promocode') || params.get('code') || '';
+  if (initialPromo) {
+    if (promoInput) promoInput.value = initialPromo;
+    handleApplyPromo(initialPromo);
+  }
+
+  // Initial updates & room synchronization
   updateSummary();
+  syncRoomPrices();
 }

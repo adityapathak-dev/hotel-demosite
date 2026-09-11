@@ -153,8 +153,8 @@ router.get('/validate', async (req, res) => {
       });
     }
 
-    return res.status(404).json({
-      success: false,
+    return res.json({
+      success: true,
       valid: false,
       message: 'Invalid or expired promotional code.',
     });

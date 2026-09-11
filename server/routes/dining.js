@@ -92,6 +92,113 @@ router.get('/', async (req, res) => {
 });
 
 /**
+ * POST /api/dining/reserve
+ * Submit table reservation
+ */
+router.post('/reserve', async (req, res) => {
+  try {
+    const { restaurantSlug, restaurantId, guestName, guestPhone, guestEmail, date, timeSlot, partySize = 2, specialRequests } = req.body;
+
+    if (!guestName || !guestPhone || !date || !timeSlot) {
+      return res.status(400).json({ success: false, message: 'Name, phone, date, and time slot are required' });
+    }
+
+    const bookingRef = `DINE-${Math.floor(10000 + Math.random() * 90000)}`;
+
+    if (isDatabaseConnected()) {
+      let targetRestaurant = null;
+      if (restaurantId) {
+        targetRestaurant = await prisma.restaurant.findUnique({ where: { id: restaurantId } });
+      } else if (restaurantSlug) {
+        targetRestaurant = await prisma.restaurant.findUnique({ where: { slug: restaurantSlug } });
+      }
+
+      if (!targetRestaurant) {
+        targetRestaurant = await prisma.restaurant.findFirst();
+      }
+
+      if (targetRestaurant) {
+        const reservation = await prisma.diningReservation.create({
+          data: {
+            bookingRef,
+            restaurantId: targetRestaurant.id,
+            guestName,
+            guestPhone,
+            guestEmail,
+            reservationDate: new Date(date),
+            timeSlot,
+            partySize: Number(partySize),
+            specialRequests,
+            status: 'UNREAD',
+          },
+        });
+
+        await prisma.notification.create({
+          data: {
+            type: 'DINING_RESERVATION',
+            title: `Table Reservation: ${bookingRef}`,
+            message: `${guestName} reserved a table for ${partySize} at ${targetRestaurant.name} on ${date} at ${timeSlot}`,
+            linkUrl: '/admin#dining',
+          },
+        });
+
+        return res.status(201).json({
+          success: true,
+          message: 'Table reservation confirmed. Our maître d’ will confirm your seating shortly.',
+          data: reservation,
+        });
+      }
+    }
+
+    const reservation = {
+      id: `dine-${Date.now()}`,
+      bookingRef,
+      guestName,
+      guestPhone,
+      guestEmail,
+      reservationDate: date,
+      timeSlot,
+      partySize: Number(partySize),
+      specialRequests,
+      status: 'UNREAD',
+      createdAt: new Date().toISOString(),
+    };
+    inMemoryReservations.unshift(reservation);
+
+    return res.status(201).json({
+      success: true,
+      message: 'Table reservation confirmed. Our maître d’ will confirm your seating shortly.',
+      data: reservation,
+    });
+  } catch (error) {
+    console.error('Error in POST /api/dining/reserve:', error);
+    res.status(500).json({ success: false, message: 'Failed to process table reservation', error: error.message });
+  }
+});
+
+/**
+ * GET /api/dining/reservations/all & GET /api/dining/reservations
+ * List table reservations (Admin)
+ */
+const handleListDiningReservations = async (req, res) => {
+  try {
+    if (isDatabaseConnected()) {
+      const reservations = await prisma.diningReservation.findMany({
+        include: { restaurant: true },
+        orderBy: { createdAt: 'desc' },
+      });
+      return res.json({ success: true, data: reservations });
+    }
+    return res.json({ success: true, data: inMemoryReservations });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Failed to list table reservations', error: error.message });
+  }
+};
+
+router.get('/reservations/all', handleListDiningReservations);
+router.get('/reservations', handleListDiningReservations);
+
+/**
  * GET /api/dining/:slug
  * Fetch single dining venue by slug
  */
@@ -220,110 +327,6 @@ router.delete('/:id', async (req, res) => {
     return res.json({ success: true, message: 'Dining venue deleted' });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Failed to delete venue', error: error.message });
-  }
-});
-
-/**
- * POST /api/dining/reserve
- * Submit table reservation
- */
-router.post('/reserve', async (req, res) => {
-  try {
-    const { restaurantSlug, restaurantId, guestName, guestPhone, guestEmail, date, timeSlot, partySize = 2, specialRequests } = req.body;
-
-    if (!guestName || !guestPhone || !date || !timeSlot) {
-      return res.status(400).json({ success: false, message: 'Name, phone, date, and time slot are required' });
-    }
-
-    const bookingRef = `DINE-${Math.floor(10000 + Math.random() * 90000)}`;
-
-    if (isDatabaseConnected()) {
-      let targetRestaurant = null;
-      if (restaurantId) {
-        targetRestaurant = await prisma.restaurant.findUnique({ where: { id: restaurantId } });
-      } else if (restaurantSlug) {
-        targetRestaurant = await prisma.restaurant.findUnique({ where: { slug: restaurantSlug } });
-      }
-
-      if (!targetRestaurant) {
-        targetRestaurant = await prisma.restaurant.findFirst();
-      }
-
-      if (targetRestaurant) {
-        const reservation = await prisma.diningReservation.create({
-          data: {
-            bookingRef,
-            restaurantId: targetRestaurant.id,
-            guestName,
-            guestPhone,
-            guestEmail,
-            reservationDate: new Date(date),
-            timeSlot,
-            partySize: Number(partySize),
-            specialRequests,
-            status: 'UNREAD',
-          },
-        });
-
-        await prisma.notification.create({
-          data: {
-            type: 'DINING_RESERVATION',
-            title: `Table Reservation: ${bookingRef}`,
-            message: `${guestName} reserved a table for ${partySize} at ${targetRestaurant.name} on ${date} at ${timeSlot}`,
-            linkUrl: '/admin#dining',
-          },
-        });
-
-        return res.status(201).json({
-          success: true,
-          message: 'Table reservation confirmed. Our maître d’ will confirm your seating shortly.',
-          data: reservation,
-        });
-      }
-    }
-
-    const reservation = {
-      id: `dine-${Date.now()}`,
-      bookingRef,
-      guestName,
-      guestPhone,
-      guestEmail,
-      reservationDate: date,
-      timeSlot,
-      partySize: Number(partySize),
-      specialRequests,
-      status: 'UNREAD',
-      createdAt: new Date().toISOString(),
-    };
-    inMemoryReservations.unshift(reservation);
-
-    return res.status(201).json({
-      success: true,
-      message: 'Table reservation confirmed. Our maître d’ will confirm your seating shortly.',
-      data: reservation,
-    });
-  } catch (error) {
-    console.error('Error in POST /api/dining/reserve:', error);
-    res.status(500).json({ success: false, message: 'Failed to process table reservation', error: error.message });
-  }
-});
-
-/**
- * GET /api/dining/reservations
- * List table reservations (Admin)
- */
-router.get('/reservations/all', async (req, res) => {
-  try {
-    if (isDatabaseConnected()) {
-      const reservations = await prisma.diningReservation.findMany({
-        include: { restaurant: true },
-        orderBy: { createdAt: 'desc' },
-      });
-      return res.json({ success: true, data: reservations });
-    }
-    return res.json({ success: true, data: inMemoryReservations });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to list table reservations', error: error.message });
   }
 });
 

@@ -109,6 +109,23 @@
         openAuthModal('signin');
       });
     }
+
+    // Synchronize any static "Sign In" text links in the nav
+    const staticLoginLinks = headerNav.querySelectorAll('a[href="login.html"], a[href="/login"]');
+    staticLoginLinks.forEach((link) => {
+      if (user) {
+        if (link.parentElement && link.parentElement.tagName === 'LI') {
+          link.parentElement.style.display = 'none';
+        } else {
+          link.style.display = 'none';
+        }
+      } else {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          openAuthModal('signin');
+        });
+      }
+    });
   }
 
   // --------------------------------------------------------------------------
