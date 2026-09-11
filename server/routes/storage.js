@@ -63,12 +63,13 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       const uploadResult = await uploadToSupabaseStorage({
         bucketName: 'hotel-assets',
         filePath: destinationPath,
+        fileName: originalName,
         fileBuffer: req.file.buffer,
         contentType: req.file.mimetype,
       });
 
-      if (uploadResult && uploadResult.publicUrl) {
-        publicUrl = uploadResult.publicUrl;
+      if (uploadResult && (uploadResult.publicUrl || uploadResult.url)) {
+        publicUrl = uploadResult.publicUrl || uploadResult.url;
       }
     } catch (supabaseError) {
       console.warn('Supabase storage upload failed or not configured, using local fallback:', supabaseError.message);

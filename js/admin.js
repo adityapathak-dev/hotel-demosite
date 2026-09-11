@@ -377,8 +377,18 @@
             <input type="text" id="mRoomAmenities" value="${this.escapeHtml((room?.amenities || []).join(', '))}" placeholder="King Pillow-top Bed, Marble Bath, Wi-Fi 6, Nespresso">
           </div>
           <div class="form-group span-2">
-            <label for="mRoomImage">Primary Image URL (or upload below)</label>
-            <input type="text" id="mRoomImage" value="${this.escapeHtml(room?.images?.[0] || 'images/room-deluxe.jpg')}">
+            <label for="mRoomImage">Suite Photograph</label>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <input type="text" id="mRoomImage" value="${this.escapeHtml(room?.images?.[0] || 'images/room-deluxe.jpg')}" style="flex: 1;" placeholder="Enter image URL or click Upload Photo">
+              <button type="button" class="btn-gold" id="btnUploadRoomPhoto" style="white-space: nowrap; padding: 0.6rem 1rem; display: inline-flex; align-items: center; gap: 6px;">
+                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg> Upload Photo
+              </button>
+              <input type="file" id="fileRoomPhoto" accept="image/*" style="display: none;">
+            </div>
+            <div style="margin-top: 0.6rem; display: flex; align-items: center; gap: 1rem;">
+              <img id="roomPhotoPreview" src="${this.escapeHtml(room?.images?.[0] || 'images/room-deluxe.jpg')}" alt="Preview" style="width: 80px; height: 52px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-gold);" onerror="this.src='images/room-deluxe.jpg'">
+              <span id="roomPhotoStatus" style="font-size: 0.8rem; color: var(--text-muted);">Current suite photo</span>
+            </div>
           </div>
           <div class="form-group">
             <label for="mRoomUnits">Total Physical Units</label>
@@ -398,6 +408,15 @@
       `;
 
       document.getElementById('crudModal').style.display = 'flex';
+
+      this.setupPhotoUpload({
+        buttonId: 'btnUploadRoomPhoto',
+        fileInputId: 'fileRoomPhoto',
+        urlInputId: 'mRoomImage',
+        previewImgId: 'roomPhotoPreview',
+        statusId: 'roomPhotoStatus',
+        category: 'rooms',
+      });
 
       document.getElementById('roomModalForm').onsubmit = async (e) => {
         e.preventDefault();
@@ -614,8 +633,18 @@
             <input type="text" id="dDress" value="${this.escapeHtml(venue?.dressCode || 'Smart Casual')}">
           </div>
           <div class="form-group span-2">
-            <label for="dImage">Image URL</label>
-            <input type="text" id="dImage" value="${this.escapeHtml(venue?.images?.[0] || 'images/dining.jpg')}">
+            <label for="dImage">Venue Photograph / Banner</label>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <input type="text" id="dImage" value="${this.escapeHtml(venue?.images?.[0] || 'images/dining.jpg')}" style="flex: 1;" placeholder="Enter image URL or click Upload Photo">
+              <button type="button" class="btn-gold" id="btnUploadDiningPhoto" style="white-space: nowrap; padding: 0.6rem 1rem; display: inline-flex; align-items: center; gap: 6px;">
+                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg> Upload Photo
+              </button>
+              <input type="file" id="fileDiningPhoto" accept="image/*" style="display: none;">
+            </div>
+            <div style="margin-top: 0.6rem; display: flex; align-items: center; gap: 1rem;">
+              <img id="diningPhotoPreview" src="${this.escapeHtml(venue?.images?.[0] || 'images/dining.jpg')}" alt="Preview" style="width: 80px; height: 52px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-gold);" onerror="this.src='images/dining.jpg'">
+              <span id="diningPhotoStatus" style="font-size: 0.8rem; color: var(--text-muted);">Current dining photo</span>
+            </div>
           </div>
           <div class="form-group span-2">
             <button type="submit" class="btn-gold">${isEdit ? 'Update Dining Venue' : 'Create Dining Venue'}</button>
@@ -624,6 +653,15 @@
       `;
 
       document.getElementById('crudModal').style.display = 'flex';
+
+      this.setupPhotoUpload({
+        buttonId: 'btnUploadDiningPhoto',
+        fileInputId: 'fileDiningPhoto',
+        urlInputId: 'dImage',
+        previewImgId: 'diningPhotoPreview',
+        statusId: 'diningPhotoStatus',
+        category: 'dining',
+      });
 
       document.getElementById('diningModalForm').onsubmit = async (e) => {
         e.preventDefault();
@@ -855,8 +893,18 @@
             <input type="text" id="oTerms" value="${this.escapeHtml(offer?.terms || 'Valid on flexible bookings 30 days prior.')}">
           </div>
           <div class="form-group span-2">
-            <label for="oImage">Banner Image URL</label>
-            <input type="text" id="oImage" value="${this.escapeHtml(offer?.imageUrl || '')}">
+            <label for="oImage">Offer Promotional Banner</label>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <input type="text" id="oImage" value="${this.escapeHtml(offer?.imageUrl || '')}" style="flex: 1;" placeholder="Enter image URL or click Upload Photo">
+              <button type="button" class="btn-gold" id="btnUploadOfferPhoto" style="white-space: nowrap; padding: 0.6rem 1rem; display: inline-flex; align-items: center; gap: 6px;">
+                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg> Upload Photo
+              </button>
+              <input type="file" id="fileOfferPhoto" accept="image/*" style="display: none;">
+            </div>
+            <div style="margin-top: 0.6rem; display: flex; align-items: center; gap: 1rem;">
+              <img id="offerPhotoPreview" src="${this.escapeHtml(offer?.imageUrl || 'images/hero.jpg')}" alt="Preview" style="width: 80px; height: 52px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-gold);" onerror="this.src='images/hero.jpg'">
+              <span id="offerPhotoStatus" style="font-size: 0.8rem; color: var(--text-muted);">Current promotional photo</span>
+            </div>
           </div>
           <div class="form-group span-2">
             <button type="submit" class="btn-gold">${isEdit ? 'Save Offer' : 'Create Offer'}</button>
@@ -865,6 +913,15 @@
       `;
 
       document.getElementById('crudModal').style.display = 'flex';
+
+      this.setupPhotoUpload({
+        buttonId: 'btnUploadOfferPhoto',
+        fileInputId: 'fileOfferPhoto',
+        urlInputId: 'oImage',
+        previewImgId: 'offerPhotoPreview',
+        statusId: 'offerPhotoStatus',
+        category: 'offers',
+      });
 
       document.getElementById('offerModalForm').onsubmit = async (e) => {
         e.preventDefault();
@@ -1114,30 +1171,106 @@
     }
 
     // --------------------------------------------------------------------------
-    // 10. Storage Tab
+    // 10. Storage Tab & Photo Upload Utilities
     // --------------------------------------------------------------------------
+    setupPhotoUpload({ buttonId, fileInputId, urlInputId, previewImgId, statusId, category }) {
+      const btn = document.getElementById(buttonId);
+      const input = document.getElementById(fileInputId);
+      const urlInput = document.getElementById(urlInputId);
+      const previewImg = document.getElementById(previewImgId);
+      const statusSpan = document.getElementById(statusId);
+
+      if (!btn || !input) return;
+
+      btn.addEventListener('click', () => input.click());
+
+      input.addEventListener('change', async () => {
+        if (!input.files || !input.files.length) return;
+        const file = input.files[0];
+        if (statusSpan) {
+          statusSpan.textContent = `Uploading ${file.name}...`;
+          statusSpan.style.color = 'var(--gold-primary)';
+        }
+        btn.disabled = true;
+
+        try {
+          const res = await XYZ_API.storage.upload(file, category);
+          const uploadedUrl = res.url || (res.data && res.data.url);
+          if (uploadedUrl) {
+            if (urlInput) urlInput.value = uploadedUrl;
+            if (previewImg) {
+              previewImg.src = uploadedUrl;
+              previewImg.style.display = 'block';
+            }
+            if (statusSpan) {
+              statusSpan.textContent = 'Photo uploaded successfully!';
+              statusSpan.style.color = 'var(--status-success)';
+            }
+            this.showBanner('Photo uploaded and synced.');
+          }
+        } catch (err) {
+          if (statusSpan) {
+            statusSpan.textContent = `Upload failed: ${err.message}`;
+            statusSpan.style.color = 'var(--status-danger)';
+          }
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    }
+
     bindStorageEvents() {
       const fileInput = document.getElementById('mediaFileInput');
       const dropzone = document.getElementById('storageDropzone');
       const statusMsg = document.getElementById('uploadStatusMsg');
 
+      const handleUpload = async (file) => {
+        const category = document.getElementById('mediaCategorySelect').value;
+        statusMsg.textContent = `Uploading ${file.name} to media registry...`;
+        statusMsg.style.color = 'var(--gold-primary)';
+
+        try {
+          const res = await XYZ_API.storage.upload(file, category);
+          statusMsg.textContent = `Uploaded successfully! URL: ${res.url}`;
+          statusMsg.style.color = 'var(--status-success)';
+          this.loadStorageData();
+          this.showBanner('Media asset uploaded and registered.');
+        } catch (err) {
+          statusMsg.textContent = `Upload error: ${err.message}`;
+          statusMsg.style.color = 'var(--status-danger)';
+        }
+      };
+
       if (fileInput) {
         fileInput.addEventListener('change', async () => {
           if (!fileInput.files.length) return;
-          const file = fileInput.files[0];
-          const category = document.getElementById('mediaCategorySelect').value;
+          await handleUpload(fileInput.files[0]);
+        });
+      }
 
-          statusMsg.textContent = `Uploading ${file.name} to Supabase Storage (hotel-assets)...`;
-          statusMsg.style.color = 'var(--gold-primary)';
+      if (dropzone) {
+        ['dragenter', 'dragover'].forEach((eventName) => {
+          dropzone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropzone.style.borderColor = 'var(--gold-primary)';
+            dropzone.style.background = 'rgba(197, 168, 128, 0.08)';
+          });
+        });
 
-          try {
-            const res = await XYZ_API.storage.upload(file, category);
-            statusMsg.textContent = `Uploaded successfully! URL: ${res.url}`;
-            statusMsg.style.color = 'var(--status-success)';
-            this.loadStorageData();
-          } catch (err) {
-            statusMsg.textContent = `Upload error: ${err.message}`;
-            statusMsg.style.color = 'var(--status-danger)';
+        ['dragleave', 'drop'].forEach((eventName) => {
+          dropzone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropzone.style.borderColor = '';
+            dropzone.style.background = '';
+          });
+        });
+
+        dropzone.addEventListener('drop', async (e) => {
+          const dt = e.dataTransfer;
+          if (dt && dt.files && dt.files.length) {
+            await handleUpload(dt.files[0]);
           }
         });
       }
