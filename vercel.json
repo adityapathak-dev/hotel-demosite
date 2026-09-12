@@ -1,6 +1,7 @@
 {
   "version": 2,
   "buildCommand": "prisma generate",
+  "outputDirectory": ".",
   "rewrites": [
     {
       "source": "/api/(.*)",
