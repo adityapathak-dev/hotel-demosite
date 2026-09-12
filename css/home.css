@@ -252,6 +252,25 @@
   color: var(--text-muted);
 }
 
+/* ---------- Showcase Video ---------- */
+.showcase-video__wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border-color);
+  background: #000;
+}
+
+.showcase-video__player {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
 /* ---------- Rooms Section ---------- */
 .rooms-section {
   background: var(--ivory-warm);
